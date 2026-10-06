@@ -1,0 +1,75 @@
+name: PFE Auto-Hunter Agent (Morocco - Casablanca)
+
+on:
+  schedule:
+    # Exécution du lundi au vendredi à 08h00 UTC et 13h00 UTC (09h00 et 14h00 heure du Maroc)
+    - cron: '0 8,13 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      live_mode:
+        description: 'Envoyer réellement les e-mails aux recruteurs (Mode Live)'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  hunt-and-apply:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Récupération du dépôt
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🐍 Configuration de Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: 📦 Installation des dépendances
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: 📄 Vérification de la présence du CV ATS
+        run: |
+          if [ ! -f "cv_ats_pfe.pdf" ]; then
+            echo "❌ Erreur : cv_ats_pfe.pdf introuvable !"
+            exit 1
+          fi
+          echo "✅ CV ATS prêt pour l'envoi : cv_ats_pfe.pdf"
+
+      - name: 🚀 Exécution de l'Agent PFE Hunter
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          DRY_RUN: ${{ github.event.inputs.live_mode != 'true' }}
+        run: |
+          if [ "${{ github.event.inputs.live_mode }}" = "true" ]; then
+            echo "🔥 Exécution en mode LIVE (envois d'e-mails activés)"
+            python run_agent.py --live
+          else
+            echo "🛡 Exécution en mode SIMULATION (DRY-RUN sécurisé)"
+            python run_agent.py
+          fi
+
+      - name: 💾 Sauvegarde de l'état des candidatures (Anti-Doublon)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/applied_offers.json
+          if git diff --staged --quiet; then
+            echo "Aucune nouvelle offre à commiter."
+          else
+            git commit -m "chore(agent): mise à jour de l'historique des offres [skip ci]"
+            git push
+          fi

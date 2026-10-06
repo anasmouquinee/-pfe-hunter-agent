@@ -1,0 +1,300 @@
+\documentclass[a4paper,9pt]{extarticle}
+
+% --- PACKAGES ESSENTIELS ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+\usepackage[left=0.8cm, right=0.8cm, top=0.65cm, bottom=0.65cm]{geometry}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tikz}
+
+\pagestyle{empty}
+
+% --- COULEURS PROFESSIONNELLES & MODERNES ---
+\definecolor{primary}{HTML}{0F172A}      % Slate / Bleu Marine Profond (#0F172A)
+\definecolor{accent}{HTML}{2563EB}       % Bleu Royal Électrique (#2563EB)
+\definecolor{accentteal}{HTML}{0D9488}   % Sarcelle / IA & Data Highlight (#0D9488)
+\definecolor{textdark}{HTML}{1E293B}     % Texte principal très lisible
+\definecolor{textmuted}{HTML}{475569}    % Métadonnées / Dates / Lieux
+\definecolor{linegray}{HTML}{CBD5E1}     % Séparateurs discrets
+\definecolor{tagbg}{HTML}{F8FAFC}        % Arrière-plan badges
+\definecolor{tagborder}{HTML}{CBD5E1}    % Bordure badges
+
+% --- CONFIGURATION DES LIENS ---
+\hypersetup{
+    colorlinks=true,
+    urlcolor=accent,
+    linkcolor=accent
+}
+
+% Supprimer les warnings hyperref pour les glyphes FontAwesome
+\pdfstringdefDisableCommands{%
+  \def\faUser{}%
+  \def\faBriefcase{}%
+  \def\faCogs{}%
+  \def\faGraduationCap{}%
+  \def\faCubes{}%
+  \def\faAward{}%
+  \def\faLanguage{}%
+  \def\faHeart{}%
+  \def\faExternalLink*{}%
+  \def\faCalendar*{}%
+}
+
+% --- FORMAT DES TITRES DE SECTION ---
+\titleformat{\section}
+  {\color{primary}\bfseries\small}
+  {}{0em}
+  {}[\vspace{-2.5pt}{\color{accent}\rule{\linewidth}{1.1pt}}\vspace{-2pt}]
+
+\titlespacing{\section}{0pt}{3.5pt}{2pt}
+
+% --- LISTES COMPACTES ---
+\setlist[itemize]{
+  noitemsep,
+  topsep=1pt,
+  parsep=0pt,
+  partopsep=0pt,
+  leftmargin=9pt,
+  label={\color{accent}\scriptsize\faAngleRight}
+}
+
+% --- MACROS PERSONNALISÉES ---
+\newcommand{\cvhighlight}[1]{\textcolor{accentteal}{\textbf{#1}}}
+\newcommand{\cvtech}[1]{\textcolor{primary}{\textbf{#1}}}
+
+\newcommand{\cvtag}[1]{%
+  \tikz[baseline=-0.5ex]\node[draw=tagborder, fill=tagbg, rounded corners=2pt, inner xsep=3pt, inner ysep=1pt, font=\fontsize{6.5pt}{7.5pt}\selectfont\sffamily\color{primary}]{#1};%
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+\begin{document}
+
+%=============================================================================
+% EN-TÊTE DU CV AVEC PHOTO (HEADER)
+%=============================================================================
+\noindent
+\begin{tabularx}{\linewidth}{@{} X r @{}}
+  \begin{minipage}[c]{0.82\linewidth}
+    {\LARGE \textbf{\color{primary} ASSIA NOUAOURY}}\\[2.5pt]
+    {\small \textbf{\color{accent} ÉLÈVE-INGÉNIEUR EN 5\textsuperscript{ÈME} ANNÉE -- IA \& DATA SCIENCE}}\\[2.5pt]
+    {\footnotesize \color{textmuted} À la recherche d'un \textbf{\color{primary}Stage PFE (Projet de Fin d'Études)} en Développement Logiciel, IA ou Data | 2026}\\[4pt]
+    {\footnotesize \color{textdark}
+      \faEnvelope\ \href{mailto:assianouaoury@gmail.com}{assianouaoury@gmail.com} \quad\textbar\quad
+      \faPhone*\ +212 620-433358 \quad\textbar\quad
+      \faMapMarker*\ Casablanca, Maroc
+    }
+  \end{minipage}
+  &
+  \begin{tikzpicture}[baseline=(current bounding box.center)]
+    \clip (0,0) circle (1.15cm);
+    \node at (0,0) {\includegraphics[width=2.35cm]{assia_photo.png}};
+    \draw[line width=1.5pt, color=accent] (0,0) circle (1.15cm);
+  \end{tikzpicture}
+\end{tabularx}
+
+\vspace{1pt}
+\noindent{\color{linegray}\rule{\linewidth}{0.8pt}}
+\vspace{2pt}
+
+%=============================================================================
+% CORPS DU CV : MISE EN PAGE 2 COLONNES (57.5% GAUCHE / 40.5% DROITE)
+%=============================================================================
+\noindent
+\begin{minipage}[t]{0.575\textwidth}
+
+  %----------- PROFIL -----------
+  \section{\faUser\ Profil Professionnel}
+  {\footnotesize \color{textdark}
+  Élève-Ingénieur en 5\textsuperscript{ème} année à l'\textbf{EMSI}, spécialisée en \cvhighlight{Intelligence Artificielle} et \cvhighlight{Data Science}. Passionnée par le \cvtech{développement logiciel full-stack}, l'intégration de \cvtech{modèles d'IA avancés (LangGraph/LLMs)} et la conception d'architectures applicatives robustes. Forte de stages concrets en e-santé et tourisme, je recherche un stage PFE pour contribuer activement à des projets innovants à fort impact.
+  }
+
+  \vspace{2.5pt}
+
+  %----------- EXPÉRIENCES -----------
+  \section{\faBriefcase\ Expériences Professionnelles}
+
+  % DELTA TOURS
+  \textbf{\color{primary} Stagiaire Développeuse Full-Stack \& IA} \hfill {\scriptsize\color{textmuted}\faCalendar*\ 07/2025 -- 09/2025}\\
+  {\footnotesize \textbf{\color{accent} DELTA TOURS}} \hfill {\scriptsize\color{textmuted}\faMapMarker*\ Casablanca, Maroc}
+  \begin{itemize}
+    \item Conception et développement d'une plateforme web complète de réservation touristique.
+    \item Développement des modules front-end (\cvtech{React / Vite}) et de l'API REST sous \cvtech{FastAPI}.
+    \item Implémentation de la gestion des utilisateurs, consultation d'offres et sécurisation avec \cvtech{JWT}.
+    \item Intégration d'un assistant intelligent basé sur \cvhighlight{LangGraph \& Ollama} pour répondre en langage naturel sur les offres, circuits et tarifs.
+  \end{itemize}
+  \vspace{1.5pt}
+  {\scriptsize \textbf{\color{textmuted}Technologies :}\ \cvtag{React} \cvtag{FastAPI} \cvtag{LangGraph} \cvtag{Ollama} \cvtag{SQLAlchemy} \cvtag{TypeScript}}
+
+  \vspace{3.5pt}
+
+  % TYM SOLUTIONS
+  \textbf{\color{primary} Stagiaire Développeuse Web} \hfill {\scriptsize\color{textmuted}\faCalendar*\ 06/2025 -- 08/2025}\\
+  {\footnotesize \textbf{\color{accent} TYM SOLUTIONS}} \hfill {\scriptsize\color{textmuted}\faMapMarker*\ Casablanca, Maroc}
+  \begin{itemize}
+    \item Participation au développement de la plateforme e-santé \cvhighlight{Sahtek}.
+    \item Création d'interfaces web dynamiques, réactives et ergonomiques avec \cvtech{Vue.js}.
+    \item Optimisation du parcours utilisateur et intégration responsive.
+  \end{itemize}
+  \vspace{1.5pt}
+  {\scriptsize \textbf{\color{textmuted}Technologies :}\ \cvtag{Vue.js} \cvtag{JavaScript} \cvtag{HTML5} \cvtag{CSS3} \cvtag{E-Santé}}
+
+  \vspace{2.5pt}
+
+  %----------- PROJETS RÉALISÉS -----------
+  \section{\faCogs\ Projets d'Ingénierie \& PFA}
+
+  % ODYSSEY PFA
+  \textbf{\color{primary} Plateforme de Réservation de Voyages -- Odyssey (PFA)} \hfill {\scriptsize\color{textmuted}\faCalendar*\ 2025 -- 2026}\\
+  {\scriptsize\color{textmuted} Architecture 3-tiers \& Recommandation Intelligente}
+  \begin{itemize}
+    \item Plateforme web dynamique de réservation basée sur la saisonnalité des destinations.
+    \item Conception d'une \cvhighlight{architecture 3-tiers} avec gestion des réservations, panier et rôles.
+    \item Intégration d'un assistant conversationnel IA et d'un module de géolocalisation GPS.
+    \item Sécurisation des transactions, gestion des rôles et interface administrateur.
+  \end{itemize}
+  \vspace{1.5pt}
+  {\scriptsize \textbf{\color{textmuted}Technologies :}\ \cvtag{C\#} \cvtag{ASP.NET Core} \cvtag{Razor Pages} \cvtag{SQL Server} \cvtag{IA}}
+
+  \vspace{3.5pt}
+
+  % FILM-A
+  \textbf{\color{primary} Film-A -- Application Mobile \& IA} \hfill {\scriptsize\color{textmuted}\faCalendar*\ 2025 -- 2026}\\
+  {\scriptsize\color{textmuted} Recommandation cinématographique par graphes}
+  \begin{itemize}
+    \item Moteur de recommandation basé sur les graphes de données avec \cvhighlight{Neo4j}.
+    \item Intégration d'un chatbot intelligent et interface mobile sous \cvtech{React Native}.
+    \item Backend sous \cvtech{Node.js} exposant des APIs REST scalables.
+  \end{itemize}
+  \vspace{1.5pt}
+  {\scriptsize \textbf{\color{textmuted}Technologies :}\ \cvtag{React Native} \cvtag{Neo4j} \cvtag{Node.js} \cvtag{IA} \cvtag{API REST}}
+
+  \vspace{3.5pt}
+
+  % E-COMMERCE MÉDICAL
+  \textbf{\color{primary} Plateforme E-Commerce Médicale (PFA)} \hfill {\scriptsize\color{textmuted}\faCalendar*\ 2024 -- 2025}\\
+  {\scriptsize\color{textmuted} Vente d'équipements médicaux \& Dashboard Admin}
+  \begin{itemize}
+    \item Conception d'un site de gestion et vente de matériel médical avec suivi des commandes.
+    \item Interface administrateur complète pour la gestion du catalogue et des utilisateurs.
+  \end{itemize}
+  \vspace{1.5pt}
+  {\scriptsize \textbf{\color{textmuted}Technologies :}\ \cvtag{JavaScript} \cvtag{HTML5} \cvtag{CSS3} \cvtag{E-Commerce}}
+
+\end{minipage}
+\hfill
+%=============================================================================
+% COLONNE DE DROITE (SIDEBAR : 40.5% DE LARGEUR, POLICES VISIBLES & LISIBLES)
+%=============================================================================
+\begin{minipage}[t]{0.405\textwidth}
+
+  %----------- FORMATION -----------
+  \section{\faGraduationCap\ Formation}
+
+  \textbf{\color{primary}\small Cycle Ingénieur d'État} \hfill {\scriptsize\color{textmuted}\faCalendar*\ 2022 -- 2026}\\
+  {\small \textbf{EMSI Casablanca}}\\
+  {\footnotesize École Marocaine des Sciences de l'Ingénieur}\\
+  {\footnotesize Filière : \cvhighlight{Informatique et Réseaux}}\\
+  {\footnotesize Option : \textbf{Intelligence Artificielle \& Data Science}}\\
+  {\scriptsize\textit{5\textsuperscript{ème} année (Dernière année -- PFE 2026)}}
+
+  \vspace{3pt}
+
+  \textbf{\color{primary}\small Baccalauréat Scientifique} \hfill {\scriptsize\color{textmuted}\faCalendar*\ 2021 -- 2022}\\
+  {\small \textbf{Lycée Manar Al Khair}}\\
+  {\footnotesize Sciences Physiques et Chimie}
+
+  \vspace{3pt}
+
+  %----------- COMPÉTENCES -----------
+  \section{\faCubes\ Compétences Clés}
+
+  {\footnotesize \textbf{\color{accent} Intelligence Artificielle \& Data}}
+  \begin{itemize}
+    \item LLMs, LangGraph, Ollama, Chatbots
+    \item Moteurs de Recommandation, IA Générative
+    \item Graphes de Données (Neo4j), Python
+  \end{itemize}
+
+  \vspace{2pt}
+  {\footnotesize \textbf{\color{accent} Développement Web \& Back-End}}
+  \begin{itemize}
+    \item ASP.NET Core (C\#), FastAPI, Node.js
+    \item Django, Symfony, Architecture 3-tiers
+    \item APIs REST, JWT, Razor Pages
+  \end{itemize}
+
+  \vspace{2pt}
+  {\footnotesize \textbf{\color{accent} Front-End, Mobile \& Bases de Données}}
+  \begin{itemize}
+    \item React, React Native, Vue.js, TypeScript
+    \item PostgreSQL, SQL Server, MySQL, SQLite
+    \item Docker, Git, Firebase, Linux
+  \end{itemize}
+
+  \vspace{3pt}
+
+  %----------- CERTIFICATIONS -----------
+  \section{\faAward\ Certifications Clés}
+
+  \textbf{\color{primary}\small Software Engineering} \hfill {\scriptsize\color{textmuted} 2025}\\
+  {\footnotesize \textbf{Coursera / Spécialisation}}\\
+  {\scriptsize\color{textdark} Architecture Logicielle, SDLC, Méthodologies}
+
+  \vspace{2.5pt}
+  \textbf{\color{primary}\small Using Python to Access Web Data} \hfill {\scriptsize\color{textmuted} 2025}\\
+  {\footnotesize \textbf{University of Michigan}}\\
+  {\scriptsize\color{textdark} Ingestion de Données, Web Scraping, REST APIs}
+
+  \vspace{2.5pt}
+  \textbf{\color{primary}\small React Native} \hfill {\scriptsize\color{textmuted} 2025}\\
+  {\footnotesize \textbf{Meta}}\\
+  {\scriptsize\color{textdark} Développement Mobile Multiplateforme \& UI}
+
+  \vspace{2.5pt}
+  \textbf{\color{primary}\small Interactivity with JavaScript} \hfill {\scriptsize\color{textmuted} 2025}\\
+  {\footnotesize \textbf{University of Michigan}}\\
+  {\scriptsize\color{textdark} DOM Manipulation, Événements, UI Dynamique}
+
+  \vspace{2.5pt}
+  \textbf{\color{primary}\small Programmation Orientée Objet en C++} \hfill {\scriptsize\color{textmuted} 2025}\\
+  {\footnotesize \textbf{EPFL}}\\
+  {\scriptsize\color{textdark} Gestion Mémoire, Algorithmes \& Complexité}
+
+  \vspace{2.5pt}
+  \textbf{\color{primary}\small Successful Negotiation \& Presentation} \hfill {\scriptsize\color{textmuted} 2024}\\
+  {\footnotesize \textbf{University of Michigan}}\\
+  {\scriptsize\color{textdark} Communication Professionnelle \& Négociation}
+
+  \vspace{3pt}
+
+  %----------- LANGUES -----------
+  \section{\faLanguage\ Langues}
+  {\footnotesize
+    \textbf{Arabe :} Langue maternelle\\[1pt]
+    \textbf{Français :} Courant (C1 / Professionnel)\\[1pt]
+    \textbf{Anglais :} Courant (B2/C1 / Technique)
+  }
+
+  \vspace{3pt}
+
+  %----------- ATOUTS & INTÉRÊTS -----------
+  \section{\faHeart\ Centres d'Intérêt}
+  {\footnotesize
+    \faRobot\ Veille technologique en IA \& LLMs\\[1pt]
+    \faCode\ Développement Web \& Mobile créatif\\[1pt]
+    \faUsers\ Travail en équipe \& Projets collaboratifs
+  }
+
+\end{minipage}
+
+\end{document}

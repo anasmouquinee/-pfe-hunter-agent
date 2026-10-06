@@ -1,0 +1,292 @@
+\documentclass[a4paper,9pt]{extarticle}
+
+% --- PACKAGES ESSENTIELS ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+\usepackage[left=0.8cm, right=0.8cm, top=0.65cm, bottom=0.65cm]{geometry}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tikz}
+
+\pagestyle{empty}
+
+% --- COULEURS PROFESSIONNELLES & MODERNES ---
+\definecolor{primary}{HTML}{0F172A}      % Slate / Bleu Marine Profond (#0F172A)
+\definecolor{accent}{HTML}{2563EB}       % Bleu Royal Électrique (#2563EB)
+\definecolor{accentteal}{HTML}{0D9488}   % Sarcelle / IA & Data Highlight (#0D9488)
+\definecolor{textdark}{HTML}{1E293B}     % Texte principal très lisible
+\definecolor{textmuted}{HTML}{475569}    % Métadonnées / Dates / Lieux
+\definecolor{linegray}{HTML}{CBD5E1}     % Séparateurs discrets
+\definecolor{tagbg}{HTML}{F8FAFC}        % Arrière-plan badges
+\definecolor{tagborder}{HTML}{CBD5E1}    % Bordure badges
+
+% --- CONFIGURATION DES LIENS ---
+\hypersetup{
+    colorlinks=true,
+    urlcolor=accent,
+    linkcolor=accent
+}
+
+% Supprimer les warnings hyperref pour les glyphes FontAwesome dans les signets
+\pdfstringdefDisableCommands{%
+  \def\faUser{}%
+  \def\faBriefcase{}%
+  \def\faCogs{}%
+  \def\faGraduationCap{}%
+  \def\faCubes{}%
+  \def\faAward{}%
+  \def\faLanguage{}%
+  \def\faHeart{}%
+  \def\faExternalLink*{}%
+  \def\faCalendar*{}%
+}
+
+% --- FORMAT DES TITRES DE SECTION ---
+\titleformat{\section}
+  {\color{primary}\bfseries\small}
+  {}{0em}
+  {}[\vspace{-2.5pt}{\color{accent}\rule{\linewidth}{1.1pt}}\vspace{-2pt}]
+
+\titlespacing{\section}{0pt}{3.5pt}{2pt}
+
+% --- LISTES COMPACTES ---
+\setlist[itemize]{
+  noitemsep,
+  topsep=1pt,
+  parsep=0pt,
+  partopsep=0pt,
+  leftmargin=9pt,
+  label={\color{accent}\scriptsize\faAngleRight}
+}
+
+% --- MACROS PERSONNALISÉES ---
+\newcommand{\cvhighlight}[1]{\textcolor{accentteal}{\textbf{#1}}}
+\newcommand{\cvtech}[1]{\textcolor{primary}{\textbf{#1}}}
+
+\newcommand{\cvtag}[1]{%
+  \tikz[baseline=-0.5ex]\node[draw=tagborder, fill=tagbg, rounded corners=2pt, inner xsep=3pt, inner ysep=1pt, font=\fontsize{6.5pt}{7.5pt}\selectfont\sffamily\color{primary}]{#1};%
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+\begin{document}
+
+%=============================================================================
+% EN-TÊTE DU CV (HEADER)
+%=============================================================================
+\begin{center}
+  {\LARGE \textbf{\color{primary} ANAS MOUQINE}}\\[2pt]
+  {\small \textbf{\color{accent} ÉLÈVE-INGÉNIEUR EN 5\textsuperscript{ÈME} ANNÉE -- IA \& DATA ENGINEERING}}\\[2pt]
+  {\footnotesize \color{textmuted} À la recherche d'un \textbf{\color{primary}Stage PFE (Projet de Fin d'Études)} de 4 à 6 mois | Disponible en 2026}\\[4pt]
+
+  % Coordonnées groupées avec équilibre visuel
+  {\footnotesize \color{textdark}
+    \faEnvelope\ \href{mailto:anasmouqine@gmail.com}{anasmouqine@gmail.com} \quad\textbar\quad
+    \faPhone*\ +212 672-104126 \quad\textbar\quad
+    \faMapMarker*\ Casablanca, Maroc
+  }\\[2pt]
+  {\footnotesize \color{textdark}
+    \faGlobe\ \href{https://anasmouquinee.github.io/port/}{anasmouquinee.github.io/port} \quad\textbar\quad
+    \faLinkedin\ \href{https://www.linkedin.com/in/anas-mouqine-329207304/}{linkedin.com/in/anas-mouqine} \quad\textbar\quad
+    \faGithub\ \href{https://github.com/anasmouquinee}{github.com/anasmouquinee}
+  }
+\end{center}
+
+\vspace{-4pt}
+\noindent{\color{linegray}\rule{\linewidth}{0.8pt}}
+\vspace{2pt}
+
+%=============================================================================
+% CORPS DU CV : MISE EN PAGE 2 COLONNES (57.5% GAUCHE / 40.5% DROITE)
+%=============================================================================
+\noindent
+\begin{minipage}[t]{0.575\textwidth}
+
+  %----------- PROFIL -----------
+  \section{\faUser\ Profil Professionnel}
+  {\footnotesize \color{textdark}
+  Élève-Ingénieur en 5\textsuperscript{ème} année à l'\textbf{EMSI}, spécialisé en \cvhighlight{Intelligence Artificielle} \& \cvhighlight{Data Engineering}. Passionné par la conception de \cvtech{systèmes multi-agents autonomes}, de pipelines \cvtech{Big Data Lakehouse (Airflow/Kafka)} et d'architectures distribuées. Rigoureux et proactif, fort d'expériences industrielles concrètes (\textbf{COSUMAR}, \textbf{SEWS-CABINET}), je recherche un stage PFE pour relever des défis technologiques à fort impact.
+  }
+
+  \vspace{2.5pt}
+
+  %----------- EXPÉRIENCES -----------
+  \section{\faBriefcase\ Expérience Professionnelle}
+
+  % COSUMAR
+  \textbf{\color{primary} Stagiaire Ingénieur -- Data \& Systèmes Industriels} \hfill {\scriptsize\color{textmuted}\faCalendar*\ 07/2026 -- 09/2026}\\
+  {\footnotesize \textbf{\color{accent} COSUMAR (Compagnie Sucrière Marocaine)}} \hfill {\scriptsize\color{textmuted}\faMapMarker*\ Casablanca, Maroc}
+  \begin{itemize}
+    \item Analyse et centralisation des flux de données de production et de maintenance industrielle.
+    \item Conception et automatisation de pipelines \cvhighlight{ETL} en Python/SQL pour le calcul et reporting dynamique des indicateurs clés (\cvtech{KPIs}).
+    \item Élaboration de tableaux de bord décisionnels pour le suivi opérationnel en temps réel.
+  \end{itemize}
+  \vspace{1.5pt}
+  {\scriptsize \textbf{\color{textmuted}Technologies :}\ \cvtag{Python} \cvtag{SQL} \cvtag{Pipelines ETL} \cvtag{Dashboards} \cvtag{Systèmes Industriels}}
+
+  \vspace{3.5pt}
+
+  % SEWS CABINET
+  \textbf{\color{primary} Stagiaire Développeur Solutions Numériques} \hfill {\scriptsize\color{textmuted}\faCalendar*\ 07/2025 -- 09/2025}\\
+  {\footnotesize \textbf{\color{accent} SEWS-CABINET (Sumitomo Electric Group)}} \hfill {\scriptsize\color{textmuted}\faMapMarker*\ Casablanca, Maroc}
+  \begin{itemize}
+    \item Développement de l'application industrielle \cvhighlight{SEWS Connect} pour la collaboration en atelier.
+    \item Intégration d'un module d'appels vidéo/audio temps réel avec \cvtech{WebRTC} et \cvtech{Agora RTC}.
+    \item Implémentation d'un système de scan QR code pour l'assignation dynamique des tâches d'urgence.
+    \item Mise en place d'une architecture locale résiliente avec \cvtech{Hive} (offline-first) synchronisée avec Firebase.
+  \end{itemize}
+  \vspace{1.5pt}
+  {\scriptsize \textbf{\color{textmuted}Technologies :}\ \cvtag{Flutter 3.19+} \cvtag{Riverpod} \cvtag{WebRTC} \cvtag{Hive} \cvtag{Firebase}}
+
+  \vspace{2.5pt}
+
+  %----------- PROJETS PHARES -----------
+  \section{\faCogs\ Projets d'Ingénierie Phares}
+
+  % AI MULTI-AGENT
+  \textbf{\color{primary} AI Multi-Agent Orchestrator} \hfill {\scriptsize \href{https://github.com/anasmouquinee/AI_MULTI_AGENT_PROJECT}{\color{accent}\faGithub\ Code Source \faExternalLink*}}\\
+  {\scriptsize\color{textmuted} Framework d'agents autonomes \& RAG vectoriel}
+  \begin{itemize}
+    \item Architecture multi-agents (Research, Code, QA) orchestrant la planification et délégation parallèle de sous-tâches complexes.
+    \item Intégration d'un pipeline \cvhighlight{RAG (Retrieval-Augmented Generation)} avec recherche vectorielle sémantique et exécution dynamique d'outils.
+    \item Implémentation d'un banc de test automatisé pour l'évaluation de la pertinence des réponses LLM.
+  \end{itemize}
+  \vspace{1.5pt}
+  {\scriptsize \textbf{\color{textmuted}Technologies :}\ \cvtag{Python} \cvtag{LangChain} \cvtag{Vector RAG} \cvtag{FastAPI} \cvtag{Multi-Agent}}
+
+  \vspace{3.5pt}
+
+  % BIG DATA LAKEHOUSE
+  \textbf{\color{primary} Enterprise Media Lakehouse \& Real-Time Big Data} \hfill {\scriptsize \href{https://github.com/anasmouquinee/Projet-Architecture-de-donn-es}{\color{accent}\faGithub\ Code Source \faExternalLink*}}\\
+  {\scriptsize\color{textmuted} Plateforme Big Data distribuée (Airflow \& Kafka)}
+  \begin{itemize}
+    \item Déploiement d'une architecture \cvhighlight{Medallion Lakehouse} (Bronze $\to$ Silver $\to$ Gold) pour l'ingestion et transformation de flux d'actualités mondiaux.
+    \item Orchestration et monitoring des pipelines ETL/ELT avec des DAGs \cvtech{Apache Airflow}.
+    \item Streaming en temps réel avec \cvtech{Kafka} et conteneurisation multi-services \cvtech{Docker Compose}.
+  \end{itemize}
+  \vspace{1.5pt}
+  {\scriptsize \textbf{\color{textmuted}Technologies :}\ \cvtag{Apache Airflow} \cvtag{Docker} \cvtag{Kafka} \cvtag{Lakehouse} \cvtag{ETL/ELT}}
+
+  \vspace{3.5pt}
+
+  % FILM-A GRAPH AI
+  \textbf{\color{primary} Film-A -- Recommandation IA par Graphes} \hfill {\scriptsize \href{https://github.com/anasmouquinee/film-rec}{\color{accent}\faGithub\ Code Source \faExternalLink*}}\\
+  {\scriptsize\color{textmuted} Graphes de connaissances \& LLM hybride}
+  \begin{itemize}
+    \item Moteur hybride combinant \cvhighlight{Neo4j} (base graphe) et \cvtech{Gemini AI} pour des recommandations contextualisées et explicables en temps réel.
+    \item Interface mobile fluide sous \cvtech{React Native} connectée à une API REST sous \cvtech{Node.js}.
+  \end{itemize}
+  \vspace{1.5pt}
+  {\scriptsize \textbf{\color{textmuted}Technologies :}\ \cvtag{Neo4j} \cvtag{Gemini AI} \cvtag{React Native} \cvtag{Node.js} \cvtag{API REST}}
+
+\end{minipage}
+\hfill
+%=============================================================================
+% COLONNE DE DROITE (SIDEBAR : 40.5% DE LARGEUR, POLICES PLUS GRANDES & LISIBLES)
+%=============================================================================
+\begin{minipage}[t]{0.405\textwidth}
+
+  %----------- FORMATION -----------
+  \section{\faGraduationCap\ Formation}
+
+  \textbf{\color{primary}\small Cycle Ingénieur d'État} \hfill {\scriptsize\color{textmuted}\faCalendar*\ 2022 -- 2026}\\
+  {\small \textbf{EMSI Casablanca}}\\
+  {\footnotesize École Marocaine des Sciences de l'Ingénieur}\\
+  {\footnotesize Filière : \cvhighlight{Informatique et Réseaux}}\\
+  {\footnotesize Option : \textbf{Intelligence Artificielle \& Data Science}}\\
+  {\scriptsize\textit{5\textsuperscript{ème} année (Dernière année -- PFE 2026)}}
+
+  \vspace{3pt}
+
+  \textbf{\color{primary}\small Baccalauréat Scientifique} \hfill {\scriptsize\color{textmuted}\faCalendar*\ 2021 -- 2022}\\
+  {\small \textbf{Lycée Al Anbar}}\\
+  {\footnotesize Sciences Physiques \& Chimiques}
+
+  \vspace{3pt}
+
+  %----------- COMPÉTENCES -----------
+  \section{\faCubes\ Compétences Clés}
+
+  {\footnotesize \textbf{\color{accent} IA \& Data Science}}
+  \begin{itemize}
+    \item Multi-Agent Systems, RAG, LLMs
+    \item LangChain, Prompt Engineering
+    \item Vector Search, Machine Learning
+  \end{itemize}
+
+  \vspace{2pt}
+  {\footnotesize \textbf{\color{accent} Big Data \& Data Engineering}}
+  \begin{itemize}
+    \item Apache Airflow (DAGs), Kafka
+    \item Medallion Lakehouse, ETL/ELT
+    \item PostgreSQL, Neo4j, MySQL, Hive
+  \end{itemize}
+
+  \vspace{2pt}
+  {\footnotesize \textbf{\color{accent} Développement \& Systèmes}}
+  \begin{itemize}
+    \item Python, C/C++, Java, JavaScript
+    \item FastAPI, Node.js/Express, Docker
+    \item Flutter, React, React Native, CI/CD
+  \end{itemize}
+
+  \vspace{3pt}
+
+  %----------- CERTIFICATIONS -----------
+  \section{\faAward\ Certifications Clés}
+
+  \textbf{\color{primary}\small Agile Project Management} \hfill {\scriptsize\color{textmuted} 2026}\\
+  {\footnotesize \textbf{Google} \textbar\ \href{https://www.coursera.org/account/accomplishments/verify/G2064X5FGLVB}{Vérifier \faExternalLink*}}\\
+  {\scriptsize\color{textdark} Scrum, Sprints, Roadmaps, Pilotage}
+
+  \vspace{2.5pt}
+  \textbf{\color{primary}\small Software Engineering: Architecture} \hfill {\scriptsize\color{textmuted} 2025}\\
+  {\footnotesize \textbf{HKUST} \textbar\ \href{https://www.coursera.org/account/accomplishments/verify/PYISBTHNMK4R}{Vérifier \faExternalLink*}}\\
+  {\scriptsize\color{textdark} UML, Design Patterns, SDLC \& SQA}
+
+  \vspace{2.5pt}
+  \textbf{\color{primary}\small Python Web Data \& APIs} \hfill {\scriptsize\color{textmuted} 2025}\\
+  {\footnotesize \textbf{Univ. of Michigan} \textbar\ \href{https://www.coursera.org/account/accomplishments/verify/3HIOWYMU2G7V}{Vérifier \faExternalLink*}}\\
+  {\scriptsize\color{textdark} Web Scraping, REST APIs, JSON/XML}
+
+  \vspace{2.5pt}
+  \textbf{\color{primary}\small POO en C++ \& Algorithmique} \hfill {\scriptsize\color{textmuted} 2025}\\
+  {\footnotesize \textbf{EPFL} \textbar\ \href{https://www.coursera.org/account/accomplishments/verify/402FN9N1EN8K}{Vérifier \faExternalLink*}}\\
+  {\scriptsize\color{textdark} Gestion mémoire, Pointeurs, Complexité}
+
+  \vspace{2.5pt}
+  \textbf{\color{primary}\small Advanced React \& State Architecture} \hfill {\scriptsize\color{textmuted} 2024}\\
+  {\footnotesize \textbf{Meta} \textbar\ \href{https://www.coursera.org/account/accomplishments/verify/EOQZZ5AJA4PN}{Vérifier \faExternalLink*}}\\
+  {\scriptsize\color{textdark} Hooks, Context API, Jest Testing}
+
+  \vspace{3pt}
+
+  %----------- LANGUES -----------
+  \section{\faLanguage\ Langues}
+  {\footnotesize
+    \textbf{Arabe :} Langue maternelle\\[1pt]
+    \textbf{Anglais :} Professionnel (C1)\\[1pt]
+    \textbf{Français :} Courant (C1 / Professionnel)
+  }
+
+  \vspace{3pt}
+
+  %----------- ATOUTS & INTÉRÊTS -----------
+  \section{\faHeart\ Centres d'Intérêt}
+  {\footnotesize
+    \faRobot\ Veille IA \& LLMs autonomes\\[1pt]
+    \faCodeBranch\ Contributions Open Source (26+ dépôts)\\[1pt]
+    \faCamera\ Photographie \& Création Numérique
+  }
+
+\end{minipage}
+
+\end{document}
