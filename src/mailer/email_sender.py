@@ -53,7 +53,8 @@ class EmailSender:
             if self.cv_path.exists():
                 with open(self.cv_path, "rb") as f:
                     part = MIMEApplication(f.read(), _subtype="pdf")
-                    part.add_header("Content-Disposition", "attachment", filename=self.cv_path.name)
+                    # Professional filename seen by the recruiter
+                    part.add_header("Content-Disposition", "attachment", filename="CV_Anas_Mouqine_PFE.pdf")
                     msg.attach(part)
             else:
                 print(f"[WARNING] CV file {self.cv_path} not found for attachment!")
