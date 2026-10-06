@@ -65,7 +65,12 @@ class TelegramNotifier:
 
         try:
             res = requests.post(url, json=payload, timeout=10)
-            return res.status_code == 200
+            if res.status_code == 200:
+                print(f"[SUCCESS] Telegram alert sent for: {offer.title}")
+                return True
+            else:
+                print(f"[ERROR] Telegram API error ({res.status_code}): {res.text}")
+                return False
         except Exception as e:
             print(f"[ERROR] Failed to send Telegram alert: {e}")
             return False

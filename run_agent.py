@@ -38,6 +38,12 @@ def run_agent(dry_run: bool = True) -> int:
     telegram = TelegramNotifier()
     discord = DiscordNotifier()
 
+    print(f"📡 Statut des Canaux & Secrets :")
+    print(f"   - Telegram : {'✅ Configuré (Actif)' if telegram.is_configured() else '⚠️ Non configuré (TELEGRAM_BOT_TOKEN / CHAT_ID manquant)'}")
+    print(f"   - Discord  : {'✅ Configuré (Actif)' if discord.is_configured() else '⚠️ Non configuré (DISCORD_WEBHOOK_URL manquant)'}")
+    print(f"   - Gmail SMTP : {'✅ Mot de passe détecté' if bool(config.gmail_app_password) else '⚠️ GMAIL_APP_PASSWORD non renseigné'}")
+    print("-" * 70)
+
     scrapers = [
         ReKruteScraper(),
         EmploiMaScraper(),

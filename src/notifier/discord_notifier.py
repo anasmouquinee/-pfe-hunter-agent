@@ -73,7 +73,12 @@ class DiscordNotifier:
 
         try:
             res = requests.post(self.webhook_url, json={"embeds": [embed]}, timeout=10)
-            return res.status_code in (200, 204)
+            if res.status_code in (200, 204):
+                print(f"[SUCCESS] Discord alert sent for: {offer.title}")
+                return True
+            else:
+                print(f"[ERROR] Discord API error ({res.status_code}): {res.text}")
+                return False
         except Exception as e:
             print(f"[ERROR] Failed to send Discord alert: {e}")
             return False
