@@ -2,12 +2,12 @@ name: PFE Auto-Hunter Agent (Morocco - Casablanca)
 
 on:
   schedule:
-    # Exécution du lundi au vendredi à 08h00 UTC et 13h00 UTC (09h00 et 14h00 heure du Maroc)
-    - cron: '0 8,13 * * 1-5'
+    # Exécution 24h/24, 7j/7 (Toutes les 3 heures : 00h, 03h, 06h, 09h, 12h, 15h, 18h, 21h UTC)
+    - cron: '0 */3 * * *'
   workflow_dispatch:
     inputs:
       live_mode:
-        description: 'Envoyer réellement les e-mails aux recruteurs (Mode Live)'
+        description: 'Forcer le mode LIVE pour cette exécution (Envoi réel des e-mails)'
         required: false
         type: boolean
         default: false
@@ -52,10 +52,10 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          DRY_RUN: ${{ github.event.inputs.live_mode != 'true' }}
+          DRY_RUN: ${{ secrets.DRY_RUN }}
         run: |
-          if [ "${{ github.event.inputs.live_mode }}" = "true" ]; then
-            echo "🔥 Exécution en mode LIVE (envois d'e-mails activés)"
+          if [ "${{ github.event.inputs.live_mode }}" = "true" ] || [ "${{ secrets.DRY_RUN }}" = "false" ]; then
+            echo "🔥 Exécution en mode LIVE (Envois d'e-mails RH activés)"
             python run_agent.py --live
           else
             echo "🛡 Exécution en mode SIMULATION (DRY-RUN sécurisé)"
