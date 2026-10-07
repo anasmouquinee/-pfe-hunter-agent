@@ -198,8 +198,30 @@
       "applied_at": "2026-10-06T18:35:40.687609+00:00",
       "notified": true,
       "notified_at": "2026-10-06T18:35:40.687609+00:00"
+    },
+    "8c8da7c5eaeb20f2": {
+      "title": "Stagiaire",
+      "company": "tesselate",
+      "url": "https://ma.linkedin.com/jobs/view/stagiaire-at-tesselate-4476786110",
+      "source": "linkedin_guest",
+      "contact_email": null,
+      "linkedin_url": "https://ma.linkedin.com/jobs/view/stagiaire-at-tesselate-4476786110",
+      "hr_name": "Safaa Elmoussaoui",
+      "hr_linkedin_url": "https://ma.linkedin.com/in/safaa-elmoussaoui-4111b4290",
+      "is_remunerated": false,
+      "score": 74,
+      "matched_skills": [
+        "Intelligence Artificielle",
+        "IA",
+        "Python"
+      ],
+      "first_seen": "2026-10-07T18:20:50.762600+00:00",
+      "applied": false,
+      "applied_at": null,
+      "notified": true,
+      "notified_at": "2026-10-07T18:20:50.762600+00:00"
     }
   },
-  "last_updated": "2026-10-06T18:35:40.687609+00:00",
+  "last_updated": "2026-10-07T18:20:50.762600+00:00",
   "total_applied": 1
 }
