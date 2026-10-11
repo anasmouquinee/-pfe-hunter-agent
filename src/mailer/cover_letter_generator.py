@@ -1,5 +1,6 @@
-"""Cover letter and email body generator tailored for Anas Mouqine."""
+"""Cover letter and email body generator dynamically tailored to the offer's tech stack."""
 
+import html
 from src.config import config
 from src.models.offer import JobOffer
 
@@ -10,48 +11,140 @@ class CoverLetterGenerator:
     @staticmethod
     def generate_subject(offer: JobOffer) -> str:
         """Standardized professional email subject line."""
-        return f"Candidature Stage PFE (4-6 mois) -- Ingénieur IA & Data Engineering -- {config.candidate.full_name}"
+        role_label = offer.title if "pfe" in offer.title.lower() else f"Stage PFE -- {offer.title}"
+        return f"Candidature {role_label} -- {config.candidate.full_name}"
 
     @staticmethod
-    def generate_body(offer: JobOffer) -> str:
-        """Generates dynamic French email body tailored to the company and role."""
+    def _select_highlighted_projects(offer: JobOffer) -> list[tuple[str, str]]:
+        """
+        Dynamically selects the top 3 most relevant projects based on the offer's domain.
+        Always includes the two flagship industrial experiences (COSUMAR, SEWS-CABINET)
+        and tailors the leading engineering project (Lakehouse or Multi-Agent).
+        """
+        text = f"{offer.title} {offer.description}".lower()
+        projects: list[tuple[str, str]] = []
+
+        is_data_focused = any(kw in text for kw in ("data", "etl", "airflow", "kafka", "pipeline", "lakehouse", "sql"))
+
+        if is_data_focused:
+            projects.append((
+                "Enterprise Media Lakehouse",
+                "Plateforme distribuée de streaming et pipelines ETL avec Apache Airflow, Kafka, Docker Compose et architecture Medallion."
+            ))
+        else:
+            projects.append((
+                "AI Multi-Agent Orchestrator",
+                "Framework d'agents autonomes, Vector Search RAG, intégration LangChain et API REST sous FastAPI."
+            ))
+
+        # Always highlight both industrial internships
+        projects.append((
+            "COSUMAR",
+            "Stage ingénieur Data : Automatisation des flux de production, pipelines Python/SQL et dashboards de KPIs opérationnels."
+        ))
+        projects.append((
+            "SEWS-CABINET",
+            "Sumitomo Electric Group : Application industrielle SEWS Connect, modules temps réel WebRTC et architecture offline-first."
+        ))
+
+        return projects
+
+    @classmethod
+    def generate_body(cls, offer: JobOffer) -> str:
+        """Generates dynamic French plain-text email body tailored to the company and role."""
         company = offer.company if offer.company else "votre entreprise"
         title = offer.title if offer.title else "Stage PFE"
-        
-        # Format matched skills nicely
+        cand = config.candidate
+
         skills_text = ""
         if offer.matched_skills:
             top_skills = ", ".join(offer.matched_skills[:4])
-            skills_text = f"notamment autour de technologies clés telles que {top_skills}, "
+            skills_text = f"notamment autour de technologies telles que {top_skills}, "
+
+        projects = cls._select_highlighted_projects(offer)
+        projects_str = "\n".join(f"- **{name}** : {desc}" for name, desc in projects)
 
         body = f"""Bonjour,
 
 Je vous contacte afin de vous soumettre ma candidature pour l'opportunité de **{title}** au sein de **{company}**.
 
-Actuellement élève-ingénieur en 5\u00e8me ann\u00e9e \u00e0 l'\u00c9cole Marocaine des Sciences de l'Ing\u00e9nieur (EMSI Casablanca), sp\u00e9cialis\u00e9 en **Intelligence Artificielle & Data Engineering**, je suis activement \u00e0 la recherche d'un **Stage de Projet de Fin d'\u00c9tudes (PFE) de 4 \u00e0 6 mois** disponible pour l'ann\u00e9e 2026 \u00e0 Casablanca (ou en mode hybride/remote).
+Actuellement élève-ingénieur en 5ème année à l'{cand.school}, spécialisé en **{cand.specialization}**, je suis activement à la recherche d'un **Stage de Projet de Fin d'Études (PFE) de 4 à 6 mois** disponible pour l'année 2026 à Casablanca (ou en mode hybride/remote).
 
-Mon parcours m'a permis de d\u00e9velopper une solide expertise pratique {skills_text}consolid\u00e9e par deux exp\u00e9riences industrielles d'\u00e9lite :
-- **COSUMAR** (Stage Ing\u00e9nieur Data) : Conception et automatisation de pipelines ETL sous Python et SQL pour le suivi des KPIs de production en temps r\u00e9el.
-- **SEWS-CABINET** (Sumitomo Electric Group) : D\u00e9veloppement de la plateforme collaborative industrielle SEWS Connect sous Flutter, modules d'appels temps r\u00e9el WebRTC et architecture offline-first.
+Mon parcours m'a permis de développer une solide expertise pratique {skills_text}consolidée par mes réalisations et projets d'ingénierie :
+{projects_str}
 
-J'ai \u00e9galement con\u00e7u et d\u00e9ploy\u00e9 des projets d'ing\u00e9nierie avanc\u00e9s :
-- **AI Multi-Agent Orchestrator** : Framework d'agents autonomes et RAG vectoriel sous LangChain et FastAPI.
-- **Enterprise Media Lakehouse** : Plateforme de streaming et traitement Big Data distribu\u00e9e avec Apache Airflow, Kafka et Docker Compose.
-- **Film-A** : Moteur de recommandation IA hybride couplant base graphe Neo4j et Gemini AI.
+Intégrer {company} représente pour moi l'opportunité idéale d'apporter ma rigueur, mes compétences techniques et de m'investir pleinement au sein de vos chantiers technologiques.
 
-Int\u00e9grer {company} repr\u00e9sente pour moi l'opportunit\u00e9 id\u00e9ale d'apporter ma rigueur, mes comp\u00e9tences en ing\u00e9nierie des donn\u00e9es et de participer activement \u00e0 vos chantiers technologiques.
+Vous trouverez ci-joint mon Curriculum Vitae détaillé pour complément d'information. Je serais ravi d'échanger avec vous lors d'un entretien à votre convenance.
 
-Vous trouverez ci-joint mon Curriculum Vitae d\u00e9taill\u00e9 pour compl\u00e9ment d'information. Je serais ravi d'\u00e9changer avec vous lors d'un entretien \u00e0 votre convenance.
-
-Dans l'attente de votre retour, je vous prie d'agr\u00e9er mes salutations les plus respectueuses.
+Dans l'attente de votre retour, je vous prie d'agréer mes salutations les plus respectueuses.
 
 Cordialement,
 
-**{config.candidate.full_name}**
-\u00c9l\u00e8ve-Ing\u00e9nieur en 5\u00e8me Ann\u00e9e -- IA & Data Engineering (EMSI Casablanca)
-T\u00e9l\u00e9phone : {config.candidate.phone} | Email : {config.candidate.email}
-LinkedIn : {config.candidate.linkedin_url}
-GitHub : {config.candidate.github_url}
-Portfolio : {config.candidate.portfolio_url}
+{cand.full_name}
+Élève-Ingénieur en 5ème Année -- {cand.specialization} ({cand.school})
+Téléphone : {cand.phone} | Email : {cand.email}
+LinkedIn : {cand.linkedin_url}
+GitHub : {cand.github_url}
+Portfolio : {cand.portfolio_url}
 """
         return body
+
+    @classmethod
+    def generate_html_body(cls, offer: JobOffer) -> str:
+        """Generates a beautifully styled, mobile-responsive HTML email body."""
+        company = html.escape(offer.company if offer.company else "votre entreprise")
+        title = html.escape(offer.title if offer.title else "Stage PFE")
+        cand = config.candidate
+
+        skills_text = ""
+        if offer.matched_skills:
+            top_skills = ", ".join(offer.matched_skills[:4])
+            skills_text = f"notamment autour de technologies clés telles que <strong>{html.escape(top_skills)}</strong>, "
+
+        projects = cls._select_highlighted_projects(offer)
+        projects_li = "\n".join(
+            f"<li style='margin-bottom: 8px;'><strong style='color: #1e3a8a;'>{html.escape(name)}</strong> : {html.escape(desc)}</li>"
+            for name, desc in projects
+        )
+
+        return f"""<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #1f2937; background-color: #ffffff; padding: 20px;">
+  <p>Bonjour,</p>
+
+  <p>Je vous contacte afin de vous soumettre ma candidature pour l'opportunité de <strong>{title}</strong> au sein de <strong>{company}</strong>.</p>
+
+  <p>Actuellement élève-ingénieur en 5ème année à l'<strong>{html.escape(cand.school)}</strong>, spécialisé en <strong>{html.escape(cand.specialization)}</strong>, je suis activement à la recherche d'un <strong>Stage de Projet de Fin d'Études (PFE) de 4 à 6 mois</strong> disponible pour l'année 2026 à Casablanca (ou en mode hybride/remote).</p>
+
+  <p>Mon parcours m'a permis de développer une solide expertise pratique {skills_text}consolidée par des réalisations concrètes :</p>
+
+  <ul style="padding-left: 20px; color: #374151;">
+    {projects_li}
+  </ul>
+
+  <p>Intégrer <strong>{company}</strong> représente pour moi l'opportunité idéale d'apporter ma rigueur et de participer activement à vos chantiers technologiques.</p>
+
+  <p>Vous trouverez ci-joint mon <strong>Curriculum Vitae détaillé</strong> pour complément d'information. Je serais ravi d'échanger avec vous lors d'un entretien à votre convenance.</p>
+
+  <p>Dans l'attente de votre retour, je vous prie d'agréer mes salutations les plus respectueuses.</p>
+
+  <br>
+  <div style="border-top: 2px solid #e5e7eb; padding-top: 14px; margin-top: 20px;">
+    <p style="margin: 0; font-size: 16px; font-weight: bold; color: #111827;">{html.escape(cand.full_name)}</p>
+    <p style="margin: 2px 0; font-size: 13px; color: #4b5563;">Élève-Ingénieur en 5ème Année -- {html.escape(cand.specialization)}</p>
+    <p style="margin: 2px 0; font-size: 13px; color: #6b7280;">{html.escape(cand.school)}</p>
+    <p style="margin: 6px 0 0 0; font-size: 13px;">
+      📞 {html.escape(cand.phone)} &nbsp;|&nbsp; ✉️ <a href="mailto:{html.escape(cand.email)}" style="color: #2563eb;">{html.escape(cand.email)}</a>
+    </p>
+    <p style="margin: 4px 0 0 0; font-size: 13px;">
+      🔗 <a href="{html.escape(cand.linkedin_url)}" style="color: #2563eb;">LinkedIn</a> &nbsp;|&nbsp;
+      💻 <a href="{html.escape(cand.github_url)}" style="color: #2563eb;">GitHub</a> &nbsp;|&nbsp;
+      🌐 <a href="{html.escape(cand.portfolio_url)}" style="color: #2563eb;">Portfolio</a>
+    </p>
+  </div>
+</body>
+</html>"""

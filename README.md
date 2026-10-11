@@ -1,58 +1,116 @@
-# CV Moderne pour Stage PFE – Intelligence Artificielle & Data Engineering
+# 🚀 Plateforme PFE 2026 : CV Haute Fidélité & Agent Autonome PFE Hunter
 
-Ce dossier contient votre CV professionnel au format **LaTeX**, conçu et optimisé spécifiquement pour décrocher un **Stage PFE (Projet de Fin d'Études)** d'excellence en tant qu'élève-ingénieur en 5ème année à l'**EMSI Casablanca**.
+Ce dépôt regroupe l'écosystème complet de recherche de **Stage PFE 2026** (Casablanca & Maroc) pour **Anas Mouqine** (Élève-Ingénieur 5ème année à l'**EMSI Casablanca**, Spécialisation Intelligence Artificielle & Data Engineering).
 
----
-
-## 📄 Fichiers Inclus
-
-1. **[`cv_modern_pfe.tex`](cv_modern_pfe.tex)** : Code source LaTeX moderne, modulaire et hautement lisible.
-2. **[`cv_modern_pfe.pdf`](cv_modern_pfe.pdf)** : Le CV compilé en PDF haute fidélité (exactement **1 page A4**).
-3. **[`cv_preview.png`](cv_preview.png)** : Aperçu haute définition (200 DPI) du rendu final.
-4. **[`docs/content_synthesis.md`](docs/content_synthesis.md)** : Synthèse détaillée des données extraites de votre portfolio et de vos certifications.
-5. **[`docs/plans/2026-10-05-modern-cv-pfe-ai-data.md`](docs/plans/2026-10-05-modern-cv-pfe-ai-data.md)** : Plan d'implémentation du projet.
+Il est composé de deux briques synergiques :
+1. **🤖 L'Agent Autonome PFE Hunter** : Pipeline Python automatisé avec GitHub Actions, scrapers multi-sources 0% ban-risk, scoring IA anti-faux-positifs, dispatching d'emails personnalisés (HTML & texte) avec CV ATS et notifications webhook temps réel (Telegram & Discord).
+2. **📄 La Suite de CV Professionnels LaTeX** : CVs au format standard et ATS optimisés pour les recruteurs techniques et filtres automatiques.
 
 ---
 
-## 🎯 Points Forts & Optimisations pour le PFE
+## 🤖 1. Agent Autonome PFE Hunter
 
-### 1. Intégration de vos Expériences Industrielles
-- **COSUMAR (Compagnie Sucrière Marocaine)** : Mise en valeur du rôle en traitement de données de flux industriels, pipelines ETL sous Python/SQL, automatisation des indicateurs de performance (KPIs) et dashboards opérationnels.
-- **SEWS-CABINET (Sumitomo Electric Group)** : Application industrielle *SEWS Connect*, intégration WebRTC/Agora RTC pour la communication d'atelier, scan QR code pour l'attribution des tâches, architecture offline-first avec Hive et Firebase.
+L'agent analyse en continu les opportunités de stages PFE au Maroc et filtre avec une stricte précision les offres d'Intelligence Artificielle et Data Engineering.
 
-### 2. Sélection des 3 Projets Phares (Alignement IA & Data)
-- **AI Multi-Agent Orchestrator** : Framework d'agents autonomes (Research, Code, QA), Vector Search RAG, LangChain, FastAPI et benchmarks d'évaluation. *(Démontre une maîtrise des dernières tendances LLMs et Agents).*
-- **Enterprise Media Lakehouse & Real-Time Big Data** : Architecture Medallion (Bronze/Silver/Gold), DAGs Apache Airflow, streaming Kafka, conteneurisation Docker Compose. *(Prouve une compétence industrielle en Data Engineering).*
-- **Film-A (Recommandation par Graphes)** : Combinaison innovante Neo4j (Graph DB) et Gemini AI pour des recommandations explicables, avec client React Native et backend Node.js.
+### 🌟 Fonctionnalités Clés
+- **Scraping Multi-Plateformes (6 Sources 0% Ban Risk)** :
+  - **DreamJob.ma** : Portail n°1 des campagnes PFE d'entreprises au Maroc (Capgemini, Orange, SQORUS, DATAPROTECT, etc.) avec extraction automatique des emails RH et posts LinkedIn.
+  - **Talent.com Maroc** : Moteur d'agrégation des offres d'emploi et stages technologiques à Casablanca et au Maroc.
+  - **LinkedIn Guest API** : Recherche publique avec rotation de session & User-Agent anti-429, extraction des fiches recruteurs sans risque de ban.
+  - **ReKrute.ma** : Portail des multinationales et ESN majeures du marché marocain.
+  - **MarocAnnonces** : Catégorie 309 (Offres d'emploi & stages Casablanca/National).
+  - **Emploi.ma** : Scraper de secours avec contournement 403.
+- **Scoring & Filtrage IA Rigoureux** : Analyse sémantique avancée excluant les faux-positifs de la langue française (*"j'ai"*) et valorisant les technologies clés (Python, RAG, Airflow, Kafka, Docker, LangChain).
+- **Extraction RH & LinkedIn** : Détection des adresses emails recruteurs et profils personnels LinkedIn (`/in/...`) pour connexion en 1 clic.
+- **Postulation Automatique (Gmail SMTP)** : Génération d'une lettre de motivation adaptative (HTML responsive & texte brut) avec attachement de [`cv_ats_pfe.pdf`](cv_ats_pfe.pdf).
+- **Notifications Webhook (Telegram & Discord)** : Cartes interactives avec liens cliquables directs vers le recruteur et l'offre.
+- **Persistance & Anti-Doublons** : Suivi fin séparant simulations et candidatures réelles dans [`data/applied_offers.json`](data/applied_offers.json).
 
-### 3. Sélection des Certifications les Plus Prestigieuses
-Parmi vos 11 certifications vérifiées Coursera, 5 ont été sélectionnées pour maximiser l'impact auprès des recruteurs techniques et managers de projet :
-- **Google** : *Agile Project Management* (Scrum, Sprints, Roadmaps)
-- **HKUST** : *Software Engineering: Architecture & Management* (UML, Design Patterns, SDLC)
-- **University of Michigan** : *Using Python to Access Web Data & APIs* (Web Scraping, REST APIs, JSON/XML)
-- **EPFL (Lausanne)** : *Programmation Orientée Objet en C++* (Gestion mémoire, pointeurs, complexité algorithmique)
-- **Meta** : *Advanced React & State Architecture* (Hooks, Context, Jest)
-
-*Chaque certification dispose d'un lien cliquable direct avec son identifiant d'accréditation officiel.*
-
----
-
-## 🛠️ Compilation Locale
-
-Votre machine dispose déjà de **MiKTeX 25.12** avec `pdflatex`. Pour recompiler votre CV à tout moment :
-
+### 🛠️ Commandes CLI Utiles
 ```powershell
-pdflatex -interaction=nonstopmode cv_modern_pfe.tex
+# 1. Mode simulation sécurisé (dry-run)
+python run_agent.py
+
+# 2. Mode envoi réel de candidatures
+python run_agent.py --live
+
+# 3. Tester vos canaux de notification (Telegram & Discord)
+python run_agent.py --test-notifications
+
+# 4. Afficher le tableau de bord des statistiques
+python run_agent.py --stats
+
+# 5. Recherche ciblée sur un mot-clé précis
+python run_agent.py --keyword "stage pfe data engineering" --limit 5
+
+# 6. Exécuter l'ensemble de la suite de tests (27 tests)
+pytest tests/ -v
 ```
 
-Pour générer un aperçu image avec Python (`PyMuPDF`) :
+> 📖 Pour la documentation complète de configuration GitHub Actions et secrets, consultez **[`README_AGENT.md`](README_AGENT.md)**.
+
+---
+
+## 📄 2. Suite de CVs LaTeX Professionnels
+
+| Fichier | Format | Description |
+| :--- | :--- | :--- |
+| **[`cv_modern_pfe.tex`](cv_modern_pfe.tex)** | LaTeX | CV moderne et visuel avec mise en page élégante sur 1 page A4. |
+| **[`cv_modern_pfe.pdf`](cv_modern_pfe.pdf)** | PDF | Rendu compilé haute fidélité du CV moderne. |
+| **[`cv_ats_pfe.tex`](cv_ats_pfe.tex)** | LaTeX | Version ultra-optimisée pour les parseurs ATS (Applicant Tracking Systems). |
+| **[`cv_ats_pfe.pdf`](cv_ats_pfe.pdf)** | PDF | Rendu compilé utilisé par l'agent pour les envois aux recruteurs. |
+| **[`cv_preview.png`](cv_preview.png)** | Image | Aperçu haute définition (200 DPI). |
+
+### 🛠️ Compilation Locale LaTeX
+Votre système dispose de **MiKTeX** avec `pdflatex` :
+```powershell
+pdflatex -interaction=nonstopmode cv_modern_pfe.tex
+pdflatex -interaction=nonstopmode cv_ats_pfe.tex
+```
+
+Pour rafraîchir l'aperçu image :
 ```powershell
 python -c "import fitz; doc=fitz.open('cv_modern_pfe.pdf'); doc[0].get_pixmap(dpi=200).save('cv_preview.png')"
 ```
 
 ---
 
-## ✏️ Personnalisation Rapide
+## 📂 Structure du Répertoire
 
-- **Modifier la date du stage COSUMAR :** Modifiez la ligne `\hfill {\scriptsize\color{textmuted}\faCalendar*\ Été 2024}` dans [`cv_modern_pfe.tex`](cv_modern_pfe.tex).
-- **Modifier vos coordonnées :** Dans le bloc `EN-TÊTE DU CV`, vous pouvez mettre à jour le téléphone, l'email ou les liens vers votre profil.
+```text
+cv/
+├── .github/workflows/
+│   └── pfe_hunter_agent.yml      # Workflow GitHub Actions automatisé
+├── data/
+│   └── applied_offers.json       # Base d'état et historique des offres
+├── docs/
+│   ├── content_synthesis.md      # Synthèse profil, expériences et certifications
+│   └── plans/                    # Plans d'architecture et de conception
+├── src/
+│   ├── config.py                 # Profil candidat & configuration globale
+│   ├── mailer/
+│   │   ├── cover_letter_generator.py # Lettre de motivation adaptative (HTML + texte)
+│   │   └── email_sender.py       # Envoi SMTP sécurisé avec pièce jointe
+│   ├── matcher/
+│   │   └── evaluator.py          # Moteur de scoring & filtrage IA anti-faux-positifs
+│   ├── models/
+│   │   └── offer.py              # Modèle unifié JobOffer
+│   ├── notifier/
+│   │   ├── discord_notifier.py   # Alertes Discord Webhook avec embeds
+│   │   └── telegram_notifier.py  # Alertes Telegram Bot en HTML sécurisé
+│   ├── scrapers/
+│   │   ├── base.py               # Classe de base HTTP et parsing
+│   │   ├── emploima_scraper.py   # Scraper Emploi.ma avec gestion 403
+│   │   ├── linkedin_guest_scraper.py # Scraper public LinkedIn Guest (0% ban risk)
+│   │   └── rekrute_scraper.py    # Scraper ReKrute Casablanca
+│   ├── storage/
+│   │   └── state_manager.py      # Persistance et déduplication
+│   └── utils/
+│       ├── logger.py             # Logging centralisé standardisé
+│       └── text_extractor.py     # Extraction DRY des emails, URLs et profils RH
+├── tests/                        # 24 tests unitaires complets
+├── cv_ats_pfe.pdf                # CV ATS officiel envoyé aux recruteurs
+├── cv_modern_pfe.pdf             # CV visuel 1 page
+├── run_agent.py                  # Point d'entrée orchestrateur CLI
+└── requirements.txt              # Dépendances Python
+```

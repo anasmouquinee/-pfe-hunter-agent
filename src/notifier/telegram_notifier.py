@@ -1,13 +1,15 @@
-"""Telegram notification dispatcher with rich LinkedIn and application links."""
+"""Telegram notification dispatcher with robust HTML parsing and direct LinkedIn links."""
 
+import html
 import requests
 from typing import Optional
 from src.config import config
 from src.models.offer import JobOffer
+from src.utils.logger import logger
 
 
 class TelegramNotifier:
-    """Sends real-time PFE alert cards to Anas via Telegram Bot."""
+    """Sends real-time PFE alert cards to Anas via Telegram Bot using HTML formatting."""
 
     def __init__(self, bot_token: Optional[str] = None, chat_id: Optional[str] = None):
         self.bot_token = bot_token or config.telegram_bot_token
@@ -17,60 +19,79 @@ class TelegramNotifier:
         return bool(self.bot_token and self.chat_id)
 
     def format_message(self, offer: JobOffer, email_sent: bool = False) -> str:
-        """Formats an offer into a clean markdown card with direct LinkedIn link."""
+        """
+        Formats an offer into a clean HTML card.
+        HTML mode avoids Telegram Markdown errors when URLs or names contain underscores ('_').
+        """
         remun_icon = "🟢 Rémunéré / Gratifié" if offer.is_remunerated else "⚪ Non précisé"
-        
+
         if email_sent:
-            action_text = f"✅ Email envoyé avec CV au RH : `{offer.contact_email}`"
+            action_text = f"✅ Email envoyé avec CV au RH : <code>{html.escape(offer.contact_email or '')}</code>"
         elif offer.contact_email:
-            action_text = f"🧪 [Simulation] Email RH détecté : `{offer.contact_email}`"
+            action_text = f"🧪 [Simulation] Email RH détecté : <code>{html.escape(offer.contact_email)}</code>"
         else:
             action_text = "⚠️ Email absent -> À postuler manuellement sur LinkedIn"
 
         skills_str = ", ".join(offer.matched_skills) if offer.matched_skills else "IA / Data"
 
+        safe_title = html.escape(offer.title)
+        safe_company = html.escape(offer.company)
+        safe_location = html.escape(offer.location)
+        safe_skills = html.escape(skills_str)
+
         msg = (
-            f"🎯 *NOUVELLE OPPORTUNITÉ STAGE PFE (Match: {offer.score}%)*\n\n"
-            f"🏢 *Entreprise :* {offer.company}\n"
-            f"📌 *Poste :* {offer.title}\n"
-            f"📍 *Ville :* {offer.location}\n"
-            f"💰 *Gratification :* {remun_icon}\n"
-            f"🛠 *Stack :* {skills_str}\n"
-            f"📤 *Statut Candidature :* {action_text}\n"
+            f"🎯 <b>NOUVELLE OPPORTUNITÉ STAGE PFE (Match: {offer.score}%)</b>\n\n"
+            f"🏢 <b>Entreprise :</b> {safe_company}\n"
+            f"📌 <b>Poste :</b> {safe_title}\n"
+            f"📍 <b>Ville :</b> {safe_location}\n"
+            f"💰 <b>Gratification :</b> {remun_icon}\n"
+            f"🛠 <b>Stack :</b> {safe_skills}\n"
+            f"📤 <b>Statut Candidature :</b> {action_text}\n"
         )
 
         if offer.hr_linkedin_url:
-            msg += f"\n👤 *Profil LinkedIn Recruteur RH :*\n👉 {offer.hr_linkedin_url}\n_(Connectez-vous ou envoyez un message direct)_\n"
+            recruiter_label = html.escape(offer.hr_name or "Recruteur RH LinkedIn")
+            msg += (
+                f"\n👤 <b>Profil Recruteur :</b>\n"
+                f"👉 <a href=\"{offer.hr_linkedin_url}\">{recruiter_label}</a> "
+                f"<i>(Connectez-vous ou envoyez un message direct)</i>\n"
+            )
 
         if offer.linkedin_url:
-            msg += f"\n🔗 *Lien LinkedIn (Postuler Manuellement) :*\n👉 {offer.linkedin_url}\n"
+            msg += (
+                f"\n🔗 <b>Lien LinkedIn (Postuler Manuellement) :</b>\n"
+                f"👉 <a href=\"{offer.linkedin_url}\">Ouvrir l'offre LinkedIn</a>\n"
+            )
         elif offer.url:
-            msg += f"\n🌐 *Lien de l'offre :*\n👉 {offer.url}\n"
+            msg += (
+                f"\n🌐 <b>Lien de l'offre :</b>\n"
+                f"👉 <a href=\"{offer.url}\">Consulter l'offre</a>\n"
+            )
 
         return msg
 
     def send_alert(self, offer: JobOffer, email_sent: bool = False) -> bool:
-        """Sends Telegram alert."""
+        """Sends Telegram alert formatted in HTML."""
         if not self.is_configured():
-            print("[INFO] Telegram notifier not configured (skipping).")
+            logger.debug("Telegram notifier not configured (skipping).")
             return False
 
         url = f"https://api.telegram.org/bot{self.bot_token}/sendMessage"
         payload = {
             "chat_id": self.chat_id,
             "text": self.format_message(offer, email_sent),
-            "parse_mode": "Markdown",
-            "disable_web_page_preview": False
+            "parse_mode": "HTML",
+            "disable_web_page_preview": False,
         }
 
         try:
             res = requests.post(url, json=payload, timeout=10)
             if res.status_code == 200:
-                print(f"[SUCCESS] Telegram alert sent for: {offer.title}")
+                logger.info("Telegram alert successfully sent for: %s", offer.title)
                 return True
             else:
-                print(f"[ERROR] Telegram API error ({res.status_code}): {res.text}")
+                logger.error("Telegram API error (%s): %s", res.status_code, res.text)
                 return False
         except Exception as e:
-            print(f"[ERROR] Failed to send Telegram alert: {e}")
+            logger.error("Failed to send Telegram alert: %s", e)
             return False

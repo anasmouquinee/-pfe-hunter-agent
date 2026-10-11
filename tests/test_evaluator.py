@@ -107,3 +107,47 @@ def test_evaluator_accepts_core_ai_topics():
     )
     assert evaluator.is_ai_offer(offer_cv) is True
     assert evaluator.is_pfe_offer(offer_cv) is True
+
+
+def test_evaluator_rejects_french_jai_false_positive():
+    """Ensures French expressions like 'j'ai' do not falsely match the AI keyword."""
+    evaluator = OfferEvaluator()
+    offer = JobOffer(
+        title="Stage PFE en Administration & Secrétariat",
+        company="Société Casablancaise",
+        location="Casablanca",
+        url="https://example.com/pfe-admin",
+        description="Nous cherchons un stagiaire. J'ai le plaisir de partager cette opportunité de stage.",
+        source="rekrute"
+    )
+
+    assert evaluator.is_ai_offer(offer) is False
+    assert evaluator.is_pfe_offer(offer) is False
+    assert evaluator.evaluate(offer).score == 15
+    assert "AI" not in offer.matched_skills
+    assert "IA" not in offer.matched_skills
+
+
+def test_evaluator_matches_cased_ai_acronym_and_ia_context():
+    """Verifies uppercase AI/IA and context-bound 'stage en ia' match correctly."""
+    evaluator = OfferEvaluator()
+
+    # Uppercase AI in title
+    offer_ai = JobOffer(
+        title="Stage PFE - Python & AI Engineer",
+        company="Lab Casablanca",
+        url="https://example.com/ai",
+        source="rekrute",
+        description="Stage PFE pour ingénieur développeur."
+    )
+    assert evaluator.is_ai_offer(offer_ai) is True
+
+    # Lowercase context-bound 'stage en ia'
+    offer_ia_context = JobOffer(
+        title="Stage PFE Ingénieur",
+        company="Lab Casablanca",
+        url="https://example.com/ia",
+        source="rekrute",
+        description="Projet de fin d'études : stage en ia pour la modélisation prédictive."
+    )
+    assert evaluator.is_ai_offer(offer_ia_context) is True

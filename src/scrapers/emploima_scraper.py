@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 from typing import List
 from src.scrapers.base import BaseScraper
 from src.models.offer import JobOffer
+from src.utils.logger import logger
 
 
 class EmploiMaScraper(BaseScraper):
@@ -18,12 +19,19 @@ class EmploiMaScraper(BaseScraper):
 
         try:
             response = self.session.get(url, timeout=self.timeout)
-            if response.status_code != 200:
+            if response.status_code == 403:
+                logger.warning("Emploi.ma returned HTTP 403 (Cloudflare/WAF protection enabled) - skipping gracefully")
+                return offers
+            elif response.status_code != 200:
+                logger.warning("Emploi.ma returned HTTP %s for query '%s'", response.status_code, keyword)
                 return offers
 
             soup = BeautifulSoup(response.text, "html.parser")
-            return self.parse_html(soup)
-        except Exception:
+            parsed_offers = self.parse_html(soup)
+            logger.info("Emploi.ma found %d offers for '%s'", len(parsed_offers), keyword)
+            return parsed_offers
+        except Exception as e:
+            logger.error("Error scraping Emploi.ma for '%s': %s", keyword, e)
             return offers
 
     def parse_html(self, soup: BeautifulSoup) -> List[JobOffer]:
@@ -66,7 +74,7 @@ class EmploiMaScraper(BaseScraper):
                 description=desc_text,
                 source=self.name,
                 contact_email=contact_email,
-                linkedin_url=linkedin_url
+                linkedin_url=linkedin_url,
             )
             offers.append(offer)
 

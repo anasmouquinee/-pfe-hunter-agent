@@ -6,10 +6,14 @@ Bienvenue dans votre agent autonome de recherche et postulation de **Stage PFE 2
 
 ## 🎯 Fonctionnalités Clés
 
-1. **Scraping Multi-Plateformes Sans Risque de Ban (0% Ban Risk)** :
-   - **LinkedIn Guest API** : Interroge les endpoints publics de LinkedIn sans aucune connexion de compte ni cookie de session. Aucun risque de bannissement de compte personnel.
-   - **ReKrute Maroc** : Offres de stages PFE à Casablanca.
-   - **Emploi.ma** : Offres de stages pré-embauche et PFE.
+1. **Scraping Multi-Plateformes Sans Risque de Ban (6 Sources 0% Ban Risk)** :
+   - **DreamJob.ma** : Portail n°1 au Maroc pour les campagnes PFE d'entreprises (Capgemini, Orange, SQORUS, DATAPROTECT, etc.). Analyse automatique des articles de campagne pour extraire les adresses e-mail RH directes et posts LinkedIn.
+   - **Talent.com Maroc** (`ma.talent.com`) : Agrégateur national indexant les offres technologiques et stages en entreprise à Casablanca et au Maroc.
+   - **LinkedIn Guest API** : Interroge les endpoints publics de LinkedIn sans aucune connexion de compte ni cookie de session. Équipé d'une rotation de session et User-Agent avec backoff anti-429.
+   - **ReKrute Maroc** : Portail des multinationales et grands groupes pour les opportunités PFE & stages techniques.
+   - **MarocAnnonces** : Catégorie 309 ("Offres d'emploi") pour les stages et premiers emplois à Casablanca et au niveau national.
+   - **Emploi.ma** : Scraper avec gestion gracieuse des protections 403.
+
 
 2. **Extraction RH & LinkedIn Avancée** :
    - Analyse le descriptif complet de chaque offre.
@@ -89,7 +93,24 @@ Envoie réellement les candidatures par e-mail aux adresses RH détectées et no
 python run_agent.py --live
 ```
 
-### 3. Exécuter les Tests
+### 3. Tester Vos Notifications (Telegram & Discord)
+Envoie immédiatement une carte de test sur vos canaux pour vérifier les tokens et webhooks :
+```powershell
+python run_agent.py --test-notifications
+```
+
+### 4. Afficher les Statistiques de Candidatures
+Affiche un tableau de bord rapide des offres enregistrées, envoyées et simulées :
+```powershell
+python run_agent.py --stats
+```
+
+### 5. Recherche Ciblée par Mot-Clé
+```powershell
+python run_agent.py --keyword "stage pfe data engineering" --limit 5
+```
+
+### 6. Exécuter les Tests Unitaires
 ```powershell
 pytest tests/ -v
 ```

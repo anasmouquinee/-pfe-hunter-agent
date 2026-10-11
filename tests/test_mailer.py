@@ -41,3 +41,22 @@ def test_email_sender_dry_run():
     success = sender.send_application(offer)
 
     assert success is True
+
+
+def test_cover_letter_html_generation():
+    offer = JobOffer(
+        title="Stage PFE Data & Intelligence Artificielle",
+        company="Capgemini Engineering",
+        url="https://example.com/capgemini",
+        source="linkedin_guest",
+        matched_skills=["Python", "Apache Airflow", "Kafka"]
+    )
+
+    html_body = CoverLetterGenerator.generate_html_body(offer)
+    assert "<!DOCTYPE html>" in html_body
+    assert "Capgemini Engineering" in html_body
+    assert "EMSI Casablanca" in html_body
+    assert "COSUMAR" in html_body
+    assert "SEWS-CABINET" in html_body
+    assert "Enterprise Media Lakehouse" in html_body
+    assert "anasmouqine@gmail.com" in html_body

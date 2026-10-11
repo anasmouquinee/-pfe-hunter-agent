@@ -23,7 +23,8 @@ def test_telegram_formatting():
     msg = notifier.format_message(offer, email_sent=True)
 
     assert "AI Casablanca Lab" in msg
-    assert "Stage PFE Data & RAG" in msg
+    assert ("Stage PFE Data &amp; RAG" in msg or "Stage PFE Data" in msg)
+    assert "<b>Poste :</b>" in msg
     assert "94%" in msg
     assert "🟢 Rémunéré" in msg
     assert "rh@ailab.ma" in msg

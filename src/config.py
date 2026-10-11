@@ -47,6 +47,17 @@ class AgentConfig(BaseModel):
         "Stage PFE Deep Learning", "Stage PFE Data Science", "Stage PFE Data Engineering",
         "Stage PFE LLM", "Stage PFE Generative AI", "Stage PFE NLP", "Stage PFE Computer Vision"
     ]
+    search_keywords: list[str] = [
+        "stage pfe data",
+        "stage pfe ia",
+        "stage pfe intelligence artificielle",
+        "stage pfe machine learning",
+        "stage pfe data science",
+        "stage pfe data engineer",
+        "stage pfe deep learning",
+        "stage pfe python",
+        "stagiaire data",
+    ]
     remuneration_keywords: list[str] = [
         "rémunéré", "remunere", "gratification", "indemnité",
         "indemnite", "bourse", "payé", "paye", "stipend"

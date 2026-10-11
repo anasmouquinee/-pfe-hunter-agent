@@ -116,3 +116,95 @@ def test_linkedin_guest_detail_extraction(monkeypatch):
     assert hr_name == "Sarah Alami"
     assert "3500 DH/mois" in desc
 
+
+MOCK_DREAMJOB_HTML = """
+<div class="post-item">
+    <article>
+        <h2 class="entry-title">
+            <a class="entry-title-link" href="https://www.dreamjob.ma/stage/sqorus-maroc-lance-des-stages-pfe-data/">
+                SQORUS Maroc lance des stages PFE en Data et IA
+            </a>
+        </h2>
+        <div class="entry-summary">
+            SQORUS Maroc ouvre deux stages PFE en Data Science et RAG.
+        </div>
+    </article>
+</div>
+"""
+
+MOCK_MAROCANNONCES_HTML = """
+<ul class="cars-list">
+    <li>
+        <a href="categorie/309/Offres-emploi/annonce/999/Stage-PFE-Data-Casablanca.html">
+            <h3>Stage PFE Data & Machine Learning</h3>
+            <span class="used-car-city">Casablanca</span>
+        </a>
+        <div class="desc">Stage PFE rémunéré pour modélisation prédictive.</div>
+    </li>
+</ul>
+"""
+
+
+def test_dreamjob_parsing(monkeypatch):
+    from src.scrapers.dreamjob_scraper import DreamJobScraper
+    scraper = DreamJobScraper()
+    soup = BeautifulSoup(MOCK_DREAMJOB_HTML, "html.parser")
+
+    # Mock article detail page
+    monkeypatch.setattr(
+        scraper,
+        "_fetch_article_details",
+        lambda url: ("Description PFE SQORUS. Contact: rh.ma@sqorus.com", "rh.ma@sqorus.com", "https://linkedin.com/posts/sqorus", None)
+    )
+
+    offers = scraper.parse_html(soup)
+    assert len(offers) == 1
+    offer = offers[0]
+    assert "SQORUS" in offer.company
+    assert offer.contact_email == "rh.ma@sqorus.com"
+    assert offer.linkedin_url == "https://linkedin.com/posts/sqorus"
+    assert "dreamjob.ma" in offer.url
+
+
+def test_marocannonces_parsing():
+    from src.scrapers.marocannonces_scraper import MarocAnnoncesScraper
+    scraper = MarocAnnoncesScraper()
+    soup = BeautifulSoup(MOCK_MAROCANNONCES_HTML, "html.parser")
+
+    offers = scraper.parse_html(soup)
+    assert len(offers) == 1
+    offer = offers[0]
+    assert "Stage PFE Data & Machine Learning" in offer.title
+    assert "Casablanca" in offer.location
+    assert "marocannonces.com" in offer.url
+
+
+MOCK_TALENT_HTML = """
+<div class="jobs">
+    <article class="JobCard_card__TSiPB">
+        <h2 class="JobCard_title__X32Qk">Stage PFE Data Engineer H/F</h2>
+        <span class="JobCard_company__NmRol">Devoteam Maroc</span>
+        <span class="JobCard_location__nmTtw">Casablanca, MA</span>
+        <p class="JobCard_snippet">Dans le cadre du PFE 2026, recherche stagiaire Data & RAG. stages@devoteam.ma. Voir plus</p>
+        <a href="/view?id=987654321">Voir plus</a>
+    </article>
+</div>
+"""
+
+
+def test_talent_parsing():
+    from src.scrapers.talent_scraper import TalentScraper
+    scraper = TalentScraper()
+    soup = BeautifulSoup(MOCK_TALENT_HTML, "html.parser")
+
+    offers = scraper.parse_html(soup)
+    assert len(offers) == 1
+    offer = offers[0]
+    assert "Stage PFE Data Engineer" in offer.title
+    assert offer.company == "Devoteam Maroc"
+    assert "Casablanca" in offer.location
+    assert offer.contact_email == "stages@devoteam.ma"
+    assert "https://ma.talent.com/view?id=987654321" == offer.url
+    assert "Voir plus" not in offer.description
+
+

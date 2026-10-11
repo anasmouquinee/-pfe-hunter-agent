@@ -1,15 +1,14 @@
-"""SMTP Email dispatcher with PDF CV attachment and dry-run safety."""
+"""SMTP Email dispatcher with multipart HTML/plain text, PDF CV attachment, and dry-run safety."""
 
-import os
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
-from pathlib import Path
 from typing import Optional
 from src.config import config
 from src.models.offer import JobOffer
 from src.mailer.cover_letter_generator import CoverLetterGenerator
+from src.utils.logger import logger
 
 
 class EmailSender:
@@ -24,48 +23,62 @@ class EmailSender:
         self.cv_path = config.candidate.cv_path
 
     def send_application(self, offer: JobOffer, to_email: Optional[str] = None) -> bool:
-        """Sends application email for the given offer to recruiter."""
+        """
+        Sends application email for the given offer to recruiter.
+        Supports both plain text and HTML rendering with professional PDF CV attachment.
+        """
         recipient = to_email or offer.contact_email
         if not recipient:
+            logger.warning("No recipient email found for offer '%s'", offer.title)
             return False
 
         subject = CoverLetterGenerator.generate_subject(offer)
-        body = CoverLetterGenerator.generate_body(offer)
+        plain_body = CoverLetterGenerator.generate_body(offer)
+        html_body = CoverLetterGenerator.generate_html_body(offer)
 
+        # Simulation Mode
         if self.dry_run:
-            print(f"[DRY-RUN] Simulating email send to: {recipient}")
-            print(f"[DRY-RUN] Subject: {subject}")
-            print(f"[DRY-RUN] Attachment: {self.cv_path.name} (exists={self.cv_path.exists()})")
+            logger.info(
+                "[DRY-RUN] Simulating email send to: %s | Subject: '%s' | CV: %s (exists=%s)",
+                recipient, subject, self.cv_path.name, self.cv_path.exists()
+            )
             return True
 
         if not self.app_password:
-            print(f"[ERROR] Cannot send email to {recipient}: GMAIL_APP_PASSWORD is not set!")
+            logger.error("Cannot send email to %s: GMAIL_APP_PASSWORD is not set!", recipient)
             return False
 
         try:
-            msg = MIMEMultipart()
+            # Root message container (multipart/mixed to allow attachments)
+            msg = MIMEMultipart("mixed")
             msg["From"] = f"{config.candidate.full_name} <{self.sender_email}>"
             msg["To"] = recipient
             msg["Subject"] = subject
-            msg.attach(MIMEText(body, "plain", "utf-8"))
+
+            # Alternative container for plain text and HTML
+            alt_container = MIMEMultipart("alternative")
+            alt_container.attach(MIMEText(plain_body, "plain", "utf-8"))
+            alt_container.attach(MIMEText(html_body, "html", "utf-8"))
+            msg.attach(alt_container)
 
             # Attach CV PDF if it exists
             if self.cv_path.exists():
                 with open(self.cv_path, "rb") as f:
                     part = MIMEApplication(f.read(), _subtype="pdf")
-                    # Professional filename seen by the recruiter
-                    part.add_header("Content-Disposition", "attachment", filename="CV_Anas_Mouqine_PFE.pdf")
+                    # Clean filename format e.g. CV_Anas_Mouqine_PFE.pdf
+                    cand_slug = config.candidate.full_name.replace(" ", "_")
+                    part.add_header("Content-Disposition", "attachment", filename=f"CV_{cand_slug}_PFE.pdf")
                     msg.attach(part)
             else:
-                print(f"[WARNING] CV file {self.cv_path} not found for attachment!")
+                logger.warning("CV file %s not found for attachment!", self.cv_path)
 
             # Secure SSL SMTP dispatch
             with smtplib.SMTP_SSL(self.smtp_host, self.smtp_port, timeout=20) as server:
                 server.login(self.sender_email, self.app_password)
                 server.send_message(msg)
 
-            print(f"[SUCCESS] Application email successfully sent to {recipient}!")
+            logger.info("Application email successfully sent to %s for '%s'!", recipient, offer.title)
             return True
         except Exception as e:
-            print(f"[ERROR] Failed to send email to {recipient}: {e}")
+            logger.error("Failed to send email to %s: %s", recipient, e)
             return False

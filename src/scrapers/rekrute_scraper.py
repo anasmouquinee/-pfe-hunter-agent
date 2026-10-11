@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 from typing import List
 from src.scrapers.base import BaseScraper
 from src.models.offer import JobOffer
+from src.utils.logger import logger
 
 
 class ReKruteScraper(BaseScraper):
@@ -19,16 +20,19 @@ class ReKruteScraper(BaseScraper):
         try:
             response = self.session.get(url, timeout=self.timeout)
             if response.status_code != 200:
+                logger.warning("ReKrute returned status %s for query '%s'", response.status_code, keyword)
                 return offers
-            
+
             soup = BeautifulSoup(response.text, "html.parser")
-            return self.parse_html(soup)
-        except Exception:
+            parsed_offers = self.parse_html(soup)
+            logger.info("ReKrute found %d offers for '%s'", len(parsed_offers), keyword)
+            return parsed_offers
+        except Exception as e:
+            logger.error("Error scraping ReKrute for '%s': %s", keyword, e)
             return offers
 
     def parse_html(self, soup: BeautifulSoup) -> List[JobOffer]:
         offers: List[JobOffer] = []
-        # ReKrute offer cards generally have class 'post-id' or 'holder'
         cards = soup.select(".post-id, li.holder, div.section")
 
         for card in cards:
@@ -68,7 +72,7 @@ class ReKruteScraper(BaseScraper):
                 source=self.name,
                 contact_email=contact_email,
                 linkedin_url=linkedin_url,
-                posted_date=posted_date
+                posted_date=posted_date,
             )
             offers.append(offer)
 

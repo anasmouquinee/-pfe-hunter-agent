@@ -86,8 +86,8 @@
 \begin{tabularx}{\linewidth}{@{} X r @{}}
   \begin{minipage}[c]{0.82\linewidth}
     {\LARGE \textbf{\color{primary} ASSIA NOUAOURY}}\\[2.5pt]
-    {\small \textbf{\color{accent} ÉLÈVE-INGÉNIEUR EN 5\textsuperscript{ÈME} ANNÉE -- IA \& DATA SCIENCE}}\\[2.5pt]
-    {\footnotesize \color{textmuted} À la recherche d'un \textbf{\color{primary}Stage PFE (Projet de Fin d'Études)} en Développement Logiciel, IA ou Data | 2026}\\[4pt]
+    {\small \textbf{\color{accent} ÉLÈVE-INGÉNIEUR EN 5\textsuperscript{ÈME} ANNÉE -- IA, BIG DATA \& DATA ENGINEERING}}\\[2.5pt]
+    {\footnotesize \color{textmuted} À la recherche d'un \textbf{\color{primary}Stage PFE (Projet de Fin d'Études)} en Data Engineering, IA ou Développement Logiciel | 2026}\\[4pt]
     {\footnotesize \color{textdark}
       \faEnvelope\ \href{mailto:assianouaoury@gmail.com}{assianouaoury@gmail.com} \quad\textbar\quad
       \faPhone*\ +212 620-433358 \quad\textbar\quad
@@ -115,7 +115,7 @@
   %----------- PROFIL -----------
   \section{\faUser\ Profil Professionnel}
   {\footnotesize \color{textdark}
-  Élève-Ingénieur en 5\textsuperscript{ème} année à l'\textbf{EMSI}, spécialisée en \cvhighlight{Intelligence Artificielle} et \cvhighlight{Data Science}. Passionnée par le \cvtech{développement logiciel full-stack}, l'intégration de \cvtech{modèles d'IA avancés (LangGraph/LLMs)} et la conception d'architectures applicatives robustes. Forte de stages concrets en e-santé et tourisme, je recherche un stage PFE pour contribuer activement à des projets innovants à fort impact.
+  Élève-Ingénieur en 5\textsuperscript{ème} année à l'\textbf{EMSI}, spécialisée en \cvhighlight{IA, Data Science \& Data Engineering}. Passionnée par la conception de \cvtech{pipelines de données (ETL/ELT)}, le streaming temps réel avec \cvtech{Apache Kafka} et l'intégration de \cvtech{modèles d'IA avancés (LangGraph/LLMs)}. Forte de stages et projets concrets, je recherche un stage PFE pour concevoir des architectures data et applicatives innovantes à fort impact.
   }
 
   \vspace{2.5pt}
@@ -129,11 +129,11 @@
   \begin{itemize}
     \item Conception et développement d'une plateforme web complète de réservation touristique.
     \item Développement des modules front-end (\cvtech{React / Vite}) et de l'API REST sous \cvtech{FastAPI}.
-    \item Implémentation de la gestion des utilisateurs, consultation d'offres et sécurisation avec \cvtech{JWT}.
+    \item Modélisation relationnelle, gestion des offres et sécurisation des accès avec \cvtech{JWT}.
     \item Intégration d'un assistant intelligent basé sur \cvhighlight{LangGraph \& Ollama} pour répondre en langage naturel sur les offres, circuits et tarifs.
   \end{itemize}
   \vspace{1.5pt}
-  {\scriptsize \textbf{\color{textmuted}Technologies :}\ \cvtag{React} \cvtag{FastAPI} \cvtag{LangGraph} \cvtag{Ollama} \cvtag{SQLAlchemy} \cvtag{TypeScript}}
+  {\scriptsize \textbf{\color{textmuted}Technologies :}\ \cvtag{React} \cvtag{FastAPI} \cvtag{LangGraph} \cvtag{Ollama} \cvtag{SQLAlchemy} \cvtag{PostgreSQL}}
 
   \vspace{3.5pt}
 
@@ -142,7 +142,7 @@
   {\footnotesize \textbf{\color{accent} TYM SOLUTIONS}} \hfill {\scriptsize\color{textmuted}\faMapMarker*\ Casablanca, Maroc}
   \begin{itemize}
     \item Participation au développement de la plateforme e-santé \cvhighlight{Sahtek}.
-    \item Création d'interfaces web dynamiques, réactives et ergonomiques avec \cvtech{Vue.js}.
+    \item Développement d'interfaces web réactives, ergonomiques et modernes avec \cvtech{Vue.js}.
     \item Optimisation du parcours utilisateur et intégration responsive.
   \end{itemize}
   \vspace{1.5pt}
@@ -153,42 +153,44 @@
   %----------- PROJETS RÉALISÉS -----------
   \section{\faCogs\ Projets d'Ingénierie \& PFA}
 
+  % FILM-A & STREAMING
+  \textbf{\color{primary} Plateforme de Recommandation \& Streaming -- Film-A} \hfill {\scriptsize\color{textmuted}\faCalendar*\ 2025 -- 2026}\\
+  {\scriptsize\color{textmuted} Pipeline ETL, Streaming Kafka \& Graphes Neo4j}
+  \begin{itemize}
+    \item Pipeline \cvhighlight{ETL} automatisé pour l'extraction, nettoyage et indexation de données vers \cvhighlight{Neo4j}.
+    \item Ingestion continue des flux d'événements et interactions utilisateurs en temps réel via \cvtech{Apache Kafka}.
+    \item Moteur de recommandation basé sur les relations de graphes et assistant IA.
+    \item Backend sous \cvtech{Node.js / Python} avec APIs REST et application mobile sous \cvtech{React Native}.
+  \end{itemize}
+  \vspace{1.5pt}
+  {\scriptsize \textbf{\color{textmuted}Technologies :}\ \cvtag{Apache Kafka} \cvtag{ETL} \cvtag{Neo4j} \cvtag{Python} \cvtag{React Native} \cvtag{Node.js}}
+
+  \vspace{3.5pt}
+
   % ODYSSEY PFA
   \textbf{\color{primary} Plateforme de Réservation de Voyages -- Odyssey (PFA)} \hfill {\scriptsize\color{textmuted}\faCalendar*\ 2025 -- 2026}\\
   {\scriptsize\color{textmuted} Architecture 3-tiers \& Recommandation Intelligente}
   \begin{itemize}
     \item Plateforme web dynamique de réservation basée sur la saisonnalité des destinations.
-    \item Conception d'une \cvhighlight{architecture 3-tiers} avec gestion des réservations, panier et rôles.
+    \item Conception d'une \cvhighlight{architecture 3-tiers} avec gestion des réservations et transactions.
     \item Intégration d'un assistant conversationnel IA et d'un module de géolocalisation GPS.
-    \item Sécurisation des transactions, gestion des rôles et interface administrateur.
+    \item Gestion des rôles utilisateurs et interface d'administration sécurisée.
   \end{itemize}
   \vspace{1.5pt}
   {\scriptsize \textbf{\color{textmuted}Technologies :}\ \cvtag{C\#} \cvtag{ASP.NET Core} \cvtag{Razor Pages} \cvtag{SQL Server} \cvtag{IA}}
 
   \vspace{3.5pt}
 
-  % FILM-A
-  \textbf{\color{primary} Film-A -- Application Mobile \& IA} \hfill {\scriptsize\color{textmuted}\faCalendar*\ 2025 -- 2026}\\
-  {\scriptsize\color{textmuted} Recommandation cinématographique par graphes}
+  % PIPELINE STREAMING & ETL
+  \textbf{\color{primary} Pipeline de Données Distribué \& Traitement ETL} \hfill {\scriptsize\color{textmuted}\faCalendar*\ 2024 -- 2025}\\
+  {\scriptsize\color{textmuted} Architecture Événementielle, Ingestion Multi-Sources \& Analytics}
   \begin{itemize}
-    \item Moteur de recommandation basé sur les graphes de données avec \cvhighlight{Neo4j}.
-    \item Intégration d'un chatbot intelligent et interface mobile sous \cvtech{React Native}.
-    \item Backend sous \cvtech{Node.js} exposant des APIs REST scalables.
+    \item Architecture de streaming orientée événements avec \cvhighlight{Apache Kafka} pour l'ingestion de flux continus.
+    \item Pipelines \cvhighlight{ETL / ELT} sous \cvtech{Python (Pandas / SQL)} pour le nettoyage et l'agrégation de données.
+    \item Stockage relationnel sous \cvtech{PostgreSQL} et conteneurisation des services avec \cvtech{Docker}.
   \end{itemize}
   \vspace{1.5pt}
-  {\scriptsize \textbf{\color{textmuted}Technologies :}\ \cvtag{React Native} \cvtag{Neo4j} \cvtag{Node.js} \cvtag{IA} \cvtag{API REST}}
-
-  \vspace{3.5pt}
-
-  % E-COMMERCE MÉDICAL
-  \textbf{\color{primary} Plateforme E-Commerce Médicale (PFA)} \hfill {\scriptsize\color{textmuted}\faCalendar*\ 2024 -- 2025}\\
-  {\scriptsize\color{textmuted} Vente d'équipements médicaux \& Dashboard Admin}
-  \begin{itemize}
-    \item Conception d'un site de gestion et vente de matériel médical avec suivi des commandes.
-    \item Interface administrateur complète pour la gestion du catalogue et des utilisateurs.
-  \end{itemize}
-  \vspace{1.5pt}
-  {\scriptsize \textbf{\color{textmuted}Technologies :}\ \cvtag{JavaScript} \cvtag{HTML5} \cvtag{CSS3} \cvtag{E-Commerce}}
+  {\scriptsize \textbf{\color{textmuted}Technologies :}\ \cvtag{Apache Kafka} \cvtag{ETL/ELT} \cvtag{Python} \cvtag{PostgreSQL} \cvtag{Docker}}
 
 \end{minipage}
 \hfill
@@ -218,27 +220,34 @@
   %----------- COMPÉTENCES -----------
   \section{\faCubes\ Compétences Clés}
 
-  {\footnotesize \textbf{\color{accent} Intelligence Artificielle \& Data}}
+  {\footnotesize \textbf{\color{accent} Data Engineering \& Streaming}}
   \begin{itemize}
-    \item LLMs, LangGraph, Ollama, Chatbots
-    \item Moteurs de Recommandation, IA Générative
-    \item Graphes de Données (Neo4j), Python
+    \item Pipelines \textbf{ETL / ELT}, \textbf{Apache Kafka} (Streaming)
+    \item Ingestion continue, Flux temps réel, Data Quality
+    \item Traitement de données (\textbf{Pandas}, \textbf{PySpark}, \textbf{SQL})
   \end{itemize}
 
   \vspace{2pt}
-  {\footnotesize \textbf{\color{accent} Développement Web \& Back-End}}
+  {\footnotesize \textbf{\color{accent} Intelligence Artificielle \& Machine Learning}}
   \begin{itemize}
-    \item ASP.NET Core (C\#), FastAPI, Node.js
-    \item Django, Symfony, Architecture 3-tiers
-    \item APIs REST, JWT, Razor Pages
+    \item LLMs, LangGraph, Ollama, Chatbots, IA Générative
+    \item Moteurs de Recommandation, Graphes (\textbf{Neo4j})
+    \item Python, Scikit-learn, Algorithmes prédictifs
   \end{itemize}
 
   \vspace{2pt}
-  {\footnotesize \textbf{\color{accent} Front-End, Mobile \& Bases de Données}}
+  {\footnotesize \textbf{\color{accent} Développement Back-End \& Architecture}}
+  \begin{itemize}
+    \item FastAPI, ASP.NET Core (C\#), Node.js, Django
+    \item Architecture 3-tiers \& Événementielle, APIs REST
+  \end{itemize}
+
+  \vspace{2pt}
+  {\footnotesize \textbf{\color{accent} Front-End, BDD \& Outils DevOps}}
   \begin{itemize}
     \item React, React Native, Vue.js, TypeScript
     \item PostgreSQL, SQL Server, MySQL, SQLite
-    \item Docker, Git, Firebase, Linux
+    \item Docker, Git, Linux, Firebase
   \end{itemize}
 
   \vspace{3pt}
