@@ -366,12 +366,12 @@
         "IA"
       ],
       "first_seen": "2026-10-11T23:00:50.996852+00:00",
-      "applied": false,
-      "applied_at": null,
+      "applied": true,
+      "applied_at": "2026-10-12T00:56:00.320965+00:00",
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-11T23:00:50.996852+00:00"
+      "notified_at": "2026-10-12T00:56:00.320965+00:00"
     },
     "e7652e0742fdf3d9": {
       "title": "Stages PFE rémunérés chez Hertz Maroc dès maintenant",
@@ -388,12 +388,12 @@
         "Intelligence Artificielle"
       ],
       "first_seen": "2026-10-11T23:00:51.830606+00:00",
-      "applied": false,
-      "applied_at": null,
+      "applied": true,
+      "applied_at": "2026-10-12T00:56:04.196405+00:00",
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-11T23:00:51.830606+00:00"
+      "notified_at": "2026-10-12T00:56:04.196405+00:00"
     },
     "1c34f4339ca6a676": {
       "title": "Netopia lance sa campagne PFE 2026, postulez avant le 17 novembre",
@@ -432,12 +432,12 @@
         "IA"
       ],
       "first_seen": "2026-10-11T23:00:53.451980+00:00",
-      "applied": false,
-      "applied_at": null,
+      "applied": true,
+      "applied_at": "2026-10-12T00:56:06.340344+00:00",
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-11T23:00:53.451980+00:00"
+      "notified_at": "2026-10-12T00:56:06.340344+00:00"
     },
     "bdb3ede15958a698": {
       "title": "Bosch recrute en data, finance et commerce",
@@ -485,12 +485,12 @@
         "SQL"
       ],
       "first_seen": "2026-10-11T23:00:55.147025+00:00",
-      "applied": false,
-      "applied_at": null,
+      "applied": true,
+      "applied_at": "2026-10-12T00:56:08.485543+00:00",
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-11T23:00:55.147025+00:00"
+      "notified_at": "2026-10-12T00:56:08.485543+00:00"
     },
     "83e5423275c34bbb": {
       "title": "Stages PFE et CDI: La Société Générale Recrute (7) Profils",
@@ -618,12 +618,12 @@
         "Python"
       ],
       "first_seen": "2026-10-11T23:00:59.459043+00:00",
-      "applied": false,
-      "applied_at": null,
+      "applied": true,
+      "applied_at": "2026-10-12T00:56:11.903629+00:00",
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-11T23:00:59.459043+00:00"
+      "notified_at": "2026-10-12T00:56:11.903629+00:00"
     },
     "7e91e46f12520472": {
       "title": "Offres de Stages PFE 2025 – Circet Maroc",
@@ -648,7 +648,7 @@
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-11T23:01:00.223023+00:00"
+      "notified_at": "2026-10-12T00:56:11.905413+00:00"
     },
     "f17aad447231d8a5": {
       "title": "(108) Offres de Stages PFE chez Banque Populaire",
@@ -697,7 +697,7 @@
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-11T23:01:02.006066+00:00"
+      "notified_at": "2026-10-12T00:56:11.906905+00:00"
     },
     "cf0e1f076fdb6abc": {
       "title": "(54) Offres de Stages PFE chez Banque Populaire",
@@ -769,7 +769,7 @@
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-11T23:01:04.504608+00:00"
+      "notified_at": "2026-10-12T00:56:11.908382+00:00"
     },
     "39c299639f064c90": {
       "title": "(20) Stages PFE à Saisir chez Banque Populaire",
@@ -839,7 +839,7 @@
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-11T23:01:07.286728+00:00"
+      "notified_at": "2026-10-12T00:56:11.909755+00:00"
     },
     "65c6bf61bd727782": {
       "title": "Stages PFE 2026 Hertz ouvre plusieurs départements",
@@ -862,7 +862,7 @@
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-11T23:01:08.130774+00:00"
+      "notified_at": "2026-10-12T00:56:11.911173+00:00"
     },
     "8d9190f094465c08": {
       "title": "Stages PFE 2025: Rejoignez Expleo et intégrez des projets technologiques innovants",
@@ -908,7 +908,7 @@
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-11T23:01:09.762168+00:00"
+      "notified_at": "2026-10-12T00:56:11.912574+00:00"
     },
     "83c3449c76bff1a9": {
       "title": "OCP Maintenance Solutions recrute des Stagiaires PFE",
@@ -931,7 +931,7 @@
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-11T23:01:10.455328+00:00"
+      "notified_at": "2026-10-12T00:56:11.914095+00:00"
     },
     "a768daa0651abb9f": {
       "title": "L’Oréal recrute des Stagiaires PFE dans Plusieurs Domaines",
@@ -999,7 +999,7 @@
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-11T23:01:12.938594+00:00"
+      "notified_at": "2026-10-12T00:56:11.915591+00:00"
     },
     "441cb8b7b5e6e662": {
       "title": "Stage PFE 2025: Rejoignez COFICAB et boostez votre carrière dans l’industrie automobile",
@@ -1021,7 +1021,7 @@
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-11T23:01:13.705541+00:00"
+      "notified_at": "2026-10-12T00:56:11.917032+00:00"
     },
     "8a244ea6c31b85bc": {
       "title": "Offres de Stages PFE 2025: Rejoignez Coficab et Boostez votre Carrière",
@@ -1043,7 +1043,7 @@
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-11T23:01:14.510314+00:00"
+      "notified_at": "2026-10-12T00:56:11.918455+00:00"
     },
     "661d778c08b7ebc4": {
       "title": "Stages PFE chez Orange Business Maroc: Des Opportunités à Saisir",
@@ -1087,7 +1087,7 @@
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-11T23:01:16.257150+00:00"
+      "notified_at": "2026-10-12T00:56:11.920020+00:00"
     },
     "61ff85e44c433940": {
       "title": "Safran Morocco Lance sa Campagne de Recrutement pour Les Stagiaires PFE 2025",
@@ -1109,7 +1109,7 @@
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-11T23:01:16.982836+00:00"
+      "notified_at": "2026-10-12T00:56:11.921407+00:00"
     },
     "771595349acf8aa4": {
       "title": "(50) Stages PFE à Pourvoir en 2025 chez Akkodis",
@@ -1153,7 +1153,7 @@
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-11T23:01:18.542792+00:00"
+      "notified_at": "2026-10-12T00:56:11.922819+00:00"
     },
     "b3f276035d3b8089": {
       "title": "Safran Engineering Services recrute Plusieurs Profils pour 2024",
@@ -1368,9 +1368,31 @@
       "simulated_at": null,
       "notified": true,
       "notified_at": "2026-10-11T23:01:27.223165+00:00"
+    },
+    "cfab0536329ca3aa": {
+      "title": "Stagiaire Tech, IA & Automatisation L&D",
+      "company": "intelcia",
+      "url": "https://ma.talent.com/view?id=639460675963391233",
+      "source": "talent",
+      "contact_email": null,
+      "linkedin_url": null,
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 58,
+      "matched_skills": [
+        "IA"
+      ],
+      "first_seen": "2026-10-12T00:56:12.649327+00:00",
+      "applied": false,
+      "applied_at": null,
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-10-12T00:56:12.649327+00:00"
     }
   },
-  "last_updated": "2026-10-11T23:01:27.223165+00:00",
-  "total_applied": 6,
+  "last_updated": "2026-10-12T00:56:12.649327+00:00",
+  "total_applied": 11,
   "total_simulated": 0
 }
