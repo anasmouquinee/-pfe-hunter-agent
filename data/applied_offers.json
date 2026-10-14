@@ -1436,9 +1436,29 @@
       "simulated_at": null,
       "notified": true,
       "notified_at": "2026-10-14T09:40:48.414014+00:00"
+    },
+    "fbab8348d973153e": {
+      "title": "Ingénieure / Ingénieur Datastage Senior",
+      "company": "Capgemini",
+      "url": "https://ma.linkedin.com/jobs/view/ing%C3%A9nieure-ing%C3%A9nieur-datastage-senior-at-capgemini-4476130991",
+      "source": "linkedin_guest",
+      "contact_email": null,
+      "linkedin_url": "https://ma.linkedin.com/jobs/view/ing%C3%A9nieure-ing%C3%A9nieur-datastage-senior-at-capgemini-4476130991",
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 50,
+      "matched_skills": [],
+      "first_seen": "2026-10-14T12:18:20.926938+00:00",
+      "applied": false,
+      "applied_at": null,
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-10-14T12:18:20.926938+00:00"
     }
   },
-  "last_updated": "2026-10-14T09:40:48.414014+00:00",
+  "last_updated": "2026-10-14T12:18:20.926938+00:00",
   "total_applied": 21,
   "total_simulated": 0
 }
