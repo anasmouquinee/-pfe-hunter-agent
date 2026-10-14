@@ -1476,9 +1476,29 @@
       "simulated_at": null,
       "notified": true,
       "notified_at": "2026-10-14T15:18:35.522025+00:00"
+    },
+    "6ef1821b44b38751": {
+      "title": "Junior Data Engineer - Casablanca",
+      "company": "Artefact",
+      "url": "https://ma.linkedin.com/jobs/view/junior-data-engineer-casablanca-at-artefact-3928980947",
+      "source": "linkedin_guest",
+      "contact_email": null,
+      "linkedin_url": "https://ma.linkedin.com/jobs/view/junior-data-engineer-casablanca-at-artefact-3928980947",
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 50,
+      "matched_skills": [],
+      "first_seen": "2026-10-14T21:16:24.674965+00:00",
+      "applied": false,
+      "applied_at": null,
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-10-14T21:16:24.674965+00:00"
     }
   },
-  "last_updated": "2026-10-14T15:18:35.522025+00:00",
+  "last_updated": "2026-10-14T21:16:24.674965+00:00",
   "total_applied": 25,
   "total_simulated": 0
 }
