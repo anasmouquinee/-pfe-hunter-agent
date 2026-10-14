@@ -1038,12 +1038,12 @@
         "Intelligence Artificielle"
       ],
       "first_seen": "2026-10-11T23:01:14.510314+00:00",
-      "applied": false,
-      "applied_at": null,
+      "applied": true,
+      "applied_at": "2026-10-14T15:18:28.133150+00:00",
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-14T09:40:47.564093+00:00"
+      "notified_at": "2026-10-14T15:18:28.133150+00:00"
     },
     "661d778c08b7ebc4": {
       "title": "Stages PFE chez Orange Business Maroc: Des Opportunités à Saisir",
@@ -1082,12 +1082,12 @@
         "Intelligence Artificielle"
       ],
       "first_seen": "2026-10-11T23:01:16.257150+00:00",
-      "applied": false,
-      "applied_at": null,
+      "applied": true,
+      "applied_at": "2026-10-14T15:18:30.126039+00:00",
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-14T09:40:47.565579+00:00"
+      "notified_at": "2026-10-14T15:18:30.126039+00:00"
     },
     "61ff85e44c433940": {
       "title": "Safran Morocco Lance sa Campagne de Recrutement pour Les Stagiaires PFE 2025",
@@ -1104,12 +1104,12 @@
         "Intelligence Artificielle"
       ],
       "first_seen": "2026-10-11T23:01:16.982836+00:00",
-      "applied": false,
-      "applied_at": null,
+      "applied": true,
+      "applied_at": "2026-10-14T15:18:32.034803+00:00",
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-14T09:40:47.566997+00:00"
+      "notified_at": "2026-10-14T15:18:32.034803+00:00"
     },
     "771595349acf8aa4": {
       "title": "(50) Stages PFE à Pourvoir en 2025 chez Akkodis",
@@ -1148,12 +1148,12 @@
         "Intelligence Artificielle"
       ],
       "first_seen": "2026-10-11T23:01:18.542792+00:00",
-      "applied": false,
-      "applied_at": null,
+      "applied": true,
+      "applied_at": "2026-10-14T15:18:34.837791+00:00",
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-14T09:40:47.568313+00:00"
+      "notified_at": "2026-10-14T15:18:34.837791+00:00"
     },
     "b3f276035d3b8089": {
       "title": "Safran Engineering Services recrute Plusieurs Profils pour 2024",
@@ -1456,9 +1456,29 @@
       "simulated_at": null,
       "notified": true,
       "notified_at": "2026-10-14T12:18:20.926938+00:00"
+    },
+    "ac9a1fbfcfb77270": {
+      "title": "Artificial Intelligence Engineer",
+      "company": "Talent Performer",
+      "url": "https://ma.linkedin.com/jobs/view/artificial-intelligence-engineer-at-talent-performer-4479273935",
+      "source": "linkedin_guest",
+      "contact_email": null,
+      "linkedin_url": "https://ma.linkedin.com/jobs/view/artificial-intelligence-engineer-at-talent-performer-4479273935",
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 50,
+      "matched_skills": [],
+      "first_seen": "2026-10-14T15:18:35.522025+00:00",
+      "applied": false,
+      "applied_at": null,
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-10-14T15:18:35.522025+00:00"
     }
   },
-  "last_updated": "2026-10-14T12:18:20.926938+00:00",
-  "total_applied": 21,
+  "last_updated": "2026-10-14T15:18:35.522025+00:00",
+  "total_applied": 25,
   "total_simulated": 0
 }
