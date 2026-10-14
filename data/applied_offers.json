@@ -903,12 +903,12 @@
         "Machine Learning"
       ],
       "first_seen": "2026-10-11T23:01:09.762168+00:00",
-      "applied": false,
-      "applied_at": null,
+      "applied": true,
+      "applied_at": "2026-10-14T09:40:40.025350+00:00",
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-12T03:36:14.241057+00:00"
+      "notified_at": "2026-10-14T09:40:40.025350+00:00"
     },
     "83c3449c76bff1a9": {
       "title": "OCP Maintenance Solutions recrute des Stagiaires PFE",
@@ -926,12 +926,12 @@
         "Docker"
       ],
       "first_seen": "2026-10-11T23:01:10.455328+00:00",
-      "applied": false,
-      "applied_at": null,
+      "applied": true,
+      "applied_at": "2026-10-14T09:40:42.516808+00:00",
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-12T03:36:14.242700+00:00"
+      "notified_at": "2026-10-14T09:40:42.516808+00:00"
     },
     "a768daa0651abb9f": {
       "title": "L’Oréal recrute des Stagiaires PFE dans Plusieurs Domaines",
@@ -994,12 +994,12 @@
         "Intelligence Artificielle"
       ],
       "first_seen": "2026-10-11T23:01:12.938594+00:00",
-      "applied": false,
-      "applied_at": null,
+      "applied": true,
+      "applied_at": "2026-10-14T09:40:45.048368+00:00",
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-12T03:36:14.244197+00:00"
+      "notified_at": "2026-10-14T09:40:45.048368+00:00"
     },
     "441cb8b7b5e6e662": {
       "title": "Stage PFE 2025: Rejoignez COFICAB et boostez votre carrière dans l’industrie automobile",
@@ -1016,12 +1016,12 @@
         "Intelligence Artificielle"
       ],
       "first_seen": "2026-10-11T23:01:13.705541+00:00",
-      "applied": false,
-      "applied_at": null,
+      "applied": true,
+      "applied_at": "2026-10-14T09:40:47.562239+00:00",
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-12T03:36:14.245576+00:00"
+      "notified_at": "2026-10-14T09:40:47.562239+00:00"
     },
     "8a244ea6c31b85bc": {
       "title": "Offres de Stages PFE 2025: Rejoignez Coficab et Boostez votre Carrière",
@@ -1043,7 +1043,7 @@
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-12T03:36:14.247124+00:00"
+      "notified_at": "2026-10-14T09:40:47.564093+00:00"
     },
     "661d778c08b7ebc4": {
       "title": "Stages PFE chez Orange Business Maroc: Des Opportunités à Saisir",
@@ -1087,7 +1087,7 @@
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-12T03:36:14.248599+00:00"
+      "notified_at": "2026-10-14T09:40:47.565579+00:00"
     },
     "61ff85e44c433940": {
       "title": "Safran Morocco Lance sa Campagne de Recrutement pour Les Stagiaires PFE 2025",
@@ -1109,7 +1109,7 @@
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-12T03:36:14.250066+00:00"
+      "notified_at": "2026-10-14T09:40:47.566997+00:00"
     },
     "771595349acf8aa4": {
       "title": "(50) Stages PFE à Pourvoir en 2025 chez Akkodis",
@@ -1153,7 +1153,7 @@
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-12T03:36:14.251443+00:00"
+      "notified_at": "2026-10-14T09:40:47.568313+00:00"
     },
     "b3f276035d3b8089": {
       "title": "Safran Engineering Services recrute Plusieurs Profils pour 2024",
@@ -1390,9 +1390,55 @@
       "simulated_at": null,
       "notified": true,
       "notified_at": "2026-10-12T00:56:12.649327+00:00"
+    },
+    "390a9cc92cc2e491": {
+      "title": "À Casablanca, Payment Center for Africa recrute 4 stagiaires PFE",
+      "company": "Entreprise Maroc",
+      "url": "https://www.dreamjob.ma/stage/a-casablanca-payment-center-for-africa-recrute-4-stagiaires-pfe",
+      "source": "dreamjob",
+      "contact_email": "moumchih@pca.ma",
+      "linkedin_url": null,
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 90,
+      "matched_skills": [
+        "Intelligence Artificielle",
+        "Machine Learning",
+        "Data Science",
+        "Python",
+        "NLP"
+      ],
+      "first_seen": "2026-10-14T09:40:37.269738+00:00",
+      "applied": true,
+      "applied_at": "2026-10-14T09:40:37.269738+00:00",
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-10-14T09:40:37.269738+00:00"
+    },
+    "60af6c938f835489": {
+      "title": "DATA ENGINEER",
+      "company": "servier",
+      "url": "https://ma.talent.com/view?id=631551381465402495",
+      "source": "talent",
+      "contact_email": null,
+      "linkedin_url": null,
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 50,
+      "matched_skills": [],
+      "first_seen": "2026-10-14T09:40:48.414014+00:00",
+      "applied": false,
+      "applied_at": null,
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-10-14T09:40:48.414014+00:00"
     }
   },
-  "last_updated": "2026-10-12T03:36:14.251443+00:00",
-  "total_applied": 16,
+  "last_updated": "2026-10-14T09:40:48.414014+00:00",
+  "total_applied": 21,
   "total_simulated": 0
 }
