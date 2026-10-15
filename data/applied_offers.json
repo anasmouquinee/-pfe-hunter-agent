@@ -1574,9 +1574,99 @@
       "simulated_at": null,
       "notified": true,
       "notified_at": "2026-10-15T03:18:12.766675+00:00"
+    },
+    "732665e7704d3102": {
+      "title": "Software Engineer Intern",
+      "company": "Ostorlab",
+      "url": "https://ma.linkedin.com/jobs/view/software-engineer-intern-at-ostorlab-4478586171",
+      "source": "linkedin_guest",
+      "contact_email": null,
+      "linkedin_url": "https://ma.linkedin.com/jobs/view/software-engineer-intern-at-ostorlab-4478586171",
+      "hr_name": "Alaeddine Mesbahi",
+      "hr_linkedin_url": "https://www.linkedin.com/in/alaeddineostorlab",
+      "is_remunerated": true,
+      "score": 76,
+      "matched_skills": [
+        "AI",
+        "Python"
+      ],
+      "first_seen": "2026-10-15T15:17:44.662257+00:00",
+      "applied": false,
+      "applied_at": null,
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-10-15T15:17:44.662257+00:00"
+    },
+    "1e5425e4369f459e": {
+      "title": "Stage - Analyste en Cybersécurité et Cyberdéfense",
+      "company": "IDEMIA Public Security",
+      "url": "https://ma.linkedin.com/jobs/view/stage-analyste-en-cybers%C3%A9curit%C3%A9-et-cyberd%C3%A9fense-at-idemia-public-security-4467846181",
+      "source": "linkedin_guest",
+      "contact_email": null,
+      "linkedin_url": "https://ma.linkedin.com/jobs/view/stage-analyste-en-cybers%C3%A9curit%C3%A9-et-cyberd%C3%A9fense-at-idemia-public-security-4467846181",
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 66,
+      "matched_skills": [
+        "Intelligence Artificielle",
+        "IA"
+      ],
+      "first_seen": "2026-10-15T15:17:45.720472+00:00",
+      "applied": false,
+      "applied_at": null,
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-10-15T15:17:45.720472+00:00"
+    },
+    "8332f2eedd919213": {
+      "title": "Human Resources Intern",
+      "company": "Yakeey",
+      "url": "https://ma.linkedin.com/jobs/view/human-resources-intern-at-yakeey-4416194841",
+      "source": "linkedin_guest",
+      "contact_email": null,
+      "linkedin_url": "https://ma.linkedin.com/jobs/view/human-resources-intern-at-yakeey-4416194841",
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 58,
+      "matched_skills": [
+        "AI"
+      ],
+      "first_seen": "2026-10-15T15:17:46.373157+00:00",
+      "applied": false,
+      "applied_at": null,
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-10-15T15:17:46.373157+00:00"
+    },
+    "d930a527553e8c54": {
+      "title": "Qualité & PMO Stagiaire PFE",
+      "company": "Capgemini Engineering",
+      "url": "https://ma.linkedin.com/jobs/view/qualit%C3%A9-pmo-stagiaire-pfe-at-capgemini-engineering-4479755582",
+      "source": "linkedin_guest",
+      "contact_email": null,
+      "linkedin_url": "https://ma.linkedin.com/jobs/view/qualit%C3%A9-pmo-stagiaire-pfe-at-capgemini-engineering-4479755582",
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 58,
+      "matched_skills": [
+        "Intelligence Artificielle"
+      ],
+      "first_seen": "2026-10-15T15:17:47.082319+00:00",
+      "applied": false,
+      "applied_at": null,
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-10-15T15:17:47.082319+00:00"
     }
   },
-  "last_updated": "2026-10-15T03:18:12.766675+00:00",
+  "last_updated": "2026-10-15T15:17:47.082319+00:00",
   "total_applied": 25,
   "total_simulated": 0
 }
