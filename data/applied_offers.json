@@ -1496,9 +1496,59 @@
       "simulated_at": null,
       "notified": true,
       "notified_at": "2026-10-14T21:16:24.674965+00:00"
+    },
+    "ae1cbaa24352064e": {
+      "title": "Data & AI Stagiaire PFE",
+      "company": "Capgemini Engineering",
+      "url": "https://ma.linkedin.com/jobs/view/data-ai-stagiaire-pfe-at-capgemini-engineering-4479733008",
+      "source": "linkedin_guest",
+      "contact_email": null,
+      "linkedin_url": "https://ma.linkedin.com/jobs/view/data-ai-stagiaire-pfe-at-capgemini-engineering-4479733008",
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 90,
+      "matched_skills": [
+        "Intelligence Artificielle",
+        "IA",
+        "AI",
+        "Machine Learning",
+        "Data Science",
+        "Python",
+        "SQL"
+      ],
+      "first_seen": "2026-10-15T00:31:32.941929+00:00",
+      "applied": false,
+      "applied_at": null,
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-10-15T00:31:32.941929+00:00"
+    },
+    "0c9dd9bdfc73fe98": {
+      "title": "Forward Deployed Engr / AI Automation Specialist (Remote | U.S. Business Hours)",
+      "company": "MyOutDesk",
+      "url": "https://ma.talent.com/view?id=632384944632501893",
+      "source": "talent",
+      "contact_email": null,
+      "linkedin_url": null,
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 58,
+      "matched_skills": [
+        "AI"
+      ],
+      "first_seen": "2026-10-15T00:31:33.640202+00:00",
+      "applied": false,
+      "applied_at": null,
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-10-15T00:31:33.640202+00:00"
     }
   },
-  "last_updated": "2026-10-14T21:16:24.674965+00:00",
+  "last_updated": "2026-10-15T00:31:33.640202+00:00",
   "total_applied": 25,
   "total_simulated": 0
 }
