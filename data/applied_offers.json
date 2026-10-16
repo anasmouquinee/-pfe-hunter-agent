@@ -1706,9 +1706,29 @@
       "simulated_at": null,
       "notified": true,
       "notified_at": "2026-10-16T03:18:19.100179+00:00"
+    },
+    "ce8384ffbfa7ab26": {
+      "title": "DATA ENGINEER",
+      "company": "RED TIC",
+      "url": "https://ma.linkedin.com/jobs/view/data-engineer-at-red-tic-4479238448",
+      "source": "linkedin_guest",
+      "contact_email": null,
+      "linkedin_url": "https://ma.linkedin.com/jobs/view/data-engineer-at-red-tic-4479238448",
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 50,
+      "matched_skills": [],
+      "first_seen": "2026-10-16T15:16:00.446425+00:00",
+      "applied": false,
+      "applied_at": null,
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-10-16T15:16:00.446425+00:00"
     }
   },
-  "last_updated": "2026-10-16T03:18:19.100179+00:00",
+  "last_updated": "2026-10-16T15:16:00.446425+00:00",
   "total_applied": 25,
   "total_simulated": 0
 }
