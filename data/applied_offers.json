@@ -1726,9 +1726,31 @@
       "simulated_at": null,
       "notified": true,
       "notified_at": "2026-10-16T15:16:00.446425+00:00"
+    },
+    "77e360efb4b22031": {
+      "title": "Stage Pré-Embauche Data Management & AI Consultant Junior",
+      "company": "tesselate",
+      "url": "https://ma.linkedin.com/jobs/view/stage-pr%C3%A9-embauche-data-management-ai-consultant-junior-at-tesselate-4479823251",
+      "source": "linkedin_guest",
+      "contact_email": null,
+      "linkedin_url": "https://ma.linkedin.com/jobs/view/stage-pr%C3%A9-embauche-data-management-ai-consultant-junior-at-tesselate-4479823251",
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 58,
+      "matched_skills": [
+        "AI"
+      ],
+      "first_seen": "2026-10-16T18:18:13.828628+00:00",
+      "applied": false,
+      "applied_at": null,
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-10-16T18:18:13.828628+00:00"
     }
   },
-  "last_updated": "2026-10-16T15:16:00.446425+00:00",
+  "last_updated": "2026-10-16T18:18:13.828628+00:00",
   "total_applied": 25,
   "total_simulated": 0
 }
