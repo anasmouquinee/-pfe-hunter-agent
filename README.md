@@ -1,116 +1,322 @@
-# 🚀 Plateforme PFE 2026 : CV Haute Fidélité & Agent Autonome PFE Hunter
+# 🎯 Autonomous Job & Internship Hunter Agent (PFE & CDI/CDD)
 
-Ce dépôt regroupe l'écosystème complet de recherche de **Stage PFE 2026** (Casablanca & Maroc) pour **Anas Mouqine** (Élève-Ingénieur 5ème année à l'**EMSI Casablanca**, Spécialisation Intelligence Artificielle & Data Engineering).
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Tests Passing](https://img.shields.io/badge/tests-27%20passed-brightgreen.svg)]()
+[![GitHub Actions](https://img.shields.io/badge/automation-GitHub%20Actions-blueviolet.svg)]()
+[![Scrapers](https://img.shields.io/badge/scrapers-6%20sources-orange.svg)]()
 
-Il est composé de deux briques synergiques :
-1. **🤖 L'Agent Autonome PFE Hunter** : Pipeline Python automatisé avec GitHub Actions, scrapers multi-sources 0% ban-risk, scoring IA anti-faux-positifs, dispatching d'emails personnalisés (HTML & texte) avec CV ATS et notifications webhook temps réel (Telegram & Discord).
-2. **📄 La Suite de CV Professionnels LaTeX** : CVs au format standard et ATS optimisés pour les recruteurs techniques et filtres automatiques.
+> **An open-source, autonomous bot that scrapes job & internship offers across multiple platforms, filters opportunities matching *your* skills, extracts direct HR contacts, dispatches personalized cover letters with your CV via Gmail SMTP, and pings your Telegram or Discord in real time — running 24/7 for free on GitHub Actions.**
 
 ---
 
-## 🤖 1. Agent Autonome PFE Hunter
+## 💡 Adaptable to ANY Field or Career
 
-L'agent analyse en continu les opportunités de stages PFE au Maroc et filtre avec une stricte précision les offres d'Intelligence Artificielle et Data Engineering.
+Originally created for **End-of-Studies Internships (Stage PFE)** in **AI & Data Engineering**, this engine is **100% modular**. You can adapt it in minutes to **any domain, role, or country**:
 
-### 🌟 Fonctionnalités Clés
-- **Scraping Multi-Plateformes (6 Sources 0% Ban Risk)** :
-  - **DreamJob.ma** : Portail n°1 des campagnes PFE d'entreprises au Maroc (Capgemini, Orange, SQORUS, DATAPROTECT, etc.) avec extraction automatique des emails RH et posts LinkedIn.
-  - **Talent.com Maroc** : Moteur d'agrégation des offres d'emploi et stages technologiques à Casablanca et au Maroc.
-  - **LinkedIn Guest API** : Recherche publique avec rotation de session & User-Agent anti-429, extraction des fiches recruteurs sans risque de ban.
-  - **ReKrute.ma** : Portail des multinationales et ESN majeures du marché marocain.
-  - **MarocAnnonces** : Catégorie 309 (Offres d'emploi & stages Casablanca/National).
-  - **Emploi.ma** : Scraper de secours avec contournement 403.
-- **Scoring & Filtrage IA Rigoureux** : Analyse sémantique avancée excluant les faux-positifs de la langue française (*"j'ai"*) et valorisant les technologies clés (Python, RAG, Airflow, Kafka, Docker, LangChain).
-- **Extraction RH & LinkedIn** : Détection des adresses emails recruteurs et profils personnels LinkedIn (`/in/...`) pour connexion en 1 clic.
-- **Postulation Automatique (Gmail SMTP)** : Génération d'une lettre de motivation adaptative (HTML responsive & texte brut) avec attachement de [`cv_ats_pfe.pdf`](cv_ats_pfe.pdf).
-- **Notifications Webhook (Telegram & Discord)** : Cartes interactives avec liens cliquables directs vers le recruteur et l'offre.
-- **Persistance & Anti-Doublons** : Suivi fin séparant simulations et candidatures réelles dans [`data/applied_offers.json`](data/applied_offers.json).
+| Domain | Example Target Roles | Key Keywords to Match |
+| :--- | :--- | :--- |
+| **🌐 Full-Stack & Web Dev** | React / Node.js Developer, Next.js Stagiaire | `React`, `TypeScript`, `Node.js`, `Tailwind`, `PostgreSQL` |
+| **📱 Mobile Development** | Flutter, iOS (Swift), Android Engineer | `Flutter`, `Dart`, `Swift`, `Kotlin`, `React Native` |
+| **🛡️ Cybersecurity** | SOC Analyst, Pentester, Sécurité Informatique | `SOC`, `SIEM`, `Pentest`, `ISO 27001`, `Wireshark` |
+| **☁️ Cloud & DevOps** | DevOps Engineer, SRE, Cloud Stagiaire | `Docker`, `Kubernetes`, `Terraform`, `AWS`, `CI/CD` |
+| **💼 Finance, Audit & RH** | Auditeur Junior, Analyste Financier, Chargé RH | `Audit`, `Finance`, `Contrôle de gestion`, `Excel`, `Paie` |
+| **🤖 AI & Data Science** | Machine Learning Engineer, Data Analyst | `Python`, `PyTorch`, `RAG`, `LangChain`, `Airflow`, `SQL` |
 
-### 🛠️ Commandes CLI Utiles
+---
+
+## ⚡ Key Capabilities
+
+- **🕷️ 6 Multi-Platform Scrapers (0% Ban Risk)**:
+  - **DreamJob.ma**: Top company PFE campaigns with automatic parsing of HR recruiter emails and LinkedIn posts.
+  - **LinkedIn Guest API**: Anonymous public queries with automatic session rotation, random User-Agents, and anti-429 exponential backoff.
+  - **Talent.com**: Aggregated corporate and startup openings.
+  - **ReKrute.ma**: Leading multinational and enterprise portals.
+  - **MarocAnnonces**: Direct employer announcements and offers.
+  - **Emploi.ma**: Reliable fallback scraper with graceful 403 handling.
+- **🎯 Precise Scoring & Anti-False-Positive Filter**: Excludes non-relevant titles, senior positions (`CDI Senior`, `Lead 5+ ans`), and common French homonyms (e.g. distinguishing the tech acronym `IA` from *"j'ai"*).
+- **✉️ Automated Gmail Dispatch (Dry-Run by Default)**: Generates responsive HTML and clean plain-text cover letters personalized with the recruiter's company, required skills, and candidate profile, attaching your CV.
+- **📱 Instant Notifications (Telegram & Discord)**: Interactive cards with direct links to the recruiter's personal LinkedIn profile (`/in/...`) and the offer for one-click networking.
+- **🔄 Smart Anti-Duplication**: Tracks applied and simulated offers in `data/applied_offers.json` to prevent duplicate submissions.
+- **⏰ Zero-Maintenance 24/7 Scheduling**: Runs on GitHub Actions on a customizable cron schedule at zero cost.
+
+---
+
+## 🚀 Quick Start Guide
+
+### 1. Prerequisites
+- **Python 3.10+** installed on your system.
+- A **Gmail account** with 2-Step Verification enabled.
+- (Optional) A **Telegram Bot** token or **Discord Webhook** URL for alerts.
+
+### 2. Clone and Install Dependencies
+
+```bash
+# Clone the repository
+git clone https://github.com/anasmouquinee/-pfe-hunter-agent.git
+cd -pfe-hunter-agent
+
+# Create and activate a virtual environment
+python -m venv venv
+# On Windows (PowerShell):
+.\venv\Scripts\Activate.ps1
+# On Linux / macOS:
+source venv/bin/activate
+
+# Install required dependencies
+pip install -r requirements.txt
+```
+
+### 3. Configure Your Credentials (`.env`)
+
+Copy the template configuration file:
+
+```bash
+cp .env.example .env
+```
+
+Open `.env` in your editor and provide your secrets:
+
+```ini
+# Gmail account used to send applications
+GMAIL_USER=your.email@gmail.com
+
+# 16-character Google App Password (NOT your regular password!)
+# Generate one at: https://myaccount.google.com/apppasswords
+GMAIL_APP_PASSWORD=abcd efgh ijkl mnop
+
+# Safety mode: 'true' = simulate without sending emails; 'false' = live sending
+DRY_RUN=true
+
+# (Optional) Telegram Notifications
+TELEGRAM_BOT_TOKEN=123456789:ABCdefGHIjklMNOpqrsTUVwxyz
+TELEGRAM_CHAT_ID=987654321
+
+# (Optional) Discord Notifications
+DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/your/webhook/url
+```
+
+---
+
+## 🛠️ How to Customize for YOUR Profile & Field
+
+To make the agent hunt for **your** domain and use **your** identity, you only need to edit **3 files**:
+
+```text
+src/
+├── config.py                 <-- 1. Your name, contacts, search keywords & CV path
+├── matcher/evaluator.py      <-- 2. Your technical skills & matching criteria
+└── mailer/cover_letter_generator.py <-- 3. Your cover letter pitch & past experiences
+```
+
+### Step 1: Update Your Personal Details & Search Targets (`src/config.py`)
+
+Open `src/config.py` and modify `CandidateProfile` and `AgentConfig`:
+
+```python
+class CandidateProfile(BaseModel):
+    full_name: str = "Your Full Name"
+    email: str = "your.email@gmail.com"
+    phone: str = "+212 600-000000"
+    location: str = "Casablanca, Maroc"
+    linkedin_url: str = "https://www.linkedin.com/in/your-profile/"
+    github_url: str = "https://github.com/yourusername"
+    portfolio_url: str = "https://yourportfolio.com"
+    school: str = "Your University / School"
+    education_level: str = "Master 2 / 5ème année"
+    specialization: str = "Génie Logiciel & Full-Stack" # <--- YOUR FIELD
+    internship_target: str = "Stage PFE (Projet de Fin d'Études) de 4 à 6 mois"
+    
+    # Path to your CV PDF file (e.g., place your CV in the root folder)
+    cv_path: Path = BASE_DIR / "my_cv.pdf"
+    
+    # Your technical keywords:
+    core_skills: list[str] = [
+        "React", "TypeScript", "Node.js", "Docker", "PostgreSQL", "Next.js", "GraphQL"
+    ]
+```
+
+In the same file, update your search queries:
+
+```python
+class AgentConfig(BaseModel):
+    # Target locations
+    target_cities: list[str] = ["Casablanca", "Rabat", "Remote", "Télétravail"]
+    
+    # Roles you are targeting
+    target_roles: list[str] = [
+        "Stage PFE Développeur Web", "Stage PFE Full Stack", "Stage PFE React", "Stage PFE Node.js"
+    ]
+    
+    # Search keywords used across scrapers
+    search_keywords: list[str] = [
+        "stage pfe react",
+        "stage pfe full stack",
+        "stage pfe developpeur web",
+        "stage pfe nodejs",
+        "stagiaire web",
+    ]
+```
+
+### Step 2: Set Up Your CV File
+
+1. Copy your compiled CV PDF (e.g. `my_cv.pdf`) into the project root.
+2. In `src/config.py`, point `cv_path` to your file:
+   ```python
+   cv_path: Path = BASE_DIR / "my_cv.pdf"
+   ```
+> 🔒 **Privacy Guarantee**: Any `.pdf`, `.png`, and `.jpg` file in the repo is already ignored by `.gitignore` so your CV will never be accidentally committed to your public git history.
+
+### Step 3: Customize Evaluation & Match Rules (`src/matcher/evaluator.py`)
+
+In `src/matcher/evaluator.py`, tailor the keyword lists to your specialty:
+
+```python
+# Replace with the core technologies of your domain:
+AI_CORE_KEYWORDS = [
+    r'react',
+    r'typescript',
+    r'node\.js',
+    r'next\.js',
+    r'full[- ]?stack',
+    r'frontend',
+    r'backend',
+    r'postgresql',
+]
+
+# Add jobs you want to DISQUALIFY (e.g., sales, accounting, or tech you don't do):
+NON_AI_DISQUALIFIERS = [
+    r'commercial',
+    r'télévente',
+    r'comptable',
+    r'magento',
+    r'wordpress',
+]
+```
+
+### Step 4: Adapt Your Cover Letter & Experience (`src/mailer/cover_letter_generator.py`)
+
+Open `src/mailer/cover_letter_generator.py` and customize `_select_highlighted_projects`:
+
+```python
+@staticmethod
+def _select_highlighted_projects(offer: JobOffer) -> list[tuple[str, str]]:
+    """Highlight your own top projects or previous internships."""
+    return [
+        (
+            "Plateforme E-Commerce Microservices",
+            "Développement Full-Stack avec React, Node.js, Redis et PostgreSQL déployé sous Docker."
+        ),
+        (
+            "Stage Développeur Web -- Entreprise XYZ",
+            "Conception d'une application de gestion interne en TypeScript et GraphQL."
+        )
+    ]
+```
+
+---
+
+## 💻 CLI Commands & Usage
+
 ```powershell
-# 1. Mode simulation sécurisé (dry-run)
+# 1. Safe simulation run (Dry-Run mode: scrapes & evaluates without sending emails)
 python run_agent.py
 
-# 2. Mode envoi réel de candidatures
+# 2. Live application mode (Sends emails to detected HR contacts + sends webhook notifications)
 python run_agent.py --live
 
-# 3. Tester vos canaux de notification (Telegram & Discord)
+# 3. Test your Telegram / Discord webhooks
 python run_agent.py --test-notifications
 
-# 4. Afficher le tableau de bord des statistiques
+# 4. View statistics dashboard (applied, simulated, pending offers)
 python run_agent.py --stats
 
-# 5. Recherche ciblée sur un mot-clé précis
-python run_agent.py --keyword "stage pfe data engineering" --limit 5
+# 5. On-demand search for a specific keyword
+python run_agent.py --keyword "stage react" --limit 5
 
-# 6. Exécuter l'ensemble de la suite de tests (27 tests)
+# 6. Run the automated test suite
 pytest tests/ -v
 ```
 
-> 📖 Pour la documentation complète de configuration GitHub Actions et secrets, consultez **[`README_AGENT.md`](README_AGENT.md)**.
+---
+
+## ☁️ 24/7 Automation via GitHub Actions
+
+Run the bot continuously on GitHub's cloud servers for free without keeping your computer on:
+
+1. **Push your code to your private or public GitHub repository**:
+   ```bash
+   git add .
+   git commit -m "feat: configure agent for my profile"
+   git push origin main
+   ```
+2. **Add Your Secrets**:
+   Go to your repository on GitHub: **Settings > Secrets and variables > Actions > New repository secret** and add:
+   - `GMAIL_USER`: Your Gmail address.
+   - `GMAIL_APP_PASSWORD`: Your 16-character Google App Password.
+   - `DRY_RUN`: `false` (when you're ready for real applications) or `true` (for testing).
+   - `TELEGRAM_BOT_TOKEN` & `TELEGRAM_CHAT_ID`: (Optional) For Telegram notifications.
+   - `DISCORD_WEBHOOK_URL`: (Optional) For Discord notifications.
+
+3. **Schedule**:
+   The workflow in `.github/workflows/pfe_hunter_agent.yml` is pre-configured to run automatically **Monday through Friday, twice a day (09:00 and 14:00)**.
+   You can also trigger it manually at any time under the **Actions** tab by clicking **Run workflow**.
 
 ---
 
-## 📄 2. Suite de CVs LaTeX Professionnels
-
-| Fichier | Format | Description |
-| :--- | :--- | :--- |
-| **[`cv_modern_pfe.tex`](cv_modern_pfe.tex)** | LaTeX | CV moderne et visuel avec mise en page élégante sur 1 page A4. |
-| **[`cv_modern_pfe.pdf`](cv_modern_pfe.pdf)** | PDF | Rendu compilé haute fidélité du CV moderne. |
-| **[`cv_ats_pfe.tex`](cv_ats_pfe.tex)** | LaTeX | Version ultra-optimisée pour les parseurs ATS (Applicant Tracking Systems). |
-| **[`cv_ats_pfe.pdf`](cv_ats_pfe.pdf)** | PDF | Rendu compilé utilisé par l'agent pour les envois aux recruteurs. |
-| **[`cv_preview.png`](cv_preview.png)** | Image | Aperçu haute définition (200 DPI). |
-
-### 🛠️ Compilation Locale LaTeX
-Votre système dispose de **MiKTeX** avec `pdflatex` :
-```powershell
-pdflatex -interaction=nonstopmode cv_modern_pfe.tex
-pdflatex -interaction=nonstopmode cv_ats_pfe.tex
-```
-
-Pour rafraîchir l'aperçu image :
-```powershell
-python -c "import fitz; doc=fitz.open('cv_modern_pfe.pdf'); doc[0].get_pixmap(dpi=200).save('cv_preview.png')"
-```
-
----
-
-## 📂 Structure du Répertoire
+## 📂 Repository Structure
 
 ```text
-cv/
+pfe-hunter-agent/
 ├── .github/workflows/
-│   └── pfe_hunter_agent.yml      # Workflow GitHub Actions automatisé
+│   └── pfe_hunter_agent.yml      # GitHub Actions automation schedule
 ├── data/
-│   └── applied_offers.json       # Base d'état et historique des offres
-├── docs/
-│   ├── content_synthesis.md      # Synthèse profil, expériences et certifications
-│   └── plans/                    # Plans d'architecture et de conception
+│   └── applied_offers.json       # Historical database & state tracker
+├── docs/                         # Architecture documentation & guides
 ├── src/
-│   ├── config.py                 # Profil candidat & configuration globale
+│   ├── config.py                 # Candidate profile, keywords & global config
 │   ├── mailer/
-│   │   ├── cover_letter_generator.py # Lettre de motivation adaptative (HTML + texte)
-│   │   └── email_sender.py       # Envoi SMTP sécurisé avec pièce jointe
+│   │   ├── cover_letter_generator.py # Responsive HTML & text cover letter builder
+│   │   └── email_sender.py       # Secure Gmail SMTP sender with attachments
 │   ├── matcher/
-│   │   └── evaluator.py          # Moteur de scoring & filtrage IA anti-faux-positifs
+│   │   └── evaluator.py          # Scoring engine, skill matcher & disqualifiers
 │   ├── models/
-│   │   └── offer.py              # Modèle unifié JobOffer
+│   │   └── offer.py              # Unified JobOffer Pydantic schema
 │   ├── notifier/
-│   │   ├── discord_notifier.py   # Alertes Discord Webhook avec embeds
-│   │   └── telegram_notifier.py  # Alertes Telegram Bot en HTML sécurisé
-│   ├── scrapers/
-│   │   ├── base.py               # Classe de base HTTP et parsing
-│   │   ├── emploima_scraper.py   # Scraper Emploi.ma avec gestion 403
-│   │   ├── linkedin_guest_scraper.py # Scraper public LinkedIn Guest (0% ban risk)
-│   │   └── rekrute_scraper.py    # Scraper ReKrute Casablanca
+│   │   ├── discord_notifier.py   # Discord webhook alert with interactive buttons
+│   │   └── telegram_notifier.py  # Telegram bot alerts with direct recruiter links
+│   ├── scrapers/                 # 6 modular scraping sources
+│   │   ├── base.py               # Base HTTP client with retry and backoff
+│   │   ├── dreamjob_scraper.py   # DreamJob campaign & HR email extraction
+│   │   ├── emploima_scraper.py   # Emploi.ma scraper
+│   │   ├── linkedin_guest_scraper.py # LinkedIn Guest API (0% ban risk)
+│   │   ├── marocannonces_scraper.py  # MarocAnnonces scraper
+│   │   ├── rekrute_scraper.py    # ReKrute portal scraper
+│   │   └── talent_scraper.py     # Talent.com Morocco scraper
 │   ├── storage/
-│   │   └── state_manager.py      # Persistance et déduplication
+│   │   └── state_manager.py      # Persistence and anti-duplication engine
 │   └── utils/
-│       ├── logger.py             # Logging centralisé standardisé
-│       └── text_extractor.py     # Extraction DRY des emails, URLs et profils RH
-├── tests/                        # 24 tests unitaires complets
-├── cv_ats_pfe.pdf                # CV ATS officiel envoyé aux recruteurs
-├── cv_modern_pfe.pdf             # CV visuel 1 page
-├── run_agent.py                  # Point d'entrée orchestrateur CLI
-└── requirements.txt              # Dépendances Python
+│       ├── logger.py             # Standardized logging
+│       └── text_extractor.py     # Regex extractor for emails & LinkedIn profiles
+├── tests/                        # 27 unit tests verifying scrapers, mailer, and logic
+├── .env.example                  # Environment variables template
+├── requirements.txt              # Production dependencies
+├── run_agent.py                  # Main CLI entry point
+└── README.md                     # Documentation
 ```
+
+---
+
+## 🔒 Safety & Best Practices
+
+1. **Always test with `DRY_RUN=true` first**: Verify what offers are matched and review the generated cover letters before switching to `--live`.
+2. **Never commit your `.env` or CV**: Keep `.env` and personal PDF files in `.gitignore` at all times.
+3. **Respect Rate Limits**: The built-in request rate limiters and session rotators protect both your IP and the target platforms.
+
+---
+
+## 🤝 Contributing & License
+
+Contributions, bug reports, and feature suggestions are welcome! Feel free to open an issue or submit a Pull Request.
+
+Distributed under the **MIT License**.
