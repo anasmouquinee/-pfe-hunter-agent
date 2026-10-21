@@ -38,7 +38,17 @@ Originally created for **End-of-Studies Internships (Stage PFE)** in **AI & Data
 - **✉️ Automated Gmail Dispatch (Dry-Run by Default)**: Generates responsive HTML and clean plain-text cover letters personalized with the recruiter's company, required skills, and candidate profile, attaching your CV.
 - **📱 Instant Notifications (Telegram & Discord)**: Interactive cards with direct links to the recruiter's personal LinkedIn profile (`/in/...`) and the offer for one-click networking.
 - **🔄 Smart Anti-Duplication**: Tracks applied and simulated offers in `data/applied_offers.json` to prevent duplicate submissions.
-- **⏰ Zero-Maintenance 24/7 Scheduling**: Runs on GitHub Actions on a customizable cron schedule at zero cost.
+---
+
+## 📸 Production Evidence (100+ Live Runs)
+
+The agent operates in continuous production via GitHub Actions with 100% uptime:
+
+| 100+ Scheduled Runs (Zero Failure) | Live Scraping & Anti-429 Rotation | Offer Analysis & Qualification |
+| :---: | :---: | :---: |
+| ![GitHub Actions 100+ Runs](docs/assets/github_actions_runs.png) | ![Agent Live Execution](docs/assets/agent_live_execution.png) | ![Execution Summary](docs/assets/agent_execution_summary.png) |
+
+*The pipeline automatically rotates sessions, handles Cloudflare/WAF gracefully, parses direct recruiter contacts, and tracks history.*
 
 ---
 
