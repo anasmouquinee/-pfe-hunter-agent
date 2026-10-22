@@ -1,0 +1,73 @@
+# ==============================================================================
+# 🚀 POST LINKEDIN : PFE HUNTER AGENT (ANAS MOUQINE)
+# Copiez-collez l'une des deux versions ci-dessous directement sur LinkedIn !
+# Conseil : Joignez les 3 captures d'écran de `docs/assets/` à votre post pour un impact visuel maximal.
+# ==============================================================================
+
+---
+
+## 🇫🇷 VERSION FRANÇAISE (Recommandée pour le réseau marocain & francophone)
+
+Chercher un stage PFE ou un premier emploi prend souvent 2 à 3 heures par jour : éplucher 5 sites différents, trier les offres non pertinentes, chercher l'e-mail du recruteur, rédiger une lettre personnalisée...
+
+En tant qu'élève-ingénieur en 5ème année à l'EMSI (IA & Data Engineering), j'ai préféré automatiser tout le pipeline. 💡
+
+J'ai conçu et mis en production 𝗣𝗙𝗘 𝗛𝘂𝗻𝘁𝗲𝗿 𝗔𝗴𝗲𝗻𝘁 : un agent autonome qui chasse les opportunités, filtre les compétences avec précision, candidate automatiquement et m'alerte en temps réel sur Telegram et Discord — 100% gratuit et tournant 24/7 sur GitHub Actions.
+
+Après plus de 𝟭𝟬𝟳 𝗲𝘅é𝗰𝘂𝘁𝗶𝗼𝗻𝘀 𝘀𝗮𝗻𝘀 𝗹𝗮 𝗺𝗼𝗶𝗻𝗱𝗿𝗲 𝗶𝗻𝘁𝗲𝗿𝗿𝘂𝗽𝘁𝗶𝗼𝗻 (100% green runs), voici ce que le système réalise en arrière-plan :
+
+🔹 𝗦𝗰𝗿𝗮𝗽𝗶𝗻𝗴 𝗠𝘂𝗹𝘁𝗶-𝗦𝗼𝘂𝗿𝗰𝗲𝘀 (0% Ban Risk) :
+L'agent interroge simultanément 6 plateformes (DreamJob, LinkedIn Guest API, ReKrute, Talent.com, MarocAnnonces, Emploi.ma). Grâce à une rotation dynamique de sessions, de User-Agents et un backoff exponentiel anti-429, il extrait les annonces sans aucun risque de blocage.
+
+🔹 𝗙𝗶𝗹𝘁𝗿𝗮𝗴𝗲 & 𝗦𝗰𝗼𝗿𝗶𝗻𝗴 𝗜𝗔 𝗥𝗶𝗴𝗼𝘂𝗿𝗲𝘂𝘅 :
+Fini les faux positifs ! L'algorithme élimine intelligemment les homonymes de la langue française (ex: "j'ai" vs "IA"), écarte les postes seniors non adaptés (CDI 5+ ans) et calcule un score de matching basé sur la stack technique demandée.
+
+🔹 𝗣𝗼𝘀𝘁𝘂𝗹𝗮𝘁𝗶𝗼𝗻 𝗔𝘂𝘁𝗼𝗺𝗮𝘁𝗶𝘀é𝗲 & 𝗣𝗲𝗿𝘀𝗼𝗻𝗻𝗮𝗹𝗶𝘀é𝗲 :
+Lorsqu'un contact RH est détecté, l'agent génère une lettre de motivation adaptative (HTML responsive & texte brut) contextualisée avec les projets phares du candidat, joint le CV optimisé ATS et envoie la candidature via Gmail SMTP.
+
+🔹 𝗡𝗼𝘁𝗶𝗳𝗶𝗰𝗮𝘁𝗶𝗼𝗻 𝗧𝗲𝗺𝗽𝘀 𝗥é𝗲𝗹 & 𝗡𝗲𝘁𝘄𝗼𝗿𝗸𝗶𝗻𝗴 :
+À chaque offre qualifiée, je reçois sur Telegram et Discord une carte interactive avec le lien direct vers le profil LinkedIn personnel du recruteur RH pour une prise de contact en 1 clic.
+
+🔹 𝟭𝟬𝟬% 𝗢𝗽𝗲𝗻 𝗦𝗼𝘂𝗿𝗰𝗲 & 𝗔𝗱𝗮𝗽𝘁𝗮𝗯𝗹𝗲 à 𝗡'𝗜𝗠𝗣𝗢𝗥𝗧𝗘 𝗤𝗨𝗘𝗟 𝗠é𝘁𝗶𝗲𝗿 :
+Le projet est conçu pour être entièrement modulaire. Que vous soyez en Développement Web, Mobile, Cybersécurité, DevOps, Finance ou RH, vous pouvez le cloner et l'adapter à vos propres mots-clés en moins de 5 minutes grâce au guide complet inclus.
+
+👨‍💻 Le code est disponible en open-source sur GitHub :
+👉 https://github.com/anasmouquinee/-pfe-hunter-agent
+
+Un grand merci à la communauté tech pour les retours ! N'hésitez pas à forker le dépôt, laisser une ⭐ sur GitHub et le partager aux étudiants en pleine recherche de PFE ou d'emploi ! 🚀
+
+#PFE #PFE2026 #StagePFE #Python #Automation #DataEngineering #MachineLearning #ArtificialIntelligence #GitHubActions #OpenSource #Morocco #Casablanca #EMSI #JobSearch #DevOps
+
+---
+
+## 🇬🇧 VERSION ANGLAISE (International & Tech Community)
+
+Manually hunting for an internship or job takes 2–3 hours every day: browsing 5+ job boards, filtering irrelevant offers, looking up HR emails, tailoring cover letters...
+
+As a 5th-year Engineering student in AI & Data Engineering at EMSI Casablanca, I decided to automate the entire workflow. 💡
+
+I built and open-sourced 𝗣𝗙𝗘 𝗛𝘂𝗻𝘁𝗲𝗿 𝗔𝗴𝗲𝗻𝘁: an autonomous bot that scrapes opportunities across multiple Moroccan and international job platforms, evaluates relevance with smart scoring, dispatches personalized applications with an ATS-friendly CV, and pings my Telegram & Discord in real time — running 24/7 for free on GitHub Actions.
+
+After 𝟭𝟬𝟳+ 𝗰𝗼𝗻𝘀𝗲𝗰𝘂𝘁𝗶𝘃𝗲 𝗮𝘂𝘁𝗼𝗺𝗮𝘁𝗲𝗱 𝗿𝘂𝗻𝘀 with 100% uptime, here is what the system does under the hood:
+
+⚡ 𝟲 𝗠𝘂𝗹𝘁𝗶-𝗣𝗹𝗮𝘁𝗳𝗼𝗿𝗺 𝗦𝗰𝗿𝗮𝗽𝗲𝗿𝘀 (0% Ban Risk):
+Queries DreamJob, LinkedIn Guest API, ReKrute, Talent.com, MarocAnnonces, and Emploi.ma with dynamic session rotation, randomized User-Agents, and exponential backoff to handle rate limits seamlessly.
+
+⚡ 𝗦𝗺𝗮𝗿𝘁 𝗦𝗰𝗼𝗿𝗶𝗻𝗴 & 𝗙𝗶𝗹𝘁𝗲𝗿𝗶𝗻𝗴:
+Eliminates language false positives, filters out senior positions, and scores offers strictly against candidate skills (Python, PyTorch, RAG, Airflow, Docker, LangChain, etc.).
+
+⚡ 𝗔𝘂𝘁𝗼𝗺𝗮𝘁𝗲𝗱 𝗣𝗲𝗿𝘀𝗼𝗻𝗮𝗹𝗶𝘇𝗲𝗱 𝗔𝗽𝗽𝗹𝗶𝗰𝗮𝘁𝗶𝗼𝗻𝘀:
+Detects direct HR emails, drafts a dynamic HTML/text cover letter mentioning relevant projects, attaches the CV, and sends via secure Gmail SMTP.
+
+⚡ 𝗥𝗲𝗮𝗹-𝗧𝗶𝗺𝗲 𝗔𝗹𝗲𝗿𝘁𝘀 & 𝟭-𝗖𝗹𝗶𝗰𝗸 𝗡𝗲𝘁𝘄𝗼𝗿𝗸𝗶𝗻𝗴:
+Sends interactive cards to Telegram and Discord with direct links to the recruiter's personal LinkedIn profile (`/in/...`) for immediate human follow-up.
+
+⚡ 𝟭𝟬𝟬% 𝗠𝗼𝗱𝘂𝗹𝗮𝗿 — 𝗨𝘀𝗮𝗯𝗹𝗲 𝗳𝗼𝗿 𝗔𝗡𝗬 𝗙𝗶𝗲𝗹𝗱:
+Whether you are in Web Development (React/Node), Cybersecurity, DevOps, Mobile, or Finance, you can adapt this agent to your own profile in 5 minutes.
+
+Check out the repository on GitHub:
+👉 https://github.com/anasmouquinee/-pfe-hunter-agent
+
+If you find this project helpful, drop a ⭐ on GitHub and feel free to share it with fellow students hunting for their graduation internships! 🚀
+
+#OpenSource #Python #Automation #GitHubActions #DataEngineering #AI #MachineLearning #WebScraping #PFE #Internship #DevOps #Engineering
