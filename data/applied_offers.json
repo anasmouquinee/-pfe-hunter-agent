@@ -7767,25 +7767,58 @@
       "company": "Cognitive Machines Technologies",
       "url": "https://ma.linkedin.com/jobs/view/internship-ai-cybersecurity-trust-engineering-at-cognitive-machines-technologies-4491209212",
       "source": "linkedin_guest",
-      "contact_email": null,
+      "contact_email": "contacts@cmxarchi.com",
       "linkedin_url": "https://ma.linkedin.com/jobs/view/internship-ai-cybersecurity-trust-engineering-at-cognitive-machines-technologies-4491209212",
       "hr_name": null,
       "hr_linkedin_url": null,
       "is_remunerated": false,
-      "score": 58,
+      "score": 74,
       "matched_skills": [
-        "AI"
+        "AI",
+        "LLM",
+        "Multi-Agent"
       ],
       "first_seen": "2026-11-15T00:32:07.164679+00:00",
+      "applied": true,
+      "applied_at": "2026-11-15T06:21:40.162407+00:00",
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-11-15T06:21:40.162407+00:00"
+    },
+    "1fca5c4e5faded78": {
+      "title": "DATA SCIENTIST",
+      "company": "RED TIC",
+      "url": "https://ma.linkedin.com/jobs/view/data-scientist-at-red-tic-4491098792",
+      "source": "linkedin_guest",
+      "contact_email": null,
+      "linkedin_url": "https://ma.linkedin.com/jobs/view/data-scientist-at-red-tic-4491098792",
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 90,
+      "matched_skills": [
+        "IA",
+        "Machine Learning",
+        "Data Science",
+        "Python",
+        "TensorFlow",
+        "SQL",
+        "Java",
+        "JavaScript",
+        "DevOps",
+        "Cloud"
+      ],
+      "first_seen": "2026-11-15T06:21:31.955391+00:00",
       "applied": false,
       "applied_at": null,
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-11-15T00:32:07.164679+00:00"
+      "notified_at": "2026-11-15T06:21:31.955391+00:00"
     }
   },
-  "last_updated": "2026-11-15T03:16:26.404148+00:00",
-  "total_applied": 128,
+  "last_updated": "2026-11-15T06:21:40.162407+00:00",
+  "total_applied": 129,
   "total_simulated": 4
 }
