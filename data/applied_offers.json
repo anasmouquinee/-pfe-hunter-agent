@@ -7689,9 +7689,101 @@
       "simulated_at": null,
       "notified": true,
       "notified_at": "2026-11-14T15:14:32.098649+00:00"
+    },
+    "b629b4f07d9cda84": {
+      "title": "Internship: Data Engineering, AI Infrastructure & Systems Optimization",
+      "company": "Cognitive Machines Technologies",
+      "url": "https://ma.linkedin.com/jobs/view/internship-data-engineering-ai-infrastructure-systems-optimization-at-cognitive-machines-technologies-4491092985",
+      "source": "linkedin_guest",
+      "contact_email": "contacts@cmxarchi.com",
+      "linkedin_url": "https://ma.linkedin.com/jobs/view/internship-data-engineering-ai-infrastructure-systems-optimization-at-cognitive-machines-technologies-4491092985",
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": true,
+      "score": 100,
+      "matched_skills": [
+        "AI",
+        "Data Engineering",
+        "Python",
+        "Cloud",
+        "Kubernetes"
+      ],
+      "first_seen": "2026-11-15T00:31:56.619974+00:00",
+      "applied": true,
+      "applied_at": "2026-11-15T00:31:56.619974+00:00",
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-11-15T00:31:56.619974+00:00"
+    },
+    "a7c02cbc7e4d098e": {
+      "title": "Internship: Agentic AI & Intelligent Systems Engineering",
+      "company": "Cognitive Machines Technologies",
+      "url": "https://ma.linkedin.com/jobs/view/internship-agentic-ai-intelligent-systems-engineering-at-cognitive-machines-technologies-4491095895",
+      "source": "linkedin_guest",
+      "contact_email": null,
+      "linkedin_url": "https://ma.linkedin.com/jobs/view/internship-agentic-ai-intelligent-systems-engineering-at-cognitive-machines-technologies-4491095895",
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 58,
+      "matched_skills": [
+        "AI"
+      ],
+      "first_seen": "2026-11-15T00:32:00.691241+00:00",
+      "applied": false,
+      "applied_at": null,
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-11-15T00:32:00.691241+00:00"
+    },
+    "5fe4828ef9465ac4": {
+      "title": "AI ENGINEER",
+      "company": "RED TIC",
+      "url": "https://ma.linkedin.com/jobs/view/ai-engineer-at-red-tic-4491099749",
+      "source": "linkedin_guest",
+      "contact_email": null,
+      "linkedin_url": "https://ma.linkedin.com/jobs/view/ai-engineer-at-red-tic-4491099749",
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 58,
+      "matched_skills": [
+        "AI"
+      ],
+      "first_seen": "2026-11-15T00:32:03.802887+00:00",
+      "applied": false,
+      "applied_at": null,
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-11-15T00:32:03.802887+00:00"
+    },
+    "5dd3de738ad458d7": {
+      "title": "Internship: AI Cybersecurity & Trust Engineering",
+      "company": "Cognitive Machines Technologies",
+      "url": "https://ma.linkedin.com/jobs/view/internship-ai-cybersecurity-trust-engineering-at-cognitive-machines-technologies-4491209212",
+      "source": "linkedin_guest",
+      "contact_email": null,
+      "linkedin_url": "https://ma.linkedin.com/jobs/view/internship-ai-cybersecurity-trust-engineering-at-cognitive-machines-technologies-4491209212",
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 58,
+      "matched_skills": [
+        "AI"
+      ],
+      "first_seen": "2026-11-15T00:32:07.164679+00:00",
+      "applied": false,
+      "applied_at": null,
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-11-15T00:32:07.164679+00:00"
     }
   },
-  "last_updated": "2026-11-14T15:14:32.098649+00:00",
-  "total_applied": 126,
+  "last_updated": "2026-11-15T00:32:07.164679+00:00",
+  "total_applied": 127,
   "total_simulated": 4
 }
