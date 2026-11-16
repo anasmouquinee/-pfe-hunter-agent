@@ -7836,9 +7836,33 @@
       "simulated_at": null,
       "notified": true,
       "notified_at": "2026-11-16T09:28:11.565312+00:00"
+    },
+    "e179e221617b6f5f": {
+      "title": "Stage PFE – Développement Java / Spring Boot / React.js",
+      "company": "Payment Center For Africa - PCA",
+      "url": "https://ma.linkedin.com/jobs/view/stage-pfe-%E2%80%93-d%C3%A9veloppement-java-spring-boot-react-js-at-payment-center-for-africa-pca-4489772384",
+      "source": "linkedin_guest",
+      "contact_email": null,
+      "linkedin_url": "https://ma.linkedin.com/jobs/view/stage-pfe-%E2%80%93-d%C3%A9veloppement-java-spring-boot-react-js-at-payment-center-for-africa-pca-4489772384",
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 74,
+      "matched_skills": [
+        "Java",
+        "Spring Boot",
+        "React"
+      ],
+      "first_seen": "2026-11-16T15:19:03.361041+00:00",
+      "applied": false,
+      "applied_at": null,
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-11-16T15:19:03.361041+00:00"
     }
   },
-  "last_updated": "2026-11-16T09:28:11.565312+00:00",
+  "last_updated": "2026-11-16T15:19:03.361041+00:00",
   "total_applied": 129,
   "total_simulated": 4
 }
