@@ -7860,9 +7860,31 @@
       "simulated_at": null,
       "notified": true,
       "notified_at": "2026-11-16T15:19:03.361041+00:00"
+    },
+    "8a4b092e6e1310c5": {
+      "title": "Internship: AI Business Development & Technology Strategy",
+      "company": "Cognitive Machines Technologies",
+      "url": "https://ma.linkedin.com/jobs/view/internship-ai-business-development-technology-strategy-at-cognitive-machines-technologies-4491095898",
+      "source": "linkedin_guest",
+      "contact_email": null,
+      "linkedin_url": "https://ma.linkedin.com/jobs/view/internship-ai-business-development-technology-strategy-at-cognitive-machines-technologies-4491095898",
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 58,
+      "matched_skills": [
+        "AI"
+      ],
+      "first_seen": "2026-11-16T18:17:31.529119+00:00",
+      "applied": false,
+      "applied_at": null,
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-11-16T18:17:31.529119+00:00"
     }
   },
-  "last_updated": "2026-11-16T15:19:03.361041+00:00",
+  "last_updated": "2026-11-16T18:17:31.529119+00:00",
   "total_applied": 129,
   "total_simulated": 4
 }
