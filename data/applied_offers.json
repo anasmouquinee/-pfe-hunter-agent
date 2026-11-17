@@ -8126,9 +8126,31 @@
       "simulated_at": null,
       "notified": true,
       "notified_at": "2026-11-17T12:18:47.629565+00:00"
+    },
+    "6e8f87b3fd4365e6": {
+      "title": "STAGE PFE – DATA & IA",
+      "company": "Société Générale",
+      "url": "https://ma.linkedin.com/jobs/view/stage-pfe-%E2%80%93-data-ia-at-societe-generale-4491710197",
+      "source": "linkedin_guest",
+      "contact_email": "recrutement@socgen.com",
+      "linkedin_url": "https://ma.linkedin.com/jobs/view/stage-pfe-%E2%80%93-data-ia-at-societe-generale-4491710197",
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 58,
+      "matched_skills": [
+        "IA"
+      ],
+      "first_seen": "2026-11-17T18:18:03.593511+00:00",
+      "applied": true,
+      "applied_at": "2026-11-17T18:18:03.593511+00:00",
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-11-17T18:18:03.593511+00:00"
     }
   },
-  "last_updated": "2026-11-17T12:18:47.629565+00:00",
-  "total_applied": 149,
+  "last_updated": "2026-11-17T18:18:03.593511+00:00",
+  "total_applied": 150,
   "total_simulated": 4
 }
