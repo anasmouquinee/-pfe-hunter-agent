@@ -4000,12 +4000,12 @@
       "score": 50,
       "matched_skills": [],
       "first_seen": "2026-10-23T17:25:53.402807+00:00",
-      "applied": false,
-      "applied_at": null,
+      "applied": true,
+      "applied_at": "2026-11-17T03:22:30.326114+00:00",
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-24T09:28:42.587796+00:00"
+      "notified_at": "2026-11-17T03:22:30.326114+00:00"
     },
     "07cdcf76c54535e3": {
       "title": "Postes de stage à saisir chez SNOP Tanger",
@@ -4160,12 +4160,12 @@
       "score": 50,
       "matched_skills": [],
       "first_seen": "2026-10-23T17:26:04.146792+00:00",
-      "applied": false,
-      "applied_at": null,
+      "applied": true,
+      "applied_at": "2026-11-17T03:22:33.445339+00:00",
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-24T09:28:42.608940+00:00"
+      "notified_at": "2026-11-17T03:22:33.445339+00:00"
     },
     "85bc6c4bf7264bf0": {
       "title": "Intelcia IT Propose des Stages PFE en Informatique",
@@ -4280,12 +4280,12 @@
       "score": 50,
       "matched_skills": [],
       "first_seen": "2026-10-23T17:26:14.587140+00:00",
-      "applied": false,
-      "applied_at": null,
+      "applied": true,
+      "applied_at": "2026-11-17T03:22:36.622462+00:00",
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-24T09:28:42.624052+00:00"
+      "notified_at": "2026-11-17T03:22:36.622462+00:00"
     },
     "7efd5ecea5f4d612": {
       "title": "Saham Bank recrute 50 stagiaires PFE à Casablanca",
@@ -4320,12 +4320,12 @@
       "score": 50,
       "matched_skills": [],
       "first_seen": "2026-10-23T17:26:18.374988+00:00",
-      "applied": false,
-      "applied_at": null,
+      "applied": true,
+      "applied_at": "2026-11-17T03:22:39.689942+00:00",
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-24T09:28:42.628957+00:00"
+      "notified_at": "2026-11-17T03:22:39.689942+00:00"
     },
     "6407603de4caef3a": {
       "title": "VINCI Energies Maroc recrute des stagiaires PFE Bac+5",
@@ -4360,12 +4360,12 @@
       "score": 50,
       "matched_skills": [],
       "first_seen": "2026-10-23T17:26:21.804673+00:00",
-      "applied": false,
-      "applied_at": null,
+      "applied": true,
+      "applied_at": "2026-11-17T03:22:43.572128+00:00",
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-24T09:28:42.633882+00:00"
+      "notified_at": "2026-11-17T03:22:43.572128+00:00"
     },
     "739b60c829090cf9": {
       "title": "COFICAB recrute des stagiaires PFE 2025: Découvrez les projets disponibles",
@@ -4460,12 +4460,12 @@
       "score": 50,
       "matched_skills": [],
       "first_seen": "2026-10-23T17:26:26.647304+00:00",
-      "applied": false,
-      "applied_at": null,
+      "applied": true,
+      "applied_at": "2026-11-17T03:22:46.718432+00:00",
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-24T09:28:42.653736+00:00"
+      "notified_at": "2026-11-17T03:22:46.718432+00:00"
     },
     "2a0e8df389635aca": {
       "title": "Opportunités de Stages PFE avec Option d’Embauche – B AGILE",
@@ -4480,12 +4480,12 @@
       "score": 50,
       "matched_skills": [],
       "first_seen": "2026-10-23T17:26:27.125509+00:00",
-      "applied": false,
-      "applied_at": null,
+      "applied": true,
+      "applied_at": "2026-11-17T03:22:50.518206+00:00",
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-24T09:28:42.658763+00:00"
+      "notified_at": "2026-11-17T03:22:50.518206+00:00"
     },
     "710c49f9a71bfb32": {
       "title": "Adria Business et Technology recrute ses Futurs Stagiaires PFE",
@@ -4500,12 +4500,12 @@
       "score": 50,
       "matched_skills": [],
       "first_seen": "2026-10-23T17:26:27.548379+00:00",
-      "applied": false,
-      "applied_at": null,
+      "applied": true,
+      "applied_at": "2026-11-17T03:22:53.653878+00:00",
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-24T09:28:42.663568+00:00"
+      "notified_at": "2026-11-17T03:22:53.653878+00:00"
     },
     "9e81fc82094f5d8f": {
       "title": "Bouygues Construction IT Campagne de Stages PFE 2024",
@@ -4580,12 +4580,12 @@
       "score": 50,
       "matched_skills": [],
       "first_seen": "2026-10-23T17:26:29.426559+00:00",
-      "applied": false,
-      "applied_at": null,
+      "applied": true,
+      "applied_at": "2026-11-17T03:22:56.721517+00:00",
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-24T09:28:42.678357+00:00"
+      "notified_at": "2026-11-17T03:22:56.721517+00:00"
     },
     "bed2efdd8bb860d0": {
       "title": "RATP Dev Casablanca recrute des stagiaires ingénieurs",
@@ -4660,12 +4660,12 @@
       "score": 50,
       "matched_skills": [],
       "first_seen": "2026-10-23T17:26:36.810462+00:00",
-      "applied": false,
-      "applied_at": null,
+      "applied": true,
+      "applied_at": "2026-11-17T03:23:00.517451+00:00",
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-24T09:28:42.683254+00:00"
+      "notified_at": "2026-11-17T03:23:00.517451+00:00"
     },
     "b20cf22abfc98736": {
       "title": "Aramex recrute des stagiaires Bac+3 et Bac+5 à Casablanca",
@@ -4680,12 +4680,12 @@
       "score": 50,
       "matched_skills": [],
       "first_seen": "2026-10-23T17:26:37.243448+00:00",
-      "applied": false,
-      "applied_at": null,
+      "applied": true,
+      "applied_at": "2026-11-17T03:23:04.380264+00:00",
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-24T09:28:42.688138+00:00"
+      "notified_at": "2026-11-17T03:23:04.380264+00:00"
     },
     "0f7d5c82425bf013": {
       "title": "Renault lance un recrutement massif de stagiaires",
@@ -4780,12 +4780,12 @@
       "score": 50,
       "matched_skills": [],
       "first_seen": "2026-10-23T17:26:46.784523+00:00",
-      "applied": false,
-      "applied_at": null,
+      "applied": true,
+      "applied_at": "2026-11-17T03:23:07.406708+00:00",
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-24T09:28:42.698113+00:00"
+      "notified_at": "2026-11-17T03:23:07.406708+00:00"
     },
     "8bebb4b2f159beba": {
       "title": "Hirschmann Automotive recrute des Stagiaires en Développement Informatique",
@@ -4800,12 +4800,12 @@
       "score": 50,
       "matched_skills": [],
       "first_seen": "2026-10-23T17:26:47.211021+00:00",
-      "applied": false,
-      "applied_at": null,
+      "applied": true,
+      "applied_at": "2026-11-17T03:23:10.710718+00:00",
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-24T09:28:42.704205+00:00"
+      "notified_at": "2026-11-17T03:23:10.710718+00:00"
     },
     "87feae459de0de5e": {
       "title": "Offres de stage Gestamp en maintenance, outillage et informatique",
@@ -4840,12 +4840,12 @@
       "score": 50,
       "matched_skills": [],
       "first_seen": "2026-10-23T17:26:50.380064+00:00",
-      "applied": false,
-      "applied_at": null,
+      "applied": true,
+      "applied_at": "2026-11-17T03:23:17.011937+00:00",
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-24T09:28:42.709129+00:00"
+      "notified_at": "2026-11-17T03:23:17.011937+00:00"
     },
     "10a3a7bd07c6634d": {
       "title": "COFICAB Morocco recrute des stagiaires à Tanger et Kénitra",
@@ -4860,12 +4860,12 @@
       "score": 50,
       "matched_skills": [],
       "first_seen": "2026-10-23T17:26:50.835661+00:00",
-      "applied": false,
-      "applied_at": null,
+      "applied": true,
+      "applied_at": "2026-11-17T03:23:19.928876+00:00",
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-24T09:28:42.714067+00:00"
+      "notified_at": "2026-11-17T03:23:19.928876+00:00"
     },
     "520f1d3dc9aff140": {
       "title": "Offres d’emploi RATP Dev Casablanca: contrôleur, manager SI, stagiaire ISO",
@@ -7937,9 +7937,106 @@
       "simulated_at": null,
       "notified": true,
       "notified_at": "2026-11-16T21:15:33.900708+00:00"
+    },
+    "8e1c7278cdf55ed2": {
+      "title": "SQORUS Maroc renforce ses équipes data et web avec des stagiaires PFE à Casablanca",
+      "company": "Entreprise Maroc",
+      "url": "https://www.dreamjob.ma/stage/sqorus-maroc-renforce-ses-equipes-data-et-web-avec-des-stagiaires-pfe-a-casablanca",
+      "source": "dreamjob",
+      "contact_email": "candidature_ma@sqorus.com",
+      "linkedin_url": null,
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 90,
+      "matched_skills": [
+        "IA",
+        "AI",
+        "Python",
+        "SQL",
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Cloud"
+      ],
+      "first_seen": "2026-11-17T03:22:17.765273+00:00",
+      "applied": true,
+      "applied_at": "2026-11-17T03:22:17.765273+00:00",
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-11-17T03:22:17.765273+00:00"
+    },
+    "530a61b24b65d5fe": {
+      "title": "SEGULA Technologies lance sa campagne de stages PFE à Casablanca, Agadir, Kénitra et Tanger",
+      "company": "SEGULA Technologies",
+      "url": "https://www.dreamjob.ma/stage/segula-technologies-lance-sa-campagne-de-stages-pfe-a-casablanca-agadir-kenitra-et-tanger",
+      "source": "dreamjob",
+      "contact_email": null,
+      "linkedin_url": null,
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 74,
+      "matched_skills": [
+        "Intelligence Artificielle",
+        "IA",
+        "Data Science"
+      ],
+      "first_seen": "2026-11-17T03:22:23.869461+00:00",
+      "applied": false,
+      "applied_at": null,
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-11-17T03:22:23.869461+00:00"
+    },
+    "9068103959f48ef4": {
+      "title": "Étudiants en Master: EQDOM recrute des stagiaires PFE en informatique, finance et marketing",
+      "company": "EQDOM",
+      "url": "https://www.dreamjob.ma/stage/etudiants-en-master-eqdom-recrute-des-stagiaires-pfe-en-informatique-finance-et-marketing",
+      "source": "dreamjob",
+      "contact_email": "recrutement@socgen.com",
+      "linkedin_url": null,
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 74,
+      "matched_skills": [
+        "Intelligence Artificielle",
+        "IA",
+        "Data Science"
+      ],
+      "first_seen": "2026-11-17T03:22:27.110098+00:00",
+      "applied": true,
+      "applied_at": "2026-11-17T03:22:27.110098+00:00",
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-11-17T03:22:27.110098+00:00"
+    },
+    "b7d5f1848febc146": {
+      "title": "NSK Steering Systems Morocco recrute un stagiaire process engineer à Tanger",
+      "company": "NSK Steering Systems Morocco",
+      "url": "https://www.dreamjob.ma/stage/nsk-steering-systems-morocco-recrute-un-stagiaire-process-engineer-a-tanger",
+      "source": "dreamjob",
+      "contact_email": "nsksteeringcareer@nsk.com",
+      "linkedin_url": null,
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 50,
+      "matched_skills": [],
+      "first_seen": "2026-11-17T03:23:13.734031+00:00",
+      "applied": true,
+      "applied_at": "2026-11-17T03:23:13.734031+00:00",
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-11-17T03:23:13.734031+00:00"
     }
   },
-  "last_updated": "2026-11-16T21:15:33.900708+00:00",
-  "total_applied": 130,
+  "last_updated": "2026-11-17T03:23:19.928876+00:00",
+  "total_applied": 148,
   "total_simulated": 4
 }
