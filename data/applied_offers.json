@@ -4400,12 +4400,12 @@
       "score": 50,
       "matched_skills": [],
       "first_seen": "2026-10-23T17:26:22.692671+00:00",
-      "applied": false,
-      "applied_at": null,
+      "applied": true,
+      "applied_at": "2026-11-18T00:36:16.259512+00:00",
       "simulated": false,
       "simulated_at": null,
       "notified": true,
-      "notified_at": "2026-10-24T09:28:42.644008+00:00"
+      "notified_at": "2026-11-18T00:36:16.259512+00:00"
     },
     "bfb89bf46151cef1": {
       "title": "Opportunités de Stages PFE en Audit ou Finance chez Deloitte",
@@ -8148,9 +8148,51 @@
       "simulated_at": null,
       "notified": true,
       "notified_at": "2026-11-17T18:18:03.593511+00:00"
+    },
+    "7a426bd55eaa80d0": {
+      "title": "Ingénieur d'études et développement Angular / Next.js",
+      "company": "LOGIGROUP",
+      "url": "https://ma.linkedin.com/jobs/view/ing%C3%A9nieur-d-%C3%A9tudes-et-d%C3%A9veloppement-angular-next-js-at-logigroup-4491730525",
+      "source": "linkedin_guest",
+      "contact_email": null,
+      "linkedin_url": "https://ma.linkedin.com/jobs/view/ing%C3%A9nieur-d-%C3%A9tudes-et-d%C3%A9veloppement-angular-next-js-at-logigroup-4491730525",
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 58,
+      "matched_skills": [
+        "Angular"
+      ],
+      "first_seen": "2026-11-18T00:36:07.943331+00:00",
+      "applied": false,
+      "applied_at": null,
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-11-18T00:36:07.943331+00:00"
+    },
+    "ab509552cd356225": {
+      "title": "AFD.Tech recrute 13 stagiaires PFE automobile à Rabat",
+      "company": "AFD.Tech",
+      "url": "https://joblia.ma/offres-emploi/afd-tech-recrute-13-stagiaires-pfe-automobile-a-rabat",
+      "source": "joblia",
+      "contact_email": null,
+      "linkedin_url": null,
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": true,
+      "score": 60,
+      "matched_skills": [],
+      "first_seen": "2026-11-18T00:36:12.856119+00:00",
+      "applied": false,
+      "applied_at": null,
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-11-18T00:36:12.856119+00:00"
     }
   },
-  "last_updated": "2026-11-17T18:18:03.593511+00:00",
-  "total_applied": 150,
+  "last_updated": "2026-11-18T00:36:16.259512+00:00",
+  "total_applied": 151,
   "total_simulated": 4
 }
