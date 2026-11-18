@@ -8190,9 +8190,51 @@
       "simulated_at": null,
       "notified": true,
       "notified_at": "2026-11-18T00:36:12.856119+00:00"
+    },
+    "646edb98d102c135": {
+      "title": "Développeur Mobile React Native",
+      "company": "BROME Consulting & Technology",
+      "url": "https://ma.linkedin.com/jobs/view/d%C3%A9veloppeur-mobile-react-native-at-brome-consulting-technology-4200179963",
+      "source": "linkedin_guest",
+      "contact_email": null,
+      "linkedin_url": "https://ma.linkedin.com/jobs/view/d%C3%A9veloppeur-mobile-react-native-at-brome-consulting-technology-4200179963",
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 58,
+      "matched_skills": [
+        "React"
+      ],
+      "first_seen": "2026-11-18T03:18:53.788170+00:00",
+      "applied": false,
+      "applied_at": null,
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-11-18T03:18:53.788170+00:00"
+    },
+    "eea4436c30261b6a": {
+      "title": "Groupe BCP recrute 5 profils en stages PFE et en cybersécurité à Casablanca",
+      "company": "Entreprise Maroc",
+      "url": "https://www.dreamjob.ma/emploi/groupe-bcp-recrute-5-profils-en-stages-pfe-et-en-cybersecurite-a-casablanca",
+      "source": "dreamjob",
+      "contact_email": "recrutement@cpm.ma",
+      "linkedin_url": null,
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 50,
+      "matched_skills": [],
+      "first_seen": "2026-11-18T03:18:57.860435+00:00",
+      "applied": true,
+      "applied_at": "2026-11-18T03:18:57.860435+00:00",
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-11-18T03:18:57.860435+00:00"
     }
   },
-  "last_updated": "2026-11-18T00:36:16.259512+00:00",
-  "total_applied": 151,
+  "last_updated": "2026-11-18T03:18:57.860435+00:00",
+  "total_applied": 152,
   "total_simulated": 4
 }
