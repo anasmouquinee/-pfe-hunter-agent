@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // 8. Initialize Interactive Terminal
   const term = new TerminalEngine('terminal-output', 'terminal-input');
   term.init();
+  window.terminalInstance = term;
 
   // 9. Setup Dual-Mode Switcher
   setupModeSwitcher();
@@ -178,7 +179,7 @@ function renderOffersTable() {
 
     // Score Color Fill
     let scoreColor = 'var(--status-danger)';
-    if (offer.score >= 80) scoreColor = 'var(--accent-cyan)';
+    if (offer.score >= 80) scoreColor = 'var(--status-success)';
     else if (offer.score >= 60) scoreColor = 'var(--status-warning)';
 
     tr.innerHTML = `
@@ -216,10 +217,52 @@ function setupFilterListeners() {
   const searchInput = document.getElementById('search-offers-input');
   const sourceSelect = document.getElementById('filter-source-select');
   const statusSelect = document.getElementById('filter-status-select');
+  const filterChips = document.querySelectorAll('.filter-chip');
 
   searchInput?.addEventListener('input', debounce(renderOffersTable, 200));
   sourceSelect?.addEventListener('change', renderOffersTable);
   statusSelect?.addEventListener('change', renderOffersTable);
+
+  // Quick Filter Chips Handling
+  filterChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      filterChips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+
+      const filterType = chip.getAttribute('data-filter');
+      if (filterType === 'all') {
+        if (searchInput) searchInput.value = '';
+        if (statusSelect) statusSelect.value = 'all';
+        if (sourceSelect) sourceSelect.value = 'all';
+      } else if (filterType === 'high_match') {
+        if (statusSelect) statusSelect.value = 'high_match';
+      } else if (filterType === 'remunerated') {
+        if (statusSelect) statusSelect.value = 'remunerated';
+      } else if (filterType === 'ai_rag') {
+        if (searchInput) searchInput.value = 'RAG';
+        if (statusSelect) statusSelect.value = 'all';
+      } else if (filterType === 'lakehouse') {
+        if (searchInput) searchInput.value = 'Lakehouse';
+        if (statusSelect) statusSelect.value = 'all';
+      } else if (filterType === 'airflow') {
+        if (searchInput) searchInput.value = 'Airflow';
+        if (statusSelect) statusSelect.value = 'all';
+      }
+      renderOffersTable();
+    });
+  });
+
+  // Global Linear Keyboard Shortcut (Cmd+K / Ctrl+K or /)
+  window.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      searchInput?.focus();
+      searchInput?.select();
+    } else if (e.key === '/' && document.activeElement !== searchInput && document.activeElement.tagName !== 'TEXTAREA') {
+      e.preventDefault();
+      searchInput?.focus();
+    }
+  });
 }
 
 /* --------------------------------------------------------------------------

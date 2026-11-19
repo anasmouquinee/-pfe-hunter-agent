@@ -10,22 +10,19 @@
   <!-- Favicon SVG -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%2300e5ff'/><stop offset='100%' stop-color='%236366f1'/></linearGradient></defs><rect width='100' height='100' rx='24' fill='%23080c14'/><text x='50' y='64' font-family='sans-serif' font-size='44' font-weight='900' fill='url(%23g)' text-anchor='middle'>AM</text></svg>">
 
-  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <!-- Google Fonts: Fira Sans & Fira Code (Technical & Distinctive) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Modular CSS Files (Vanilla CSS / No Tailwind) -->
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/mission-control.css">
-  <link rel="stylesheet" href="css/portfolio.css">
+  <link rel="stylesheet" href="css/variables.css?v=3.0">
+  <link rel="stylesheet" href="css/base.css?v=3.0">
+  <link rel="stylesheet" href="css/components.css?v=3.0">
+  <link rel="stylesheet" href="css/mission-control.css?v=3.0">
+  <link rel="stylesheet" href="css/portfolio.css?v=3.0">
 </head>
 <body>
-
-  <!-- Background Decorative Grid Overlay -->
-  <div class="bg-grid-overlay" aria-hidden="true"></div>
 
   <!-- Global Header -->
   <header class="app-header">
@@ -119,92 +116,144 @@
         </div>
       </section>
 
-      <!-- KPI Metrics Grid -->
-      <section class="kpi-grid" style="margin-top: var(--space-6);">
+      <!-- KPI Metrics Grid - Data-Dense HUD with Sparklines -->
+      <section class="kpi-grid">
         <div class="kpi-card">
           <div class="kpi-header">
             <span class="kpi-label">Offres Archivées</span>
-            <div class="kpi-icon">
-              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
-            </div>
+            <span class="kpi-trend-pill badge badge-neutral">+14/semaine</span>
           </div>
-          <div id="kpi-total-scraped" class="kpi-value">--</div>
+          <div class="kpi-value-row">
+            <div id="kpi-total-scraped" class="kpi-value">--</div>
+            <svg class="kpi-sparkline" viewBox="0 0 100 28" preserveAspectRatio="none">
+              <path d="M0 24 Q 25 20, 50 14 T 75 10 T 100 4" stroke="#fafafa" />
+            </svg>
+          </div>
           <div class="kpi-subtext">Base réelle <code>applied_offers.json</code></div>
         </div>
 
         <div class="kpi-card">
           <div class="kpi-header">
             <span class="kpi-label">Match Élevé (≥ 80%)</span>
-            <div class="kpi-icon" style="color: var(--status-success);">
-              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            </div>
+            <span class="kpi-trend-pill badge badge-success">37% taux</span>
           </div>
-          <div id="kpi-high-match" class="kpi-value" style="color: var(--status-success);">--</div>
+          <div class="kpi-value-row">
+            <div id="kpi-high-match" class="kpi-value" style="color: var(--status-success);">--</div>
+            <svg class="kpi-sparkline" viewBox="0 0 100 28" preserveAspectRatio="none">
+              <path d="M0 22 Q 25 18, 50 12 T 75 8 T 100 3" stroke="var(--status-success)" />
+            </svg>
+          </div>
           <div class="kpi-subtext">Compétences cibles IA &amp; Data validées</div>
         </div>
 
         <div class="kpi-card">
           <div class="kpi-header">
             <span class="kpi-label">Stages Rémunérés</span>
-            <div class="kpi-icon" style="color: var(--accent-indigo);">
-              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            </div>
+            <span class="kpi-trend-pill badge badge-cyan">~4,500 DH</span>
           </div>
-          <div id="kpi-remunerated" class="kpi-value" style="color: var(--accent-indigo);">--</div>
+          <div class="kpi-value-row">
+            <div id="kpi-remunerated" class="kpi-value" style="color: var(--accent-cyan);">--</div>
+            <svg class="kpi-sparkline" viewBox="0 0 100 28" preserveAspectRatio="none">
+              <path d="M0 24 Q 30 22, 55 16 T 80 10 T 100 5" stroke="var(--accent-cyan)" />
+            </svg>
+          </div>
           <div class="kpi-subtext">Gratification &amp; indemnité détectées</div>
         </div>
 
         <div class="kpi-card">
           <div class="kpi-header">
             <span class="kpi-label">Sécurité &amp; Uptime</span>
-            <div class="kpi-icon" style="color: var(--status-warning);">
-              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
-            </div>
+            <span class="kpi-trend-pill badge badge-indigo">100% OK</span>
           </div>
-          <div class="kpi-value" style="color: var(--status-warning);">0% Ban</div>
+          <div class="kpi-value-row">
+            <div class="kpi-value" style="color: #818cf8;">0% Ban</div>
+            <svg class="kpi-sparkline" viewBox="0 0 100 28" preserveAspectRatio="none">
+              <path d="M0 14 Q 25 14, 50 14 T 75 14 T 100 14" stroke="#818cf8" />
+            </svg>
+          </div>
           <div class="kpi-subtext">100+ cycles GitHub Actions sans échec</div>
         </div>
       </section>
 
+      <!-- Analytics Distribution Strip -->
+      <section class="analytics-distribution-card" aria-label="Distribution et flux de scraping">
+        <div class="dist-header">
+          <div class="dist-title">
+            <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            <span>Distribution Qualité &amp; Flux Multi-Sources</span>
+          </div>
+          <div class="dist-legend">
+            <span class="dist-legend-item"><span class="dist-legend-dot" style="background: var(--status-success);"></span> Match ≥ 80% (37%)</span>
+            <span class="dist-legend-item"><span class="dist-legend-dot" style="background: var(--accent-cyan);"></span> Match 60-79% (45%)</span>
+            <span class="dist-legend-item"><span class="dist-legend-dot" style="background: #52525b;"></span> Hors Cible &lt; 60% (18%)</span>
+          </div>
+        </div>
+        <div class="dist-bar-track">
+          <div class="dist-bar-seg" style="width: 37%; background: var(--status-success);" title="Match ≥ 80%: 88 offres"></div>
+          <div class="dist-bar-seg" style="width: 45%; background: var(--accent-cyan);" title="Match 60-79%: 108 offres"></div>
+          <div class="dist-bar-seg" style="width: 18%; background: #52525b;" title="Hors cible: 44 offres"></div>
+        </div>
+        <div class="dist-sources-row">
+          <span class="dist-source-chip">ReKrute.com : <strong>138</strong></span>
+          <span class="dist-source-chip">LinkedIn Guest : <strong>56</strong></span>
+          <span class="dist-source-chip">DreamJob.ma : <strong>24</strong></span>
+          <span class="dist-source-chip">Emploi.ma : <strong>22</strong></span>
+          <span class="dist-source-chip" style="margin-left: auto; color: var(--status-success);"><span class="status-dot status-dot-active"></span> Pipeline sync OK</span>
+        </div>
+      </section>
+
       <!-- Main Operational Split: Offer Explorer (Left) & AI Playground / Preview (Right) -->
-      <div class="control-grid-split" style="margin-top: var(--space-8);">
+      <div class="control-grid-split">
         
         <!-- LEFT: Offer Explorer Table -->
-        <section class="card offer-explorer-card">
+        <section class="offer-explorer-card">
           <div class="card-header">
             <div>
               <h2 class="card-title">
-                <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="var(--accent-cyan)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                 Explorateur d'Offres Scrappées
               </h2>
               <span class="card-subtitle">Analyse en temps réel des flux collectés par les scrapers</span>
             </div>
-            <span id="filtered-count-badge" class="badge badge-cyan">Chargement...</span>
+            <span id="filtered-count-badge" class="badge badge-neutral">Chargement...</span>
           </div>
 
           <!-- Filter & Search Controls -->
           <div class="filter-bar">
-            <div class="search-input-wrapper">
-              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-              <input type="text" id="search-offers-input" class="form-input" placeholder="Filtrer par titre, entreprise, compétence (ex: Airflow, RAG)...">
+            <div class="filter-main-row">
+              <div class="search-input-wrapper">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                <input type="text" id="search-offers-input" class="form-input" placeholder="Filtrer par titre, entreprise, compétence...">
+                <span class="search-kbd-hint">⌘K</span>
+              </div>
+
+              <div class="filter-actions">
+                <select id="filter-source-select" class="form-select" style="min-width: 130px;">
+                  <option value="all">Toutes sources</option>
+                  <option value="rekrute">ReKrute.com</option>
+                  <option value="linkedin_guest">LinkedIn Guest</option>
+                  <option value="dreamjob">DreamJob.ma</option>
+                  <option value="emploima">Emploi.ma</option>
+                  <option value="marocannonces">MarocAnnonces</option>
+                </select>
+
+                <select id="filter-status-select" class="form-select" style="min-width: 130px;">
+                  <option value="all">Tous statuts</option>
+                  <option value="high_match">Match ≥ 85%</option>
+                  <option value="remunerated">Rémunérés</option>
+                  <option value="dispatched">Dispatchés (Dry)</option>
+                </select>
+              </div>
             </div>
 
-            <div class="filter-actions">
-              <select id="filter-source-select" class="form-select" style="min-width: 140px;">
-                <option value="all">Toutes sources</option>
-                <option value="rekrute">ReKrute.com</option>
-                <option value="linkedin_guest">LinkedIn Guest</option>
-                <option value="dreamjob">DreamJob.ma</option>
-                <option value="emploima">Emploi.ma</option>
-                <option value="marocannonces">MarocAnnonces</option>
-              </select>
-
-              <select id="filter-status-select" class="form-select" style="min-width: 140px;">
-                <option value="all">Tous statuts</option>
-                <option value="high_match">Match ≥ 85%</option>
-                <option value="remunerated">Rémunérés</option>
-                <option value="dispatched">Dispatchés (Dry)</option>
-              </select>
+            <!-- Quick Filter Chips Row -->
+            <div class="filter-chips-row">
+              <button class="filter-chip active" data-filter="all">Tous (240)</button>
+              <button class="filter-chip" data-filter="high_match">Match ≥ 85% (88)</button>
+              <button class="filter-chip" data-filter="remunerated">Rémunérés (19)</button>
+              <button class="filter-chip" data-filter="ai_rag">IA &amp; RAG</button>
+              <button class="filter-chip" data-filter="lakehouse">Data Lakehouse</button>
+              <button class="filter-chip" data-filter="airflow">Airflow / ETL</button>
             </div>
           </div>
 
@@ -378,7 +427,7 @@ Anas MOUQUINE
           </div>
 
           <h1 class="hero-title">
-            Conception de Systèmes <span class="text-gradient">IA &amp; Architectures Big Data</span>
+            Conception de Systèmes <span class="hero-highlight">IA &amp; Architectures Big Data</span>
           </h1>
 
           <p class="hero-description">
@@ -432,6 +481,17 @@ Anas MOUQUINE
             <!-- Populated via terminal-engine.js -->
           </div>
 
+          <!-- Quick Terminal Command Pills -->
+          <div class="terminal-quick-bar">
+            <span class="terminal-quick-label">Cmds :</span>
+            <button type="button" class="terminal-quick-btn" onclick="window.terminalInstance?.execute('bio')">bio</button>
+            <button type="button" class="terminal-quick-btn" onclick="window.terminalInstance?.execute('skills')">skills</button>
+            <button type="button" class="terminal-quick-btn" onclick="window.terminalInstance?.execute('projects')">projects</button>
+            <button type="button" class="terminal-quick-btn" onclick="window.terminalInstance?.execute('pfe')">pfe</button>
+            <button type="button" class="terminal-quick-btn" onclick="window.terminalInstance?.execute('status')">status</button>
+            <button type="button" class="terminal-quick-btn" onclick="window.terminalInstance?.execute('download-cv')">download-cv</button>
+          </div>
+
           <div class="terminal-input-form">
             <span style="color: var(--accent-cyan); font-weight: 700; padding-left: 14px;">➜</span>
             <input type="text" id="terminal-input" class="terminal-input" placeholder="Tapez une commande (ex: help, bio, skills, pfe)..." autocomplete="off" spellcheck="false">
@@ -442,7 +502,6 @@ Anas MOUQUINE
       <!-- Projects Architecture Showcase -->
       <section style="margin-top: var(--space-8);">
         <div class="section-header-row">
-          <span class="section-tag">Ingénierie &amp; R&amp;D</span>
           <h2>Projets Phares &amp; Architectures Distribuées</h2>
           <p>Systèmes conçus avec les standards de production logicielle et déployés en conditions réelles.</p>
         </div>
@@ -533,7 +592,6 @@ Anas MOUQUINE
       <!-- Verified Certifications -->
       <section style="margin-top: var(--space-8);">
         <div class="section-header-row">
-          <span class="section-tag">Gages de Rigueur &amp; Qualité</span>
           <h2>Certifications Vérifiées</h2>
           <p>Compétences validées par les institutions académiques et industrielles mondiales.</p>
         </div>
@@ -588,8 +646,7 @@ Anas MOUQUINE
 
       <!-- Contact & Availability Section -->
       <section class="card" style="margin-top: var(--space-8); text-align: center; padding: var(--space-10) var(--space-6);">
-        <span class="section-tag">Prochaine Étape</span>
-        <h2 style="margin-top: var(--space-2);">Prêt à Démarrer Votre Projet PFE</h2>
+        <h2>Prêt à Démarrer Votre Projet PFE</h2>
         <p style="max-width: 600px; margin: var(--space-3) auto var(--space-6);">
           Disponible pour un stage de 4 à 6 mois à Casablanca, Rabat ou en Télétravail à partir de Février 2026.
         </p>
@@ -633,8 +690,8 @@ Anas MOUQUINE
         <p id="drawer-offer-company" style="font-size: var(--text-sm); color: var(--text-muted); margin-top: 4px;">Entreprise · Casablanca</p>
       </div>
 
-      <!-- Recruiter Intel Card -->
-      <div class="card" style="padding: var(--space-4); background-color: var(--bg-surface-elevated);">
+      <!-- Recruiter Intel Details -->
+      <div style="padding: var(--space-4) 0; border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
         <span class="form-label">Coordonnées Recruteur Détectées :</span>
         <div style="display: flex; flex-direction: column; gap: var(--space-2); margin-top: var(--space-2);">
           <div id="drawer-recruiter-email">--</div>
@@ -664,9 +721,9 @@ Anas MOUQUINE
   <div id="toast-container" class="toast-container" aria-live="polite"></div>
 
   <!-- JavaScript Modules (Loaded in order) -->
-  <script src="js/data-engine.js"></script>
-  <script src="js/scoring-engine.js"></script>
-  <script src="js/terminal-engine.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/data-engine.js?v=3.0"></script>
+  <script src="js/scoring-engine.js?v=3.0"></script>
+  <script src="js/terminal-engine.js?v=3.0"></script>
+  <script src="js/app.js?v=3.0"></script>
 </body>
 </html>
