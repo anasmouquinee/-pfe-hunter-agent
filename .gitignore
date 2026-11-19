@@ -27,7 +27,14 @@ Desktop.ini
 *.jpeg
 *.zip
 !docs/assets/*.png
+!docs/assets/*.jpg
 !cv_ats_pfe.pdf
+!docs/cv_ats_pfe.pdf
+
+# Agent and tooling configs
+.github/agents/
+.github/hooks/
+.github/skills/
 
 # Generated application letters (keep directory & canonical Coface sample)
 letters/*.html
