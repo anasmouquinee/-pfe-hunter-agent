@@ -8297,9 +8297,29 @@
       "simulated_at": null,
       "notified": true,
       "notified_at": "2026-11-19T15:15:08.459554+00:00"
+    },
+    "70cc20c9b8d79356": {
+      "title": "Tax Consultant – Canadian Market | Stage PFE | F/H",
+      "company": "KPMG Maroc",
+      "url": "https://ma.linkedin.com/jobs/view/tax-consultant-%E2%80%93-canadian-market-stage-pfe-f-h-at-kpmg-au-maroc-4487196012",
+      "source": "linkedin_guest",
+      "contact_email": null,
+      "linkedin_url": "https://ma.linkedin.com/jobs/view/tax-consultant-%E2%80%93-canadian-market-stage-pfe-f-h-at-kpmg-au-maroc-4487196012",
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 50,
+      "matched_skills": [],
+      "first_seen": "2026-11-19T18:16:29.415672+00:00",
+      "applied": false,
+      "applied_at": null,
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-11-19T18:16:29.415672+00:00"
     }
   },
-  "last_updated": "2026-11-19T15:15:08.459554+00:00",
+  "last_updated": "2026-11-19T18:16:29.415672+00:00",
   "total_applied": 153,
   "total_simulated": 4
 }
