@@ -8317,9 +8317,36 @@
       "simulated_at": null,
       "notified": true,
       "notified_at": "2026-11-19T18:16:29.415672+00:00"
+    },
+    "1521f9720c0b0093": {
+      "title": "Stage PFE en Développement, Infrastructure & Applicatif (F/H)",
+      "company": "CGI",
+      "url": "https://ma.linkedin.com/jobs/view/stage-pfe-en-d%C3%A9veloppement-infrastructure-applicatif-f-h-at-cgi-4492467319",
+      "source": "linkedin_guest",
+      "contact_email": "carrieres.maroc@cgi.com",
+      "linkedin_url": "https://ma.linkedin.com/jobs/view/stage-pfe-en-d%C3%A9veloppement-infrastructure-applicatif-f-h-at-cgi-4492467319",
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 90,
+      "matched_skills": [
+        "IA",
+        "SQL",
+        "Java",
+        "Angular",
+        "DevOps",
+        "Cloud"
+      ],
+      "first_seen": "2026-11-20T09:15:04.032578+00:00",
+      "applied": true,
+      "applied_at": "2026-11-20T09:15:04.032578+00:00",
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-11-20T09:15:04.032578+00:00"
     }
   },
-  "last_updated": "2026-11-19T18:16:29.415672+00:00",
-  "total_applied": 153,
+  "last_updated": "2026-11-20T09:15:04.032578+00:00",
+  "total_applied": 154,
   "total_simulated": 4
 }
