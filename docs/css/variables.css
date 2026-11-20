@@ -75,10 +75,10 @@
   --glass-blur: blur(16px) saturate(160%);
   --glass-highlight: inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
 
-  /* Glowing Accent Tokens */
-  --glow-cyan: 0 0 20px rgba(6, 182, 212, 0.35);
-  --glow-indigo: 0 0 20px rgba(129, 140, 248, 0.35);
-  --glow-success: 0 0 20px rgba(16, 185, 129, 0.35);
+  /* Neutral Elevation Tokens (No zero-offset chromatic glows) */
+  --glow-cyan: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --glow-indigo: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --glow-success: 0 4px 16px rgba(0, 0, 0, 0.4);
   --glow-subtle: 0 4px 20px rgba(0, 0, 0, 0.45);
 
   /* Component Semantic Tokens */
@@ -153,10 +153,10 @@
   --glass-blur: blur(16px) saturate(160%);
   --glass-highlight: inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
 
-  /* Glowing Accent Tokens for Light Mode */
-  --glow-cyan: 0 0 16px rgba(2, 132, 199, 0.25);
-  --glow-indigo: 0 0 16px rgba(79, 70, 229, 0.25);
-  --glow-success: 0 0 16px rgba(5, 150, 105, 0.25);
+  /* Neutral Elevation Tokens for Light Mode */
+  --glow-cyan: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --glow-indigo: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --glow-success: 0 4px 12px rgba(0, 0, 0, 0.08);
   --glow-subtle: 0 4px 16px rgba(0, 0, 0, 0.08);
 
   /* Component Semantic Tokens for Light Mode */

@@ -55,8 +55,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   term.init();
   window.terminalInstance = term;
 
-  // 10. Setup Dual-Mode Switcher & URL Hash Navigation
+  // 10. Setup 3-View Switcher (Home / Dashboard / Portfolio)
   setupModeSwitcher();
+
+  // 10b. Setup Sticky Storyboard Process Scroll Animation
+  setupStoryboardObserver();
 
   // 11. Setup Drawer / Flyout Details
   setupDrawer();
@@ -104,27 +107,36 @@ function updateThemeIcon(theme) {
 }
 
 /* --------------------------------------------------------------------------
-   DUAL-MODE SWITCHER (Mission Control vs Portfolio) & HISTORY SYNC
+   3-VIEW UNIFIED SWITCHER (Home vs Dashboard vs Portfolio) & HISTORY SYNC
    -------------------------------------------------------------------------- */
 function setupModeSwitcher() {
+  const btnHome = document.getElementById('mode-btn-home');
   const btnMission = document.getElementById('mode-btn-mission');
   const btnPortfolio = document.getElementById('mode-btn-portfolio');
   const brandBtn = document.getElementById('brand-home-btn');
+
+  const heroDashBtn = document.getElementById('hero-cta-dashboard-btn');
+  const heroPortBtn = document.getElementById('hero-cta-portfolio-btn');
+  const bridgeDashBtn = document.getElementById('bridge-dashboard-btn');
+  const bridgePortBtn = document.getElementById('bridge-portfolio-btn');
   const heroBotBtn = document.getElementById('hero-view-bot-btn');
   const projectBotBtns = document.querySelectorAll('.project-btn-test-agent');
 
-  if (btnMission) {
-    btnMission.addEventListener('click', () => switchMode('mission-control'));
-  }
-  if (btnPortfolio) {
-    btnPortfolio.addEventListener('click', () => switchMode('portfolio'));
-  }
+  if (btnHome) btnHome.addEventListener('click', () => switchMode('home'));
+  if (btnMission) btnMission.addEventListener('click', () => switchMode('mission-control'));
+  if (btnPortfolio) btnPortfolio.addEventListener('click', () => switchMode('portfolio'));
+
+  if (heroDashBtn) heroDashBtn.addEventListener('click', () => switchMode('mission-control'));
+  if (heroPortBtn) heroPortBtn.addEventListener('click', () => switchMode('portfolio'));
+  if (bridgeDashBtn) bridgeDashBtn.addEventListener('click', () => switchMode('mission-control'));
+  if (bridgePortBtn) bridgePortBtn.addEventListener('click', () => switchMode('portfolio'));
+
   if (brandBtn) {
-    brandBtn.addEventListener('click', () => switchMode('mission-control'));
+    brandBtn.addEventListener('click', () => switchMode('home'));
     brandBtn.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        switchMode('mission-control');
+        switchMode('home');
       }
     });
   }
@@ -137,51 +149,209 @@ function setupModeSwitcher() {
 }
 
 function switchMode(mode) {
+  playSound('click');
+  const homeView = document.getElementById('view-home');
   const missionView = document.getElementById('view-mission-control');
   const portfolioView = document.getElementById('view-portfolio');
+
+  const btnHome = document.getElementById('mode-btn-home');
   const btnMission = document.getElementById('mode-btn-mission');
   const btnPortfolio = document.getElementById('mode-btn-portfolio');
 
+  // Reset active classes on tabs
+  [btnHome, btnMission, btnPortfolio].forEach(btn => {
+    btn?.classList.remove('active');
+    btn?.setAttribute('aria-selected', 'false');
+  });
+
+  // Hide all views first
+  [homeView, missionView, portfolioView].forEach(v => {
+    v?.classList.add('hidden');
+    v?.classList.remove('view-enter');
+  });
+
   if (mode === 'portfolio') {
-    missionView?.classList.add('hidden');
-    missionView?.classList.remove('view-enter');
     portfolioView?.classList.remove('hidden');
     portfolioView?.classList.add('view-enter');
-
-    btnMission?.classList.remove('active');
-    btnMission?.setAttribute('aria-selected', 'false');
     btnPortfolio?.classList.add('active');
     btnPortfolio?.setAttribute('aria-selected', 'true');
-
     if (window.location.hash !== '#portfolio') {
       window.location.hash = 'portfolio';
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  } else {
-    portfolioView?.classList.add('hidden');
-    portfolioView?.classList.remove('view-enter');
+  } else if (mode === 'mission-control' || mode === 'dashboard') {
     missionView?.classList.remove('hidden');
     missionView?.classList.add('view-enter');
-
-    btnPortfolio?.classList.remove('active');
-    btnPortfolio?.setAttribute('aria-selected', 'false');
     btnMission?.classList.add('active');
     btnMission?.setAttribute('aria-selected', 'true');
-
-    if (window.location.hash !== '#mission-control') {
-      window.location.hash = 'mission-control';
+    if (window.location.hash !== '#dashboard') {
+      window.location.hash = 'dashboard';
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    // Default: Home View
+    homeView?.classList.remove('hidden');
+    homeView?.classList.add('view-enter');
+    btnHome?.classList.add('active');
+    btnHome?.setAttribute('aria-selected', 'true');
+    if (window.location.hash !== '#accueil' && window.location.hash !== '') {
+      window.location.hash = 'accueil';
+    }
   }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function handleUrlHash() {
   const hash = window.location.hash.replace('#', '');
   if (hash === 'portfolio') {
     switchMode('portfolio');
-  } else {
+  } else if (hash === 'dashboard' || hash === 'mission-control') {
     switchMode('mission-control');
+  } else {
+    switchMode('home');
   }
+}
+
+/* --------------------------------------------------------------------------
+   STICKY STORYBOARD SCROLL-DRIVEN ANIMATION CONTROLLER
+   -------------------------------------------------------------------------- */
+const storyboardStepsData = {
+  1: {
+    tag: 'PHASE 1 / 4 · INGESTION',
+    status: 'Actif (6/6)',
+    statusClass: 'badge-success',
+    title: '1. Collecte Multi-Sources',
+    subtitle: 'Surveillance simultanée de 6 portails marocains avec rotation d\'User-Agents et respect des quotas anti-429.',
+    metric1Val: '6 / 6',
+    metric1Lbl: 'Portails Scrappés',
+    metric2Val: '370+',
+    metric2Lbl: 'Offres Traitées',
+    iconSvg: '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>'
+  },
+  2: {
+    tag: 'PHASE 2 / 4 · AUDIT',
+    status: 'Audit OK',
+    statusClass: 'badge-warning',
+    title: '2. Audit & Filtrage Sémantique',
+    subtitle: 'Élimination des faux-positifs linguistiques ("j\'ai") et exclusion des profils seniors inadaptés au PFE.',
+    metric1Val: '0',
+    metric1Lbl: 'Faux-Positifs',
+    metric2Val: '100%',
+    metric2Lbl: 'Précision',
+    iconSvg: '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>'
+  },
+  3: {
+    tag: 'PHASE 3 / 4 · SCORING',
+    status: 'Calcul IA',
+    statusClass: 'badge-success',
+    title: '3. Qualification Sémantique IA',
+    subtitle: 'Calcul d\'adéquation pondéré sur les compétences cibles (Python, Lakehouse, Airflow, Neo4j, RAG).',
+    metric1Val: '71',
+    metric1Lbl: 'Matchs ≥ 80%',
+    metric2Val: '≥ 80%',
+    metric2Lbl: 'Seuil Cible',
+    iconSvg: '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>'
+  },
+  4: {
+    tag: 'PHASE 4 / 4 · DISPATCH',
+    status: 'Prêt',
+    statusClass: 'badge-indigo',
+    title: '4. Match Recruteur & Dispatch',
+    subtitle: 'Extraction des coordonnées RH, génération de candidature sur-mesure et simulation sécurisée en 3 étapes.',
+    metric1Val: '100%',
+    metric1Lbl: 'Dry-Run Validé',
+    metric2Val: '0%',
+    metric2Lbl: 'Risque Spam',
+    iconSvg: '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>'
+  }
+};
+
+let currentActiveStep = 1;
+
+function setupStoryboardObserver() {
+  const stepCards = document.querySelectorAll('.storyboard-step-card');
+  if (stepCards.length === 0) return;
+
+  // 1. Scroll listener using IntersectionObserver
+  const observerOptions = {
+    root: null,
+    rootMargin: '-20% 0px -50% 0px',
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const stepNum = parseInt(entry.target.getAttribute('data-step'), 10);
+        if (stepNum && stepNum !== currentActiveStep) {
+          updateStoryboardStep(stepNum);
+        }
+      }
+    });
+  }, observerOptions);
+
+  stepCards.forEach(card => observer.observe(card));
+
+  // 2. Stepper Nav click interaction
+  const navPills = document.querySelectorAll('.storyboard-progress-step-pill');
+  navPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      const targetStep = parseInt(pill.getAttribute('data-step-nav'), 10);
+      const targetCard = document.querySelector(`.storyboard-step-card[data-step="${targetStep}"]`);
+      if (targetCard) {
+        playSound('click');
+        targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+  });
+}
+
+function updateStoryboardStep(stepNum) {
+  currentActiveStep = stepNum;
+  const data = storyboardStepsData[stepNum];
+  if (!data) return;
+
+  // Update step cards active state
+  document.querySelectorAll('.storyboard-step-card').forEach(c => {
+    const s = parseInt(c.getAttribute('data-step'), 10);
+    if (s === stepNum) {
+      c.classList.add('active');
+    } else {
+      c.classList.remove('active');
+    }
+  });
+
+  // Update sticky progress pills
+  document.querySelectorAll('.storyboard-progress-step-pill').forEach(p => {
+    const s = parseInt(p.getAttribute('data-step-nav'), 10);
+    if (s === stepNum) {
+      p.classList.add('active');
+    } else {
+      p.classList.remove('active');
+    }
+  });
+
+  // Smoothly update HUD elements
+  const tagEl = document.getElementById('sb-hud-step-tag');
+  const statusEl = document.getElementById('sb-hud-status-badge');
+  const iconEl = document.getElementById('sb-hud-icon');
+  const titleEl = document.getElementById('sb-hud-title');
+  const subtitleEl = document.getElementById('sb-hud-subtitle');
+  const m1Val = document.getElementById('sb-metric-1-val');
+  const m1Lbl = document.getElementById('sb-metric-1-lbl');
+  const m2Val = document.getElementById('sb-metric-2-val');
+  const m2Lbl = document.getElementById('sb-metric-2-lbl');
+
+  if (tagEl) tagEl.textContent = data.tag;
+  if (statusEl) {
+    statusEl.textContent = data.status;
+    statusEl.className = `badge ${data.statusClass}`;
+  }
+  if (iconEl) iconEl.innerHTML = data.iconSvg;
+  if (titleEl) titleEl.textContent = data.title;
+  if (subtitleEl) subtitleEl.textContent = data.subtitle;
+  if (m1Val) m1Val.textContent = data.metric1Val;
+  if (m1Lbl) m1Lbl.textContent = data.metric1Lbl;
+  if (m2Val) m2Val.textContent = data.metric2Val;
+  if (m2Lbl) m2Lbl.textContent = data.metric2Lbl;
 }
 
 /* --------------------------------------------------------------------------

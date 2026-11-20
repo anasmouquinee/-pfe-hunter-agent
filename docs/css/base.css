@@ -78,7 +78,7 @@ a {
 }
 
 a:hover {
-  color: var(--accent-indigo);
+  color: var(--accent-cyan-light);
   text-decoration: underline;
 }
 
@@ -229,7 +229,7 @@ code, pre, kbd {
   }
   .mode-btn {
     padding: 5px 8px;
-    font-size: 11px;
+    font-size: var(--text-xs);
     gap: 4px;
   }
   .btn-text-desktop {

@@ -104,47 +104,6 @@
   animation: stepPulse 1.2s infinite ease-in-out;
 }
 
-/* 7. Ambient Glowing Background Auras */
-.ambient-glow {
-  position: fixed;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.4;
-  filter: blur(110px);
-  will-change: transform, opacity;
-}
-
-.ambient-glow-cyan {
-  width: 520px;
-  height: 520px;
-  top: -120px;
-  left: -100px;
-  background: radial-gradient(circle, rgba(6, 182, 212, 0.28) 0%, rgba(6, 182, 212, 0) 70%);
-  animation: floatAura1 18s infinite ease-in-out alternate;
-}
-
-.ambient-glow-indigo {
-  width: 620px;
-  height: 620px;
-  top: 300px;
-  right: -150px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.22) 0%, rgba(99, 102, 241, 0) 70%);
-  animation: floatAura2 24s infinite ease-in-out alternate;
-}
-
-@keyframes floatAura1 {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(60px, 40px) scale(1.1); }
-  100% { transform: translate(-30px, 80px) scale(0.95); }
-}
-
-@keyframes floatAura2 {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-80px, -50px) scale(1.15); }
-  100% { transform: translate(40px, -90px) scale(0.9); }
-}
-
 /* 8. SVG Sparkline Draw-In Animation */
 .kpi-sparkline path {
   stroke-dasharray: 200;

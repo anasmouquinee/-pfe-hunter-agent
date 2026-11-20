@@ -1,3 +1,4 @@
+<!-- impeccable-disable overused-font -->
 <!DOCTYPE html>
 <html lang="fr" data-theme="dark">
 <head>
@@ -16,18 +17,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Modular CSS Files (Vanilla CSS / No Tailwind) -->
-  <link rel="stylesheet" href="css/variables.css?v=3.0">
-  <link rel="stylesheet" href="css/animations.css?v=3.0">
-  <link rel="stylesheet" href="css/base.css?v=3.0">
-  <link rel="stylesheet" href="css/components.css?v=3.0">
-  <link rel="stylesheet" href="css/mission-control.css?v=3.0">
-  <link rel="stylesheet" href="css/portfolio.css?v=3.0">
+  <link rel="stylesheet" href="css/variables.css?v=3.1">
+  <link rel="stylesheet" href="css/animations.css?v=3.1">
+  <link rel="stylesheet" href="css/base.css?v=3.1">
+  <link rel="stylesheet" href="css/components.css?v=3.1">
+  <link rel="stylesheet" href="css/landing.css?v=3.1">
+  <link rel="stylesheet" href="css/mission-control.css?v=3.1">
+  <link rel="stylesheet" href="css/portfolio.css?v=3.1">
 </head>
 <body>
 
-  <!-- Ambient Cyber Glows, Particles & Grid Overlay -->
-  <div class="ambient-glow ambient-glow-cyan" aria-hidden="true"></div>
-  <div class="ambient-glow ambient-glow-indigo" aria-hidden="true"></div>
+  <!-- Grid Overlay & Canvas -->
   <div class="bg-grid-overlay" aria-hidden="true"></div>
   <canvas id="confetti-canvas" class="confetti-canvas" aria-hidden="true"></canvas>
 
@@ -37,7 +37,7 @@
       <div class="header-inner">
         
         <!-- Brand Identity -->
-        <div class="brand-wrapper" id="brand-home-btn" role="button" tabindex="0" title="Retour à Mission Control">
+        <div class="brand-wrapper" id="brand-home-btn" role="button" tabindex="0" title="Retour à la Page d'Accueil">
           <div class="brand-icon">AM</div>
           <div class="brand-text-col">
             <span class="brand-title">Anas Mouquine</span>
@@ -45,19 +45,25 @@
           </div>
         </div>
 
-        <!-- Main Mode Switcher -->
+        <!-- Main Mode Switcher: 3 Unified Modes -->
         <nav class="mode-toggle-group" role="tablist" aria-label="Mode de navigation principal">
-          <button id="mode-btn-mission" class="mode-btn active" role="tab" aria-selected="true" title="Cockpit opérationnel de l'agent">
+          <button id="mode-btn-home" class="mode-btn active" role="tab" aria-selected="true" title="Accueil et présentation du processus">
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
             </svg>
-            <span>Mission Control</span>
+            <span>Accueil</span>
+          </button>
+          <button id="mode-btn-mission" class="mode-btn" role="tab" aria-selected="false" title="Cockpit opérationnel et base d'offres">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+            <span>Dashboard</span>
           </button>
           <button id="mode-btn-portfolio" class="mode-btn" role="tab" aria-selected="false" title="Vitrine technique et projets pour recruteurs">
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
             </svg>
-            <span>AI Portfolio</span>
+            <span>Portfolio</span>
           </button>
         </nav>
 
@@ -93,9 +99,295 @@
   </header>
 
   <!-- =========================================================================
+       VIEW 0: HOME LANDING & ANIMATED STORYBOARD (Impeccable High-Craft Standard)
+       ========================================================================= -->
+  <main id="view-home" class="home-landing-view view-enter">
+    <div class="container">
+      
+      <!-- 1. Hero Section with Interactive Graphic Mockup -->
+      <section class="home-hero-section" aria-label="Présentation de l'ingénieur et de l'agent">
+        <div class="home-hero-content">
+          <div class="home-hero-badge">
+            <span class="status-dot status-dot-active"></span>
+            <span>Disponible pour Stage PFE 2026 (4 à 6 mois · Casablanca / Hybride)</span>
+          </div>
+
+          <h1 class="home-hero-title">
+            Conception de Systèmes IA &amp; Pipeline de Veille Autonome
+          </h1>
+
+          <p class="home-hero-desc">
+            Bonjour ! Je suis <strong>Anas Mouquine</strong>, élève-ingénieur en 5<sup>e</sup> année à l'<strong>EMSI Casablanca</strong>. 
+            Découvrez comment mon agent autonome collecte, filtre sémantiquement et qualifie 24/7 les opportunités de stage au Maroc sans faux-positifs.
+          </p>
+
+          <div class="home-hero-cta-group">
+            <button id="hero-cta-dashboard-btn" class="btn btn-primary" title="Accéder directement au cockpit opérationnel">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              <span>Lancer le Dashboard</span>
+            </button>
+            <button id="hero-cta-portfolio-btn" class="btn btn-secondary" title="Consulter mes projets d'ingénierie et mon profil">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+              <span>Explorer le Portfolio</span>
+            </button>
+            <a href="cv_ats_pfe.pdf" download="Anas_Mouquine_CV_PFE.pdf" class="btn btn-outline" title="Télécharger mon CV au format optimisé ATS">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+              <span>CV ATS</span>
+            </a>
+          </div>
+
+          <div class="home-hero-meta-row">
+            <div class="hero-meta-item">
+              <span class="hero-meta-val">5 / 5</span>
+              <span class="hero-meta-lbl">Année EMSI Casablanca</span>
+            </div>
+            <div class="hero-meta-item">
+              <span class="hero-meta-val">370+</span>
+              <span class="hero-meta-lbl">Opportunités Analysées</span>
+            </div>
+            <div class="hero-meta-item">
+              <span class="hero-meta-val">0% Ban</span>
+              <span class="hero-meta-lbl">Uptime &amp; Résilience</span>
+            </div>
+            <div class="hero-meta-item">
+              <span class="hero-meta-val">5</span>
+              <span class="hero-meta-lbl">Certifications Mondiales</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Animated Hero Mockup -->
+        <div class="home-hero-visual" aria-hidden="true">
+          <div class="mockup-frame">
+            <div class="mockup-header-bar">
+              <div class="mockup-dots">
+                <span class="mockup-dot mockup-dot-red"></span>
+                <span class="mockup-dot mockup-dot-yellow"></span>
+                <span class="mockup-dot mockup-dot-green"></span>
+              </div>
+              <span class="mockup-header-title">pfe-hunter-core // agent.live</span>
+              <span class="badge badge-success text-xs">ONLINE</span>
+            </div>
+            <div class="mockup-body">
+              <div class="mockup-mini-kpi-row">
+                <div class="mockup-mini-kpi">
+                  <span class="mockup-mini-val">370+</span>
+                  <span class="mockup-mini-lbl">Offres scrapées</span>
+                </div>
+                <div class="mockup-mini-kpi">
+                  <span class="mockup-mini-val" style="color: var(--status-success);">71</span>
+                  <span class="mockup-mini-lbl">Match ≥ 80%</span>
+                </div>
+                <div class="mockup-mini-kpi">
+                  <span class="mockup-mini-val" style="color: var(--accent-cyan);">6/6</span>
+                  <span class="mockup-mini-lbl">Portails actifs</span>
+                </div>
+              </div>
+
+              <div class="mockup-code-block">
+                <div class="mockup-code-line"><span class="token-cyan">pipeline</span>: <span class="token-green">active_daemon_v3</span></div>
+                <div class="mockup-code-line"><span class="token-purple">sources</span>: [dreamjob, linkedin, joblia, talent, rekrute]</div>
+                <div class="mockup-code-line"><span class="token-cyan">nlp_engine</span>: <span class="token-green">gemini-embeddings-qa</span></div>
+                <div class="mockup-code-line"><span class="token-purple">anti_false_positive</span>: <span class="token-green">PASS (0 errors)</span></div>
+              </div>
+
+              <div class="mockup-stream-preview">
+                <span style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-primary);">Dernière opportunité qualifiée :</span>
+                <span class="badge badge-cyan">Score 94%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Sticky Storyboard: Process Animation As You Slide Down -->
+      <section class="home-storyboard-section" id="storyboard-process-section" aria-label="Processus de fonctionnement de l'agent">
+        <div class="storyboard-header">
+          <span class="badge badge-cyan" style="align-self: center;">Pipeline Autonome de Bout en Bout</span>
+          <h2 class="storyboard-section-title">Comment fonctionne l'Agent au fil du défilement</h2>
+          <p class="storyboard-section-desc">
+            Faites défiler vers le bas pour observer chaque phase du cycle : de la collecte multi-sources au calcul sémantique et à la consignation sécurisée.
+          </p>
+        </div>
+
+        <div class="storyboard-layout">
+          <!-- Left: Sticky Visual HUD Card -->
+          <div class="storyboard-sticky-col">
+            <div class="storyboard-sticky-wrapper">
+              <div class="storyboard-display-card" id="storyboard-display-card">
+                <div class="flex-between">
+                  <span class="storyboard-display-badge" id="sb-hud-step-tag">PHASE 1 / 4</span>
+                  <span class="badge badge-success" id="sb-hud-status-badge">Actif</span>
+                </div>
+
+                <div class="storyboard-display-visual">
+                  <div class="storyboard-hud-header-row">
+                    <div class="storyboard-hud-icon" id="sb-hud-icon">
+                      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                      </svg>
+                    </div>
+                    <h3 class="storyboard-hud-title" id="sb-hud-title">1. Collecte Multi-Sources</h3>
+                  </div>
+                  <p class="storyboard-hud-subtitle" id="sb-hud-subtitle">
+                    Surveillance simultanée de 6 portails marocains avec rotation d'User-Agents et respect des quotas anti-429.
+                  </p>
+
+                  <div class="storyboard-hud-metrics" id="sb-hud-metrics">
+                    <div class="storyboard-hud-metric-box">
+                      <span class="storyboard-hud-metric-val" id="sb-metric-1-val">6 / 6</span>
+                      <span class="storyboard-hud-metric-lbl" id="sb-metric-1-lbl">Portails Scrappés</span>
+                    </div>
+                    <div class="storyboard-hud-metric-box">
+                      <span class="storyboard-hud-metric-val" id="sb-metric-2-val">370+</span>
+                      <span class="storyboard-hud-metric-lbl" id="sb-metric-2-lbl">Offres Traitées</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="storyboard-progress-tracker">
+                  <div class="storyboard-progress-step-pill active" data-step-nav="1">
+                    <span class="storyboard-progress-step-dot"></span>
+                    <span>1. Collecte</span>
+                  </div>
+                  <div class="storyboard-progress-step-pill" data-step-nav="2">
+                    <span class="storyboard-progress-step-dot"></span>
+                    <span>2. Audit</span>
+                  </div>
+                  <div class="storyboard-progress-step-pill" data-step-nav="3">
+                    <span class="storyboard-progress-step-dot"></span>
+                    <span>3. Scoring</span>
+                  </div>
+                  <div class="storyboard-progress-step-pill" data-step-nav="4">
+                    <span class="storyboard-progress-step-dot"></span>
+                    <span>4. Dispatch</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Scrolling Steps Column -->
+          <div class="storyboard-steps-col">
+            
+            <!-- Step 1 Card -->
+            <article class="storyboard-step-card active" data-step="1">
+              <div class="step-card-number-row">
+                <span class="step-number-badge">01</span>
+                <span class="badge badge-cyan step-status-tag">INGESTION STREAM</span>
+              </div>
+              <h3 class="step-card-title">Collecte Multi-Sources &amp; Normalisation</h3>
+              <p class="step-card-desc">
+                L'agent exécute des robots légers programmés via GitHub Actions toutes les 3 heures. Il explore en parallèle DreamJob.ma, LinkedIn Guest API, Joblia, Talent.com, ReKrute et MarocAnnonces pour capturer l'exhaustivité des stages PFE publiés.
+              </p>
+              <ul class="step-highlights-list">
+                <li class="step-highlight-item">
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Rotation aléatoire d'en-têtes HTTP pour zéro bannissement IP (0% Ban).</span>
+                </li>
+                <li class="step-highlight-item">
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Déduplication stricte par empreinte textuelle (titre normalisé + entreprise).</span>
+                </li>
+              </ul>
+            </article>
+
+            <!-- Step 2 Card -->
+            <article class="storyboard-step-card" data-step="2">
+              <div class="step-card-number-row">
+                <span class="step-number-badge">02</span>
+                <span class="badge badge-warning step-status-tag">FILTRAGE &amp; SÉCURITÉ</span>
+              </div>
+              <h3 class="step-card-title">Audit Sémantique &amp; Anti-Faux Positifs</h3>
+              <p class="step-card-desc">
+                Les moteurs de recherche classiques échouent souvent sur les homonymes. Notre module d'audit applique une grille de validation stricte pour éliminer le bruit avant tout traitement IA coûteux.
+              </p>
+              <ul class="step-highlights-list">
+                <li class="step-highlight-item">
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Rejet des faux-positifs linguistiques (ex: "j'ai", "laisser", "travailler").</span>
+                </li>
+                <li class="step-highlight-item">
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Exclusion des postes demandant plus de 5 ans d'expérience ou incompatibles PFE.</span>
+                </li>
+              </ul>
+            </article>
+
+            <!-- Step 3 Card -->
+            <article class="storyboard-step-card" data-step="3">
+              <div class="step-card-number-row">
+                <span class="step-number-badge">03</span>
+                <span class="badge badge-success step-status-tag">QUALIFICATION NLP</span>
+              </div>
+              <h3 class="step-card-title">Scoring IA &amp; Alignement Compétences</h3>
+              <p class="step-card-desc">
+                Chaque offre restante est confrontée à la matrice de compétences d'Anas Mouquine (Python, Lakehouse, Airflow, Kafka, Neo4j, LLM/RAG, React Native). Le moteur calcule une note sur 100 et rédige une synthèse d'adéquation argumentée.
+              </p>
+              <ul class="step-highlights-list">
+                <li class="step-highlight-item">
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Classification des 71 opportunités à fort potentiel (Match ≥ 80%).</span>
+                </li>
+                <li class="step-highlight-item">
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Détection automatique des indemnités de stage et gratifications confirmées.</span>
+                </li>
+              </ul>
+            </article>
+
+            <!-- Step 4 Card -->
+            <article class="storyboard-step-card" data-step="4">
+              <div class="step-card-number-row">
+                <span class="step-number-badge">04</span>
+                <span class="badge badge-indigo step-status-tag">DISPATCH &amp; CONSIGNATION</span>
+              </div>
+              <h3 class="step-card-title">Match Recruteur &amp; Simulation d'Envoi</h3>
+              <p class="step-card-desc">
+                L'agent extrait les adresses électroniques des RH et profils LinkedIn, génère un courriel de candidature personnalisé, injecte le CV optimisé ATS, et enregistre l'ensemble dans un journal auditable avec mode Dry-Run sécurisé.
+              </p>
+              <ul class="step-highlights-list">
+                <li class="step-highlight-item">
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Prévisualisation temps réel du mail (HTML et format texte brut).</span>
+                </li>
+                <li class="step-highlight-item">
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Simulation contrôlée en 3 étapes avec retour visuel immédiat.</span>
+                </li>
+              </ul>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- 3. Closing Bridge CTA -->
+        <div class="home-cta-bridge">
+          <h2>Prêt à explorer les données en direct ?</h2>
+          <p>
+            Plongez dans le Dashboard pour filtrer les 370+ offres archivées et tester le simulateur de scoring, ou découvrez les projets majeurs d'ingénierie dans le Portfolio.
+          </p>
+          <div class="home-bridge-actions">
+            <button id="bridge-dashboard-btn" class="btn btn-primary">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              <span>Accéder au Dashboard</span>
+            </button>
+            <button id="bridge-portfolio-btn" class="btn btn-secondary">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+              <span>Consulter le Portfolio</span>
+            </button>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- =========================================================================
        VIEW 1: AGENT MISSION CONTROL (Operations & Simulation Cockpit)
        ========================================================================= -->
-  <main id="view-mission-control" class="mission-control-view view-enter">
+  <main id="view-mission-control" class="mission-control-view hidden">
     <div class="container">
       
       <!-- Welcome & Identity HUD Strip -->
