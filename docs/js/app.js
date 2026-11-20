@@ -1,11 +1,31 @@
 /**
  * MAIN APP CONTROLLER
- * Orchestrates dual-mode switching, theme management, drawer flyouts, and event wiring.
+ * Orchestrates dual-mode switching, theme management, offer stream filtering,
+ * pagination, column sorting, sandbox scoring, dry-run simulation, and drawer details.
  */
+
+// Application state for table pagination & sorting
+const tableState = {
+  currentPage: 1,
+  pageSize: 25,
+  sortField: 'score',
+  sortAscending: false,
+  activeFilterChip: 'all',
+  lastFilteredOffers: []
+};
 
 document.addEventListener('DOMContentLoaded', async () => {
   // 1. Initialize Theme (Dark Default or persisted in localStorage)
   initTheme();
+
+  // 1b. Initialize Interactive Sound System (Web Audio API Synthesizer)
+  initSoundSystem();
+
+  // 1c. Setup Modern Card Spotlight & Glare Effects
+  setupSpotlightEffects();
+
+  // 1d. Setup Welcome HUD Strip Quick Actions
+  setupWelcomeHudActions();
 
   // 2. Initialize Data Engine
   await window.dataEngine.init();
@@ -13,36 +33,37 @@ document.addEventListener('DOMContentLoaded', async () => {
   // 3. Update KPI Metrics in Mission Control
   renderKpis();
 
-  // 4. Render Scraped Offers Table
+  // 4. Update Dynamic Scraper Health Monitor & Distribution Strip
+  renderScraperHealth();
+  renderDistributionStrip();
+
+  // 5. Render Scraped Offers Table with Pagination & Sorting
   renderOffersTable();
 
-  // 5. Setup Search and Filter Listeners
+  // 6. Setup Search, Filter, Sort & Pagination Listeners
   setupFilterListeners();
+  setupTableInteractions();
 
-  // 6. Setup Scoring Sandbox
+  // 7. Setup Scoring Sandbox with Live Input Debounce
   setupScoringSandbox();
 
-  // 7. Setup Email Generator & Dry-Run Simulator
+  // 8. Setup Email Generator & Multi-Step Dry-Run Simulator
   setupEmailPreviewer();
 
-  // 8. Initialize Interactive Terminal
+  // 9. Initialize Interactive Terminal
   const term = new TerminalEngine('terminal-output', 'terminal-input');
   term.init();
   window.terminalInstance = term;
 
-  // 9. Setup Dual-Mode Switcher
+  // 10. Setup Dual-Mode Switcher & URL Hash Navigation
   setupModeSwitcher();
 
-  // 10. Setup Drawer / Flyout Details
+  // 11. Setup Drawer / Flyout Details
   setupDrawer();
 
-  // 11. Read URL Hash for Initial Mode
-  const currentHash = window.location.hash.replace('#', '');
-  if (currentHash === 'portfolio') {
-    switchMode('portfolio');
-  } else {
-    switchMode('mission-control');
-  }
+  // 12. Read URL Hash for Initial Mode & listen for history navigation
+  handleUrlHash();
+  window.addEventListener('hashchange', handleUrlHash);
 });
 
 /* --------------------------------------------------------------------------
@@ -83,11 +104,14 @@ function updateThemeIcon(theme) {
 }
 
 /* --------------------------------------------------------------------------
-   DUAL-MODE SWITCHER (Mission Control vs Portfolio)
+   DUAL-MODE SWITCHER (Mission Control vs Portfolio) & HISTORY SYNC
    -------------------------------------------------------------------------- */
 function setupModeSwitcher() {
   const btnMission = document.getElementById('mode-btn-mission');
   const btnPortfolio = document.getElementById('mode-btn-portfolio');
+  const brandBtn = document.getElementById('brand-home-btn');
+  const heroBotBtn = document.getElementById('hero-view-bot-btn');
+  const projectBotBtns = document.querySelectorAll('.project-btn-test-agent');
 
   if (btnMission) {
     btnMission.addEventListener('click', () => switchMode('mission-control'));
@@ -95,6 +119,21 @@ function setupModeSwitcher() {
   if (btnPortfolio) {
     btnPortfolio.addEventListener('click', () => switchMode('portfolio'));
   }
+  if (brandBtn) {
+    brandBtn.addEventListener('click', () => switchMode('mission-control'));
+    brandBtn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        switchMode('mission-control');
+      }
+    });
+  }
+  if (heroBotBtn) {
+    heroBotBtn.addEventListener('click', () => switchMode('mission-control'));
+  }
+  projectBotBtns.forEach(btn => {
+    btn.addEventListener('click', () => switchMode('mission-control'));
+  });
 }
 
 function switchMode(mode) {
@@ -104,19 +143,285 @@ function switchMode(mode) {
   const btnPortfolio = document.getElementById('mode-btn-portfolio');
 
   if (mode === 'portfolio') {
-    missionView.classList.add('hidden');
-    portfolioView.classList.remove('hidden');
+    missionView?.classList.add('hidden');
+    missionView?.classList.remove('view-enter');
+    portfolioView?.classList.remove('hidden');
+    portfolioView?.classList.add('view-enter');
+
     btnMission?.classList.remove('active');
+    btnMission?.setAttribute('aria-selected', 'false');
     btnPortfolio?.classList.add('active');
-    window.location.hash = 'portfolio';
+    btnPortfolio?.setAttribute('aria-selected', 'true');
+
+    if (window.location.hash !== '#portfolio') {
+      window.location.hash = 'portfolio';
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   } else {
-    portfolioView.classList.add('hidden');
-    missionView.classList.remove('hidden');
+    portfolioView?.classList.add('hidden');
+    portfolioView?.classList.remove('view-enter');
+    missionView?.classList.remove('hidden');
+    missionView?.classList.add('view-enter');
+
     btnPortfolio?.classList.remove('active');
+    btnPortfolio?.setAttribute('aria-selected', 'false');
     btnMission?.classList.add('active');
-    window.location.hash = 'mission-control';
+    btnMission?.setAttribute('aria-selected', 'true');
+
+    if (window.location.hash !== '#mission-control') {
+      window.location.hash = 'mission-control';
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+function handleUrlHash() {
+  const hash = window.location.hash.replace('#', '');
+  if (hash === 'portfolio') {
+    switchMode('portfolio');
+  } else {
+    switchMode('mission-control');
+  }
+}
+
+/* --------------------------------------------------------------------------
+   INTERACTIVE SOUND SYSTEM (Web Audio API Synthesizer - Zero Dependencies)
+   -------------------------------------------------------------------------- */
+let audioCtx = null;
+let soundEnabled = localStorage.getItem('pfe_sound') === 'true';
+
+function initSoundSystem() {
+  updateSoundIcon(soundEnabled);
+  const soundBtn = document.getElementById('sound-toggle-btn');
+  if (soundBtn) {
+    soundBtn.addEventListener('click', () => {
+      soundEnabled = !soundEnabled;
+      localStorage.setItem('pfe_sound', soundEnabled.toString());
+      updateSoundIcon(soundEnabled);
+      if (soundEnabled) {
+        playSound('pop');
+        showToast('Effets sonores activés', 'Retour audio interactif opérationnel.');
+      } else {
+        showToast('Effets sonores désactivés', 'Mode silencieux actif.');
+      }
+    });
+  }
+}
+
+function updateSoundIcon(enabled) {
+  const wrap = document.getElementById('sound-icon-wrap');
+  if (!wrap) return;
+  if (enabled) {
+    wrap.innerHTML = `
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+      </svg>`;
+  } else {
+    wrap.innerHTML = `
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+      </svg>`;
+  }
+}
+
+function playSound(type = 'click') {
+  if (!soundEnabled) return;
+  try {
+    if (!audioCtx) {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    const now = audioCtx.currentTime;
+    if (type === 'pop') {
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(440, now);
+      osc.frequency.exponentialRampToValueAtTime(880, now + 0.08);
+      gain.gain.setValueAtTime(0.08, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+      osc.start(now);
+      osc.stop(now + 0.08);
+    } else if (type === 'success') {
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(523.25, now);
+      osc.frequency.setValueAtTime(659.25, now + 0.08);
+      osc.frequency.setValueAtTime(783.99, now + 0.16);
+      gain.gain.setValueAtTime(0.1, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+      osc.start(now);
+      osc.stop(now + 0.35);
+    } else {
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(600, now);
+      osc.frequency.exponentialRampToValueAtTime(300, now + 0.04);
+      gain.gain.setValueAtTime(0.05, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+      osc.start(now);
+      osc.stop(now + 0.04);
+    }
+  } catch (e) {
+    // Audio Context blocked or unavailable
+  }
+}
+
+/* --------------------------------------------------------------------------
+   ANIMATED NUMBER COUNT-UP ENGINE
+   -------------------------------------------------------------------------- */
+function animateCountUp(el, endVal, duration = 900) {
+  if (!el) return;
+  const target = parseInt(endVal, 10);
+  if (isNaN(target)) {
+    el.textContent = endVal;
+    return;
+  }
+  let startTimestamp = null;
+  const step = (timestamp) => {
+    if (!startTimestamp) startTimestamp = timestamp;
+    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+    const easeProgress = 1 - Math.pow(1 - progress, 3);
+    const currentVal = Math.floor(easeProgress * target);
+    el.textContent = currentVal.toString();
+    if (progress < 1) {
+      window.requestAnimationFrame(step);
+    } else {
+      el.textContent = target.toString();
+      el.classList.add('count-updated');
+      setTimeout(() => el.classList.remove('count-updated'), 400);
+    }
+  };
+  window.requestAnimationFrame(step);
+}
+
+/* --------------------------------------------------------------------------
+   SPOTLIGHT GLARE ENGINE (Linear / Apple Mouse-Follow Light)
+   -------------------------------------------------------------------------- */
+function setupSpotlightEffects() {
+  document.addEventListener('pointermove', (e) => {
+    const cards = document.querySelectorAll('.card, .kpi-card, .project-card, .cert-card, .welcome-hud-strip');
+    cards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    });
+  });
+}
+
+/* --------------------------------------------------------------------------
+   CELEBRATION CONFETTI ENGINE (Zero Dependencies Canvas Particle Burst)
+   -------------------------------------------------------------------------- */
+function triggerConfetti(originX, originY) {
+  playSound('success');
+  const canvas = document.getElementById('confetti-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const count = 75;
+  const particles = [];
+  const colors = ['#00e5ff', '#6366f1', '#10b981', '#f59e0b', '#ec4899', '#ffffff'];
+
+  for (let i = 0; i < count; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const speed = Math.random() * 8 + 3;
+    particles.push({
+      x: originX || window.innerWidth / 2,
+      y: originY || window.innerHeight / 3,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed - 4,
+      size: Math.random() * 6 + 3,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      alpha: 1,
+      decay: Math.random() * 0.02 + 0.012,
+      rotation: Math.random() * 360,
+      rotSpeed: (Math.random() - 0.5) * 12
+    });
+  }
+
+  function frame() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let alive = false;
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.25;
+      p.alpha -= p.decay;
+      p.rotation += p.rotSpeed;
+
+      if (p.alpha > 0) {
+        alive = true;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rotation * Math.PI) / 180);
+        ctx.globalAlpha = Math.max(0, p.alpha);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
+        ctx.restore();
+      }
+    });
+
+    if (alive) {
+      requestAnimationFrame(frame);
+    } else {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  }
+  requestAnimationFrame(frame);
+}
+
+/* --------------------------------------------------------------------------
+   WELCOME HUD QUICK ACTIONS SETUP
+   -------------------------------------------------------------------------- */
+function setupWelcomeHudActions() {
+  const btnHighMatch = document.getElementById('quick-high-match-btn');
+  const btnSandbox = document.getElementById('quick-sandbox-btn');
+  const btnPortfolio = document.getElementById('quick-portfolio-btn');
+  const cvBtn = document.getElementById('header-cv-download-btn');
+
+  if (btnHighMatch) {
+    btnHighMatch.addEventListener('click', () => {
+      playSound('click');
+      const statusSelect = document.getElementById('filter-status-select');
+      if (statusSelect) {
+        statusSelect.value = 'high_match';
+        tableState.currentPage = 1;
+        renderOffersTable();
+      }
+      document.querySelector('.offer-explorer-card')?.scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+
+  if (btnSandbox) {
+    btnSandbox.addEventListener('click', () => {
+      playSound('click');
+      const pfeAiBtn = document.querySelector('.preset-btn[data-preset="pfe_ai"]');
+      if (pfeAiBtn) pfeAiBtn.click();
+      document.querySelector('.scoring-sandbox')?.scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+
+  if (btnPortfolio) {
+    btnPortfolio.addEventListener('click', () => {
+      playSound('click');
+      switchMode('portfolio');
+    });
+  }
+
+  if (cvBtn) {
+    cvBtn.addEventListener('click', () => {
+      const rect = cvBtn.getBoundingClientRect();
+      triggerConfetti(rect.left + rect.width / 2, rect.bottom);
+      showToast('Téléchargement CV ATS', 'Le CV optimisé ATS d\'Anas Mouquine est en cours de téléchargement.');
+    });
   }
 }
 
@@ -130,74 +435,219 @@ function renderKpis() {
   const elRemunerated = document.getElementById('kpi-remunerated');
   const elDispatched = document.getElementById('kpi-dispatched');
 
-  if (elTotal) elTotal.textContent = stats.totalScraped.toString();
-  if (elHighMatch) elHighMatch.textContent = stats.highMatchCount.toString();
-  if (elRemunerated) elRemunerated.textContent = stats.remuneratedCount.toString();
-  if (elDispatched) elDispatched.textContent = stats.dispatchedCount.toString();
+  if (elTotal) animateCountUp(elTotal, stats.totalScraped, 800);
+  if (elHighMatch) animateCountUp(elHighMatch, stats.highMatchCount, 950);
+  if (elRemunerated) animateCountUp(elRemunerated, stats.remuneratedCount, 1050);
+  if (elDispatched) animateCountUp(elDispatched, stats.dispatchedCount, 1150);
 }
 
 /* --------------------------------------------------------------------------
-   OFFERS TABLE RENDERING & FILTERING
+   DYNAMIC SCRAPER HEALTH MONITOR & DISTRIBUTION STRIP
+   -------------------------------------------------------------------------- */
+function renderScraperHealth() {
+  const sources = window.dataEngine.stats.sourcesCount;
+  const listEl = document.getElementById('scraper-health-list');
+  if (!listEl || Object.keys(sources).length === 0) return;
+
+  const sourceLabels = {
+    dreamjob: 'DreamJob.ma',
+    linkedin_guest: 'LinkedIn Guest',
+    joblia: 'Joblia.ma',
+    talent: 'Talent.com',
+    rekrute: 'ReKrute.com',
+    marocannonces: 'MarocAnnonces'
+  };
+
+  listEl.innerHTML = '';
+  for (const [srcKey, count] of Object.entries(sources)) {
+    const item = document.createElement('div');
+    item.className = 'scraper-item';
+    item.setAttribute('data-source', srcKey);
+    item.title = `Filtrer par ${sourceLabels[srcKey] || srcKey}`;
+    item.innerHTML = `
+      <span class="scraper-name">${sourceLabels[srcKey] || srcKey}</span>
+      <span class="scraper-status-text">${count} offres</span>
+    `;
+    item.addEventListener('click', () => {
+      const select = document.getElementById('filter-source-select');
+      if (select) {
+        select.value = srcKey;
+        tableState.currentPage = 1;
+        renderOffersTable();
+      }
+    });
+    listEl.appendChild(item);
+  }
+}
+
+function renderDistributionStrip() {
+  const stats = window.dataEngine.stats;
+  const total = stats.totalScraped || 1;
+
+  // Real distributions from dataset
+  const highMatchCount = stats.highMatchCount; // >= 80%
+  let mediumMatchCount = 0; // 60-79%
+  let lowMatchCount = 0; // < 60%
+
+  window.dataEngine.offers.forEach(o => {
+    if (o.score >= 60 && o.score < 80) mediumMatchCount++;
+    else if (o.score < 60) lowMatchCount++;
+  });
+
+  const pctHigh = Math.round((highMatchCount / total) * 100);
+  const pctMed = Math.round((mediumMatchCount / total) * 100);
+  const pctLow = Math.max(0, 100 - pctHigh - pctMed);
+
+  const elPctHigh = document.getElementById('dist-pct-high');
+  const elPctMed = document.getElementById('dist-pct-med');
+  const elPctLow = document.getElementById('dist-pct-low');
+
+  if (elPctHigh) elPctHigh.textContent = `${pctHigh}%`;
+  if (elPctMed) elPctMed.textContent = `${pctMed}%`;
+  if (elPctLow) elPctLow.textContent = `${pctLow}%`;
+
+  const segHigh = document.getElementById('dist-seg-high');
+  const segMed = document.getElementById('dist-seg-med');
+  const segLow = document.getElementById('dist-seg-low');
+
+  if (segHigh) {
+    segHigh.style.width = `${pctHigh}%`;
+    segHigh.title = `Match ≥ 80%: ${highMatchCount} offres (${pctHigh}%)`;
+  }
+  if (segMed) {
+    segMed.style.width = `${pctMed}%`;
+    segMed.title = `Match 60-79%: ${mediumMatchCount} offres (${pctMed}%)`;
+  }
+  if (segLow) {
+    segLow.style.width = `${pctLow}%`;
+    segLow.title = `Hors cible < 60%: ${lowMatchCount} offres (${pctLow}%)`;
+  }
+
+  // Populate dynamic source chips
+  const sourcesContainer = document.getElementById('dist-sources-container');
+  if (sourcesContainer && stats.sourcesCount) {
+    const sourceLabels = {
+      dreamjob: 'DreamJob.ma',
+      linkedin_guest: 'LinkedIn Guest',
+      joblia: 'Joblia.ma',
+      talent: 'Talent.com',
+      rekrute: 'ReKrute.com',
+      marocannonces: 'MarocAnnonces'
+    };
+
+    sourcesContainer.innerHTML = '';
+    for (const [srcKey, count] of Object.entries(stats.sourcesCount)) {
+      const chip = document.createElement('span');
+      chip.className = 'dist-source-chip';
+      chip.setAttribute('data-source', srcKey);
+      chip.title = `Filtrer par ${sourceLabels[srcKey] || srcKey}`;
+      chip.innerHTML = `${sourceLabels[srcKey] || srcKey} : <strong>${count}</strong>`;
+      chip.addEventListener('click', () => {
+        const select = document.getElementById('filter-source-select');
+        if (select) {
+          select.value = srcKey;
+          tableState.currentPage = 1;
+          renderOffersTable();
+        }
+      });
+      sourcesContainer.appendChild(chip);
+    }
+
+    const syncBadge = document.createElement('span');
+    syncBadge.className = 'dist-source-chip dist-sync-status';
+    syncBadge.innerHTML = '<span class="status-dot status-dot-active"></span> Pipeline sync OK';
+    sourcesContainer.appendChild(syncBadge);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   OFFERS TABLE RENDERING, PAGINATION & SORTING
    -------------------------------------------------------------------------- */
 function renderOffersTable() {
   const tbody = document.getElementById('offers-table-body');
+  const countBadge = document.getElementById('filtered-count-badge');
   if (!tbody) return;
 
   const keyword = document.getElementById('search-offers-input')?.value || '';
   const source = document.getElementById('filter-source-select')?.value || 'all';
   const status = document.getElementById('filter-status-select')?.value || 'all';
+  const skillCategory = tableState.activeFilterChip;
 
-  const filtered = window.dataEngine.filterOffers({ keyword, source, status });
+  const filtered = window.dataEngine.filterOffers({ keyword, source, status, skillCategory });
+  tableState.lastFilteredOffers = filtered;
+
+  // CRITICAL FIX: Ensure #filtered-count-badge is ALWAYS updated before any early return!
+  if (countBadge) {
+    countBadge.textContent = `${filtered.length} offre(s)`;
+  }
+
   tbody.innerHTML = '';
 
+  // Zero results empty state
   if (filtered.length === 0) {
     tbody.innerHTML = `
       <tr>
-        <td colspan="5" style="text-align: center; padding: 32px; color: var(--text-muted);">
-          Aucune offre ne correspond aux critères de recherche actuels.
+        <td colspan="5" class="text-center text-muted" style="padding: 36px 14px;">
+          <div style="font-size: 14px; font-weight: 500; color: var(--text-secondary); margin-bottom: 4px;">Aucune offre correspondante</div>
+          <div>Modifiez vos mots-clés ou réinitialisez les filtres pour afficher des opportunités.</div>
         </td>
       </tr>
     `;
+    updatePaginationControls(0, 1, 1, 0, 0);
     return;
   }
 
-  filtered.forEach(offer => {
+  // Sort offers
+  const sorted = window.dataEngine.sortOffers(filtered, tableState.sortField, tableState.sortAscending);
+
+  // Paginate offers
+  const pageData = window.dataEngine.paginate(sorted, tableState.currentPage, tableState.pageSize);
+  tableState.currentPage = pageData.currentPage;
+
+  // Render rows
+  pageData.items.forEach(offer => {
     const tr = document.createElement('tr');
     tr.className = 'offer-row';
     tr.addEventListener('click', () => openOfferDrawer(offer.id));
 
     // Badge Source
-    const sourceBadge = `<span class="badge badge-neutral">${offer.source.toUpperCase()}</span>`;
+    const sourceBadge = `<span class="badge badge-neutral">${escapeHtml(offer.source.toUpperCase())}</span>`;
 
     // Status Badge
     let statusBadge = `<span class="badge badge-warning">EN ATTENTE</span>`;
     if (offer.applied) {
-      statusBadge = `<span class="badge badge-success">DISPATCHÉ (DRY)</span>`;
+      statusBadge = `<span class="badge badge-indigo">DISPATCHÉ (DRY)</span>`;
     } else if (offer.is_remunerated) {
       statusBadge = `<span class="badge badge-cyan">RÉMUNÉRÉ</span>`;
     }
 
-    // Score Color Fill
-    let scoreColor = 'var(--status-danger)';
-    if (offer.score >= 80) scoreColor = 'var(--status-success)';
-    else if (offer.score >= 60) scoreColor = 'var(--status-warning)';
+    // Score Color Style via semantic class
+    let scoreColorClass = 'score-low';
+    let scoreFillClass = 'bg-score-low';
+    if (offer.score >= 80) {
+      scoreColorClass = 'score-high';
+      scoreFillClass = 'bg-score-high';
+    } else if (offer.score >= 60) {
+      scoreColorClass = 'score-medium';
+      scoreFillClass = 'bg-score-medium';
+    }
 
     tr.innerHTML = `
       <td class="offer-title-cell">
-        <div class="offer-title-text">${escapeHtml(offer.title)}</div>
+        <div class="offer-title-text" title="${escapeHtml(offer.title)}">${escapeHtml(offer.title)}</div>
         <div class="offer-company-sub">${escapeHtml(offer.company)} · ${escapeHtml(offer.location)}</div>
       </td>
       <td>${sourceBadge}</td>
       <td>
         <div class="score-bar-wrapper">
           <div class="score-bar-track">
-            <div class="score-bar-fill" style="width: ${offer.score}%; background-color: ${scoreColor};"></div>
+            <div class="score-bar-fill ${scoreFillClass}" style="width: ${offer.score}%;"></div>
           </div>
-          <span class="score-num" style="color: ${scoreColor};">${offer.score}%</span>
+          <span class="score-num ${scoreColorClass}">${offer.score}%</span>
         </div>
       </td>
       <td>${statusBadge}</td>
-      <td style="text-align: right;">
+      <td class="text-right">
         <button class="btn btn-outline btn-sm" onclick="event.stopPropagation(); openOfferDrawer('${offer.id}')">
           Examiner
         </button>
@@ -207,9 +657,33 @@ function renderOffersTable() {
     tbody.appendChild(tr);
   });
 
-  const countBadge = document.getElementById('filtered-count-badge');
-  if (countBadge) {
-    countBadge.textContent = `${filtered.length} offre(s)`;
+  updatePaginationControls(pageData.total, pageData.currentPage, pageData.totalPages, pageData.startIndex, pageData.endIndex);
+}
+
+function updatePaginationControls(total, currentPage, totalPages, startIdx, endIdx) {
+  const infoEl = document.getElementById('pagination-info');
+  const indicatorEl = document.getElementById('pagination-page-indicator');
+  const prevBtn = document.getElementById('btn-prev-page');
+  const nextBtn = document.getElementById('btn-next-page');
+
+  if (infoEl) {
+    if (total === 0) {
+      infoEl.textContent = '0 offre affichée';
+    } else {
+      infoEl.textContent = `Affichage ${startIdx}–${endIdx} sur ${total} offres`;
+    }
+  }
+
+  if (indicatorEl) {
+    indicatorEl.textContent = `Page ${currentPage} / ${totalPages}`;
+  }
+
+  if (prevBtn) {
+    prevBtn.disabled = currentPage <= 1;
+  }
+
+  if (nextBtn) {
+    nextBtn.disabled = currentPage >= totalPages;
   }
 }
 
@@ -219,17 +693,31 @@ function setupFilterListeners() {
   const statusSelect = document.getElementById('filter-status-select');
   const filterChips = document.querySelectorAll('.filter-chip');
 
-  searchInput?.addEventListener('input', debounce(renderOffersTable, 200));
-  sourceSelect?.addEventListener('change', renderOffersTable);
-  statusSelect?.addEventListener('change', renderOffersTable);
+  searchInput?.addEventListener('input', debounce(() => {
+    tableState.currentPage = 1;
+    renderOffersTable();
+  }, 200));
 
-  // Quick Filter Chips Handling
+  sourceSelect?.addEventListener('change', () => {
+    tableState.currentPage = 1;
+    renderOffersTable();
+  });
+
+  statusSelect?.addEventListener('change', () => {
+    tableState.currentPage = 1;
+    renderOffersTable();
+  });
+
+  // Quick Filter Chips Handling with real dataset categories
   filterChips.forEach(chip => {
     chip.addEventListener('click', () => {
       filterChips.forEach(c => c.classList.remove('active'));
       chip.classList.add('active');
 
       const filterType = chip.getAttribute('data-filter');
+      tableState.activeFilterChip = filterType;
+      tableState.currentPage = 1;
+
       if (filterType === 'all') {
         if (searchInput) searchInput.value = '';
         if (statusSelect) statusSelect.value = 'all';
@@ -238,30 +726,80 @@ function setupFilterListeners() {
         if (statusSelect) statusSelect.value = 'high_match';
       } else if (filterType === 'remunerated') {
         if (statusSelect) statusSelect.value = 'remunerated';
-      } else if (filterType === 'ai_rag') {
-        if (searchInput) searchInput.value = 'RAG';
-        if (statusSelect) statusSelect.value = 'all';
-      } else if (filterType === 'lakehouse') {
-        if (searchInput) searchInput.value = 'Lakehouse';
-        if (statusSelect) statusSelect.value = 'all';
-      } else if (filterType === 'airflow') {
-        if (searchInput) searchInput.value = 'Airflow';
-        if (statusSelect) statusSelect.value = 'all';
       }
+
       renderOffersTable();
     });
   });
 
-  // Global Linear Keyboard Shortcut (Cmd+K / Ctrl+K or /)
+  // Global Keyboard Shortcut (Cmd+K / Ctrl+K or /)
   window.addEventListener('keydown', (e) => {
-    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+    const isCmdK = (e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k';
+    const isSlash = e.key === '/' && document.activeElement !== searchInput && document.activeElement.tagName !== 'TEXTAREA';
+
+    if (isCmdK || isSlash) {
       e.preventDefault();
-      searchInput?.focus();
-      searchInput?.select();
-    } else if (e.key === '/' && document.activeElement !== searchInput && document.activeElement.tagName !== 'TEXTAREA') {
-      e.preventDefault();
-      searchInput?.focus();
+      // If portfolio mode is active, focus terminal; otherwise focus search
+      const portfolioView = document.getElementById('view-portfolio');
+      if (portfolioView && !portfolioView.classList.contains('hidden')) {
+        const termInput = document.getElementById('terminal-input');
+        termInput?.focus();
+        termInput?.select();
+      } else {
+        searchInput?.focus();
+        searchInput?.select();
+      }
     }
+  });
+}
+
+function setupTableInteractions() {
+  // Pagination buttons
+  const prevBtn = document.getElementById('btn-prev-page');
+  const nextBtn = document.getElementById('btn-next-page');
+
+  prevBtn?.addEventListener('click', () => {
+    if (tableState.currentPage > 1) {
+      tableState.currentPage--;
+      renderOffersTable();
+      document.querySelector('.offer-table-wrapper')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+
+  nextBtn?.addEventListener('click', () => {
+    tableState.currentPage++;
+    renderOffersTable();
+    document.querySelector('.offer-table-wrapper')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // Sortable column headers
+  const sortHeaders = document.querySelectorAll('.sortable-th');
+  sortHeaders.forEach(th => {
+    th.addEventListener('click', () => {
+      const field = th.getAttribute('data-sort');
+      if (tableState.sortField === field) {
+        tableState.sortAscending = !tableState.sortAscending;
+      } else {
+        tableState.sortField = field;
+        tableState.sortAscending = field === 'title' || field === 'source';
+      }
+
+      // Update sort icons
+      sortHeaders.forEach(h => {
+        const icon = h.querySelector('.sort-icon');
+        if (icon) {
+          if (h === th) {
+            icon.textContent = tableState.sortAscending ? '▲' : '▼';
+            icon.style.opacity = '1';
+          } else {
+            icon.textContent = '↕';
+            icon.style.opacity = '0.6';
+          }
+        }
+      });
+
+      renderOffersTable();
+    });
   });
 }
 
@@ -307,7 +845,7 @@ function openOfferDrawer(id) {
         ${offer.contact_email}
       </a>`;
   } else {
-    emailBox.innerHTML = `<span style="color: var(--text-muted); font-size: 13px;">Aucun email direct dans l'annonce publique</span>`;
+    emailBox.innerHTML = `<span class="text-muted text-xs">Aucun email direct dans l'annonce publique</span>`;
   }
 
   const linkedinBox = document.getElementById('drawer-recruiter-linkedin');
@@ -315,11 +853,25 @@ function openOfferDrawer(id) {
     const targetUrl = offer.hr_linkedin_url || offer.linkedin_url;
     linkedinBox.innerHTML = `
       <a href="${targetUrl}" class="btn btn-outline btn-sm" target="_blank">
-        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        <svg fill="currentColor" viewBox="0 0 24 24" class="social-btn-icon"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
         ${offer.hr_name ? `Contacter ${offer.hr_name}` : 'Voir Profil Recruteur'}
       </a>`;
   } else {
-    linkedinBox.innerHTML = `<span style="color: var(--text-muted); font-size: 13px;">Profil LinkedIn personnel non indexé</span>`;
+    linkedinBox.innerHTML = `<span class="text-muted text-xs">Profil LinkedIn personnel non indexé</span>`;
+  }
+
+  // Offer link
+  const urlRow = document.getElementById('drawer-offer-url-row');
+  if (urlRow) {
+    if (offer.url && offer.url !== '#') {
+      urlRow.innerHTML = `
+        <a href="${offer.url}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          Consulter l'Offre Source (${offer.source})
+        </a>`;
+    } else {
+      urlRow.innerHTML = '';
+    }
   }
 
   // Skills chips
@@ -348,7 +900,7 @@ function openOfferDrawer(id) {
 }
 
 /* --------------------------------------------------------------------------
-   AI SCORING SANDBOX (PLAYGROUND)
+   AI SCORING SANDBOX (PLAYGROUND) WITH LIVE DEBOUNCE
    -------------------------------------------------------------------------- */
 function setupScoringSandbox() {
   const textarea = document.getElementById('sandbox-input-textarea');
@@ -371,6 +923,13 @@ function setupScoringSandbox() {
       }
     });
   });
+
+  // Live input debounce scoring as user types
+  textarea?.addEventListener('input', debounce(() => {
+    if (textarea.value.trim().length >= 15) {
+      runScoringEvaluation();
+    }
+  }, 250));
 
   runBtn?.addEventListener('click', runScoringEvaluation);
 }
@@ -399,7 +958,7 @@ function runScoringEvaluation() {
   if (detectedChips) {
     detectedChips.innerHTML = '';
     if (result.detectedSkills.length === 0) {
-      detectedChips.innerHTML = '<span style="color: var(--text-muted); font-size: 12px;">Aucune compétence clé détectée</span>';
+      detectedChips.innerHTML = '<span class="text-muted text-xs">Aucune compétence clé détectée</span>';
     } else {
       result.detectedSkills.forEach(skill => {
         const span = document.createElement('span');
@@ -413,7 +972,7 @@ function runScoringEvaluation() {
   if (missingChips) {
     missingChips.innerHTML = '';
     if (result.missingSkills.length === 0) {
-      missingChips.innerHTML = '<span style="color: var(--text-muted); font-size: 12px;">Profil 100% complet</span>';
+      missingChips.innerHTML = '<span class="text-muted text-xs">Profil 100% complet</span>';
     } else {
       result.missingSkills.forEach(skill => {
         const span = document.createElement('span');
@@ -427,12 +986,11 @@ function runScoringEvaluation() {
   if (exclusionsBox) {
     exclusionsBox.innerHTML = '';
     if (result.exclusions.length === 0) {
-      exclusionsBox.innerHTML = '<span style="color: var(--status-success); font-size: 12px;">✓ Aucun facteur de blocage détecté</span>';
+      exclusionsBox.innerHTML = '<span class="text-success text-xs">✓ Aucun facteur de blocage détecté</span>';
     } else {
       result.exclusions.forEach(exc => {
         const div = document.createElement('div');
-        div.style.color = 'var(--status-danger)';
-        div.style.fontSize = '12px';
+        div.className = 'text-danger text-xs';
         div.textContent = `⚠ ${exc}`;
         exclusionsBox.appendChild(div);
       });
@@ -441,7 +999,7 @@ function runScoringEvaluation() {
 }
 
 /* --------------------------------------------------------------------------
-   EMAIL GENERATOR & DRY-RUN PREVIEWER
+   EMAIL GENERATOR & DRY-RUN PREVIEWER WITH ANIMATED SIMULATION PIPELINE
    -------------------------------------------------------------------------- */
 function setupEmailPreviewer() {
   const btnHtml = document.getElementById('tab-btn-html');
@@ -449,22 +1007,62 @@ function setupEmailPreviewer() {
   const htmlView = document.getElementById('email-html-view');
   const plainView = document.getElementById('email-plain-view');
   const dryRunBtn = document.getElementById('btn-dry-run-dispatch');
+  const pipelineEl = document.getElementById('dry-run-simulation-pipeline');
 
   btnHtml?.addEventListener('click', () => {
     btnHtml.classList.add('active');
+    btnHtml.setAttribute('aria-selected', 'true');
     btnPlain?.classList.remove('active');
+    btnPlain?.setAttribute('aria-selected', 'false');
     htmlView?.classList.remove('hidden');
     plainView?.classList.add('hidden');
   });
 
   btnPlain?.addEventListener('click', () => {
     btnPlain.classList.add('active');
+    btnPlain?.setAttribute('aria-selected', 'true');
     btnHtml?.classList.remove('active');
+    btnHtml?.setAttribute('aria-selected', 'false');
     plainView?.classList.remove('hidden');
     htmlView?.classList.add('hidden');
   });
 
-  dryRunBtn?.addEventListener('click', () => {
+  dryRunBtn?.addEventListener('click', async () => {
+    if (pipelineEl) {
+      pipelineEl.classList.remove('hidden');
+      const step1 = document.getElementById('step-sim-1');
+      const step2 = document.getElementById('step-sim-2');
+      const step3 = document.getElementById('step-sim-3');
+
+      // Reset steps
+      [step1, step2, step3].forEach(s => {
+        s?.classList.remove('active', 'completed');
+      });
+
+      // Step 1: Validation
+      step1?.classList.add('active');
+      await delay(450);
+      step1?.classList.remove('active');
+      step1?.classList.add('completed');
+
+      // Step 2: Packaging
+      step2?.classList.add('active');
+      await delay(450);
+      step2?.classList.remove('active');
+      step2?.classList.add('completed');
+
+      // Step 3: Dispatch & Recording
+      step3?.classList.add('active');
+      await delay(450);
+      step3?.classList.remove('active');
+      step3?.classList.add('completed');
+    }
+
+    if (dryRunBtn) {
+      const rect = dryRunBtn.getBoundingClientRect();
+      triggerConfetti(rect.left + rect.width / 2, rect.top);
+    }
+
     showToast(
       'Simulation Dry-Run Réussie',
       'Candidature personnalisée préparée et consignée dans applied_offers.json (Aucun envoi réel en mode sécurisé).'
@@ -475,15 +1073,53 @@ function setupEmailPreviewer() {
 function loadOfferIntoEmailPreview(offer) {
   const companyEl = document.getElementById('email-preview-company');
   const subjectEl = document.getElementById('email-preview-subject');
-  if (companyEl) companyEl.textContent = offer.company;
-  if (subjectEl) subjectEl.textContent = `Candidature Stage PFE (IA & Data Engineering) – Anas MOUQUINE – ${offer.company}`;
-  showToast('Candidature Générée', `Le modèle de courriel et le CV ATS ont été injectés pour ${offer.company}.`);
+  const htmlView = document.getElementById('email-html-view');
+  const plainView = document.getElementById('email-plain-view');
+
+  const roleTitle = offer.title || 'Stage PFE IA & Data Engineering';
+  const companyName = offer.company || 'Entreprise Partenaire';
+  const contactName = offer.hr_name ? `Mme/M. ${offer.hr_name}` : "l'équipe Recrutement";
+  const skillsList = offer.matched_skills && offer.matched_skills.length ? offer.matched_skills.join(', ') : 'Python, IA, Data Engineering';
+
+  if (companyEl) companyEl.textContent = companyName;
+  if (subjectEl) subjectEl.textContent = `Candidature Stage PFE (${offer.title}) – Anas MOUQUINE – ${companyName}`;
+
+  if (htmlView) {
+    htmlView.innerHTML = `
+      <p><strong>À l'attention de ${escapeHtml(contactName)} · <span id="email-preview-company">${escapeHtml(companyName)}</span></strong></p>
+      <p>Madame, Monsieur,</p>
+      <p>Actuellement en 5<sup>e</sup> année du cycle d'ingénieur d'État en <strong>Intelligence Artificielle &amp; Génie des Données à l'EMSI Casablanca</strong>, je vous soumets ma candidature pour l'opportunité de <strong>${escapeHtml(roleTitle)}</strong> au sein de vos équipes.</p>
+      <p>Passionné par la mise en production de pipelines de données distribués et de systèmes multi-agents, j'ai développé des compétences approfondies sur <em>${escapeHtml(skillsList)}</em>.</p>
+      <p>Vous trouverez ci-joint mon <strong>CV ATS</strong> détaillant mes projets et mes certifications Google, HKUST et Meta.</p>
+      <p>Cordialement,<br><strong>Anas MOUQUINE</strong><br><small>+212 672-104126 · anasmouqine@gmail.com</small></p>
+    `;
+  }
+
+  if (plainView) {
+    plainView.textContent = `Objet: Candidature Stage PFE (${roleTitle}) - Anas MOUQUINE - ${companyName}
+
+À l'attention de ${contactName},
+
+Élève-ingénieur en 5e année à l'EMSI Casablanca (spécialité IA & Data Engineering), je vous propose ma candidature pour votre opportunité de stage : ${roleTitle}.
+
+Compétences alignées avec votre besoin : ${skillsList}.
+
+Pièce jointe : cv_ats_pfe.pdf
+Portfolio : anasmouquinee.github.io/port/
+LinkedIn : linkedin.com/in/anas-mouqine-329207304/
+
+Anas MOUQUINE
++212 672-104126`;
+  }
+
+  showToast('Candidature Générée', `Le modèle de courriel et le CV ATS ont été personnalisés pour ${companyName}.`);
 }
 
 /* --------------------------------------------------------------------------
    TOAST NOTIFICATION HELPER
    -------------------------------------------------------------------------- */
 function showToast(title, message) {
+  playSound('pop');
   const container = document.getElementById('toast-container');
   if (!container) return;
 
@@ -515,6 +1151,10 @@ function debounce(func, wait) {
     clearTimeout(timeout);
     timeout = setTimeout(() => func.apply(this, args), wait);
   };
+}
+
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function escapeHtml(str) {

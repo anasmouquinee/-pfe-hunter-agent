@@ -1,0 +1,252 @@
+/* ==========================================================================
+   ANIMATIONS & MICRO-INTERACTIONS MODULE
+   Linear × Apple Micro-Transitions with WCAG Accessibility Guarantees
+   ========================================================================== */
+
+/* 1. Radar Pulse (Live active liveness indicator) */
+@keyframes pulseRadar {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+@keyframes pulseRadarCyan {
+  0% {
+    box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(6, 182, 212, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(6, 182, 212, 0);
+  }
+}
+
+/* 2. View Entrance Transition (Smooth fade and slight lift) */
+@keyframes viewEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.view-enter {
+  animation: viewEnter 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 3. Terminal CLI Cursor Blink */
+@keyframes terminalCursorBlink {
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  background-color: var(--accent-cyan);
+  vertical-align: middle;
+  margin-left: 2px;
+  animation: terminalCursorBlink 1s infinite;
+}
+
+/* 4. Ambient Card Glow & Highlight */
+@keyframes cardGlow {
+  0%, 100% {
+    border-color: var(--border-subtle);
+  }
+  50% {
+    border-color: var(--border-accent);
+  }
+}
+
+/* 5. Shimmer / Progress Sweep */
+@keyframes shimmerSweep {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* 6. Dry-Run Stepper Progress Pulse */
+@keyframes stepPulse {
+  0% {
+    transform: scale(0.96);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.96);
+    opacity: 0.7;
+  }
+}
+
+.step-pulsing {
+  animation: stepPulse 1.2s infinite ease-in-out;
+}
+
+/* 7. Ambient Glowing Background Auras */
+.ambient-glow {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+  filter: blur(110px);
+  will-change: transform, opacity;
+}
+
+.ambient-glow-cyan {
+  width: 520px;
+  height: 520px;
+  top: -120px;
+  left: -100px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.28) 0%, rgba(6, 182, 212, 0) 70%);
+  animation: floatAura1 18s infinite ease-in-out alternate;
+}
+
+.ambient-glow-indigo {
+  width: 620px;
+  height: 620px;
+  top: 300px;
+  right: -150px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.22) 0%, rgba(99, 102, 241, 0) 70%);
+  animation: floatAura2 24s infinite ease-in-out alternate;
+}
+
+@keyframes floatAura1 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, 40px) scale(1.1); }
+  100% { transform: translate(-30px, 80px) scale(0.95); }
+}
+
+@keyframes floatAura2 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-80px, -50px) scale(1.15); }
+  100% { transform: translate(40px, -90px) scale(0.9); }
+}
+
+/* 8. SVG Sparkline Draw-In Animation */
+.kpi-sparkline path {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: drawSparkline 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  filter: drop-shadow(0 2px 4px rgba(6, 182, 212, 0.35));
+}
+
+@keyframes drawSparkline {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* 9. Card Spotlight / Glare Following Mouse */
+.card,
+.kpi-card,
+.project-card,
+.cert-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.card::after,
+.kpi-card::after,
+.project-card::after,
+.cert-card::after {
+  content: '';
+  position: absolute;
+  top: var(--mouse-y, -1000px);
+  left: var(--mouse-x, -1000px);
+  width: 300px;
+  height: 300px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 2;
+}
+
+.card:hover::after,
+.kpi-card:hover::after,
+.project-card:hover::after,
+.cert-card:hover::after {
+  opacity: 1;
+}
+
+/* 10. Number Counter Pulse Animation */
+@keyframes numberPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); color: var(--accent-cyan); }
+  100% { transform: scale(1); }
+}
+
+.count-updated {
+  animation: numberPulse 0.4s ease-out;
+}
+
+/* 11. Ripple Effect on Button Clicks */
+.ripple-wave {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: rippleAnim 0.6s linear;
+  background-color: rgba(255, 255, 255, 0.28);
+  pointer-events: none;
+}
+
+@keyframes rippleAnim {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* 12. Confetti Canvas Overlay */
+.confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* 13. Accessibility: Prefers-reduced-motion fallback */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .status-dot-active,
+  .terminal-cursor,
+  .view-enter,
+  .step-pulsing {
+    animation: none !important;
+  }
+}

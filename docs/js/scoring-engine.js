@@ -1,6 +1,7 @@
 /**
  * SCORING ENGINE MODULE
  * Provides client-side AI & NLP matching simulation matching Anas Mouquine's profile.
+ * Supports configurable category weights and missing skills detection.
  */
 
 class ScoringEngine {
@@ -33,7 +34,7 @@ class ScoringEngine {
     ];
   }
 
-  evaluateOfferText(text) {
+  evaluateOfferText(text, weights = null) {
     if (!text || text.trim().length < 15) {
       return {
         score: 0,
@@ -59,26 +60,40 @@ class ScoringEngine {
     }
 
     // 2. Check False-Positive Homonym: French "j'ai" vs "IA"
-    const hasFalsePositiveIA = /\bj['\u2019]ai\b/i.test(cleanText) && !/\bintelligence\s+artificielle\b/i.test(cleanText) && !/\b(machine\s+learning|python|llm|deep\s+learning)\b/i.test(cleanText);
+    const hasFalsePositiveIA = /\bj['\u2019]ai\b/i.test(cleanText) &&
+      !/\bintelligence\s+artificielle\b/i.test(cleanText) &&
+      !/\b(machine\s+learning|python|llm|deep\s+learning)\b/i.test(cleanText);
+
     if (hasFalsePositiveIA) {
       exclusions.push('Détection de faux-positif linguistique : présence de la forme verbale "j\'ai" confondue avec le sigle IA');
     }
 
-    // 3. Detect Skills & Calculate Match Score
+    // 3. Detect Skills & Calculate Match Score with Configurable Weights
     const detectedSkills = [];
     const missingSkills = [];
     let earnedWeight = 0;
     let maxWeight = 0;
 
     for (const skill of this.targetSkills) {
-      maxWeight += skill.weight;
+      // Determine multiplier based on passed custom weights
+      let multiplier = 1.0;
+      if (weights) {
+        if (typeof weights[skill.category] === 'number') {
+          multiplier = weights[skill.category];
+        } else if (typeof weights[skill.name] === 'number') {
+          multiplier = weights[skill.name];
+        }
+      }
+
+      const activeWeight = skill.weight * multiplier;
+      maxWeight += activeWeight;
       let matched = false;
 
       // Check primary name
       if (cleanText.includes(skill.name.toLowerCase())) {
         matched = true;
       } else if (skill.aliases) {
-        // Check aliases with regex boundary
+        // Check aliases with regex word boundary
         for (const alias of skill.aliases) {
           const regex = new RegExp(`\\b${alias}\\b`, 'i');
           if (regex.test(cleanText)) {
@@ -90,7 +105,7 @@ class ScoringEngine {
 
       if (matched) {
         detectedSkills.push(skill.name);
-        earnedWeight += skill.weight;
+        earnedWeight += activeWeight;
       } else {
         missingSkills.push(skill.name);
       }
@@ -98,7 +113,7 @@ class ScoringEngine {
 
     // Baseline stage bonus if explicitly mentions PFE or stage fin d'études
     const isPfeMentioned = /\b(pfe|stage\s+de\s+fin\s+d['\u2019][eé]tudes?|stagiaire\s+pfe)\b/i.test(cleanText);
-    let rawScore = Math.round((earnedWeight / maxWeight) * 100);
+    let rawScore = maxWeight > 0 ? Math.round((earnedWeight / maxWeight) * 100) : 0;
 
     if (isPfeMentioned) rawScore = Math.min(100, rawScore + 10);
     const isRemunerated = this.remunerationPatterns.some(p => p.test(cleanText));
@@ -136,7 +151,7 @@ class ScoringEngine {
       score: finalScore,
       isEligible: isEligible,
       detectedSkills: detectedSkills,
-      missingSkills: missingSkills.slice(0, 5),
+      missingSkills: missingSkills,
       exclusions: exclusions,
       isRemunerated: isRemunerated,
       isPfe: isPfeMentioned,

@@ -1,6 +1,7 @@
 /**
  * DATA ENGINE MODULE
- * Manages live and cached offers data from applied_offers.json with reactive query methods.
+ * Manages live and cached offers data from applied_offers.json with reactive query methods,
+ * sorting, pagination, and multi-source analytics.
  */
 
 class DataEngine {
@@ -52,7 +53,7 @@ class DataEngine {
     const sources = {};
 
     for (const [id, item] of Object.entries(rawDict)) {
-      const score = item.score || 75;
+      const score = item.score !== undefined ? item.score : 75;
       totalScore += score;
       if (score >= 80) highMatch++;
       if (item.is_remunerated) remunerated++;
@@ -65,7 +66,7 @@ class DataEngine {
         id: id,
         title: item.title || 'Opportunité Ingénieur PFE / Data',
         company: item.company || 'Entreprise Partenaire',
-        location: item.location || 'Casablanca / Hybride',
+        location: this.extractLocation(item.title, item.location),
         url: item.url || '#',
         source: src,
         contact_email: item.contact_email || null,
@@ -80,7 +81,7 @@ class DataEngine {
       });
     }
 
-    // Sort by newest and score descending
+    // Sort initially by score descending
     list.sort((a, b) => b.score - a.score);
 
     this.offers = list;
@@ -94,15 +95,28 @@ class DataEngine {
     };
   }
 
-  filterOffers({ keyword = '', source = 'all', minScore = 0, status = 'all' }) {
+  extractLocation(title, location) {
+    if (location && location.trim()) return location.trim();
+    const lower = (title || '').toLowerCase();
+    if (lower.includes('casablanca') || lower.includes('casa')) return 'Casablanca';
+    if (lower.includes('rabat')) return 'Rabat';
+    if (lower.includes('tanger') || lower.includes('tangier')) return 'Tanger';
+    if (lower.includes('marrakech')) return 'Marrakech';
+    if (lower.includes('fès') || lower.includes('fes')) return 'Fès';
+    if (lower.includes('télétravail') || lower.includes('remote')) return 'Télétravail';
+    return 'Casablanca / Hybride';
+  }
+
+  filterOffers({ keyword = '', source = 'all', minScore = 0, status = 'all', skillCategory = 'all' }) {
     return this.offers.filter(offer => {
-      // Keyword match
-      if (keyword.trim()) {
+      // Keyword search across title, company, skills, location
+      if (keyword && keyword.trim()) {
         const query = keyword.toLowerCase().trim();
         const matchesTitle = offer.title.toLowerCase().includes(query);
         const matchesCompany = offer.company.toLowerCase().includes(query);
+        const matchesLocation = offer.location.toLowerCase().includes(query);
         const matchesSkills = offer.matched_skills.some(s => s.toLowerCase().includes(query));
-        if (!matchesTitle && !matchesCompany && !matchesSkills) return false;
+        if (!matchesTitle && !matchesCompany && !matchesLocation && !matchesSkills) return false;
       }
 
       // Source filter
@@ -120,8 +134,68 @@ class DataEngine {
       if (status === 'remunerated' && !offer.is_remunerated) return false;
       if (status === 'high_match' && offer.score < 85) return false;
 
+      // Category chip filters (aligned with real dataset distribution)
+      if (skillCategory === 'ai_rag') {
+        const aiTerms = ['intelligence artificielle', 'ia', 'ai', 'rag', 'llm', 'machine learning', 'deep learning', 'nlp'];
+        const hasAi = offer.matched_skills.some(s => aiTerms.some(t => s.toLowerCase().includes(t))) ||
+                      aiTerms.some(t => offer.title.toLowerCase().includes(t));
+        if (!hasAi) return false;
+      } else if (skillCategory === 'python') {
+        const hasPython = offer.matched_skills.some(s => s.toLowerCase().includes('python')) ||
+                          offer.title.toLowerCase().includes('python');
+        if (!hasPython) return false;
+      } else if (skillCategory === 'data_sql') {
+        const dataTerms = ['data', 'sql', 'postgresql', 'etl', 'pipeline', 'lakehouse', 'airflow', 'kafka', 'big data'];
+        const hasData = offer.matched_skills.some(s => dataTerms.some(t => s.toLowerCase().includes(t))) ||
+                        dataTerms.some(t => offer.title.toLowerCase().includes(t));
+        if (!hasData) return false;
+      }
+
       return true;
     });
+  }
+
+  sortOffers(offersList, field = 'score', ascending = false) {
+    const sorted = [...offersList];
+    sorted.sort((a, b) => {
+      let valA = a[field];
+      let valB = b[field];
+
+      if (field === 'title' || field === 'company' || field === 'source') {
+        valA = (valA || '').toString().toLowerCase();
+        valB = (valB || '').toString().toLowerCase();
+        return ascending ? valA.localeCompare(valB) : valB.localeCompare(valA);
+      }
+
+      if (field === 'status') {
+        valA = a.applied ? 3 : (a.is_remunerated ? 2 : 1);
+        valB = b.applied ? 3 : (b.is_remunerated ? 2 : 1);
+      }
+
+      valA = valA !== undefined ? valA : 0;
+      valB = valB !== undefined ? valB : 0;
+      return ascending ? (valA > valB ? 1 : -1) : (valA < valB ? 1 : -1);
+    });
+    return sorted;
+  }
+
+  paginate(offersList, page = 1, pageSize = 25) {
+    const total = offersList.length;
+    const totalPages = Math.max(1, Math.ceil(total / pageSize));
+    const currentPage = Math.max(1, Math.min(page, totalPages));
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = Math.min(startIndex + pageSize, total);
+    const items = offersList.slice(startIndex, endIndex);
+
+    return {
+      items,
+      total,
+      currentPage,
+      totalPages,
+      pageSize,
+      startIndex: total === 0 ? 0 : startIndex + 1,
+      endIndex
+    };
   }
 
   getOfferById(id) {
