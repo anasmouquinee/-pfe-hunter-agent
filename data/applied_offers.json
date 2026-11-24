@@ -8842,9 +8842,29 @@
       "simulated_at": null,
       "notified": true,
       "notified_at": "2026-11-24T15:20:22.872825+00:00"
+    },
+    "417c3acf5ed52df4": {
+      "title": "Stage Pré Embauche – Service Client",
+      "company": "Entreprise Partenaire (MarocAnnonces)",
+      "url": "https://www.marocannonces.com/categorie/309/Offres-emploi/annonce/10497390/Stage-Pré-Embauche-–-Service-Client.html",
+      "source": "marocannonces",
+      "contact_email": null,
+      "linkedin_url": null,
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 50,
+      "matched_skills": [],
+      "first_seen": "2026-11-24T18:14:50.921202+00:00",
+      "applied": false,
+      "applied_at": null,
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-11-24T18:14:50.921202+00:00"
     }
   },
-  "last_updated": "2026-11-24T15:20:22.872825+00:00",
+  "last_updated": "2026-11-24T18:14:50.921202+00:00",
   "total_applied": 159,
   "total_simulated": 4
 }
