@@ -8922,9 +8922,53 @@
       "simulated_at": null,
       "notified": true,
       "notified_at": "2026-11-25T00:24:35.172705+00:00"
+    },
+    "720c76abc1beab27": {
+      "title": "Founder’s Associate — Fintech Product Marketing",
+      "company": "dyadeo",
+      "url": "https://ma.linkedin.com/jobs/view/founder%E2%80%99s-associate-%E2%80%94-fintech-product-marketing-at-dyadeo-4494417251",
+      "source": "linkedin_guest",
+      "contact_email": null,
+      "linkedin_url": "https://ma.linkedin.com/jobs/view/founder%E2%80%99s-associate-%E2%80%94-fintech-product-marketing-at-dyadeo-4494417251",
+      "hr_name": "Mustapha Raiss RIAD",
+      "hr_linkedin_url": "https://ma.linkedin.com/in/mriad",
+      "is_remunerated": true,
+      "score": 68,
+      "matched_skills": [
+        "IA"
+      ],
+      "first_seen": "2026-11-25T12:22:31.513690+00:00",
+      "applied": false,
+      "applied_at": null,
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-11-25T12:22:31.513690+00:00"
+    },
+    "69c3df55e3690c0c": {
+      "title": "Offre de stage pré-embauche: Développeur(se) informatique",
+      "company": "MAROC FER",
+      "url": "https://ma.linkedin.com/jobs/view/offre-de-stage-pr%C3%A9-embauche-d%C3%A9veloppeur-se-informatique-at-maroc-fer-4494630249",
+      "source": "linkedin_guest",
+      "contact_email": "rh@marocfer.com",
+      "linkedin_url": "https://ma.linkedin.com/jobs/view/offre-de-stage-pr%C3%A9-embauche-d%C3%A9veloppeur-se-informatique-at-maroc-fer-4494630249",
+      "hr_name": "Soukaina ECH-CHABBI",
+      "hr_linkedin_url": "https://ma.linkedin.com/in/soukaina-ech-chabbi-612062300",
+      "is_remunerated": false,
+      "score": 58,
+      "matched_skills": [
+        "SQL"
+      ],
+      "first_seen": "2026-11-25T12:22:35.890160+00:00",
+      "applied": true,
+      "applied_at": "2026-11-25T12:22:35.890160+00:00",
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-11-25T12:22:35.890160+00:00"
     }
   },
-  "last_updated": "2026-11-25T00:24:35.172705+00:00",
-  "total_applied": 160,
+  "last_updated": "2026-11-25T12:22:35.890160+00:00",
+  "total_applied": 161,
   "total_simulated": 4
 }
