@@ -9179,9 +9179,31 @@
       "simulated_at": null,
       "notified": true,
       "notified_at": "2026-11-27T12:16:12.808303+00:00"
+    },
+    "f0c1b56dfbb7185f": {
+      "title": "Stagiaire PFE – Infrastructure IT, Cloud & Transformation Digitale (H/F)",
+      "company": "CGI",
+      "url": "https://ma.linkedin.com/jobs/view/stagiaire-pfe-%E2%80%93-infrastructure-it-cloud-transformation-digitale-h-f-at-cgi-4495826779",
+      "source": "linkedin_guest",
+      "contact_email": "carrieres.maroc@cgi.com",
+      "linkedin_url": "https://ma.linkedin.com/jobs/view/stagiaire-pfe-%E2%80%93-infrastructure-it-cloud-transformation-digitale-h-f-at-cgi-4495826779",
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 58,
+      "matched_skills": [
+        "Cloud"
+      ],
+      "first_seen": "2026-11-27T18:14:05.763609+00:00",
+      "applied": true,
+      "applied_at": "2026-11-27T18:14:05.763609+00:00",
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-11-27T18:14:05.763609+00:00"
     }
   },
-  "last_updated": "2026-11-27T12:16:12.808303+00:00",
-  "total_applied": 165,
+  "last_updated": "2026-11-27T18:14:05.763609+00:00",
+  "total_applied": 166,
   "total_simulated": 4
 }
