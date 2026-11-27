@@ -9097,9 +9097,29 @@
       "simulated_at": null,
       "notified": true,
       "notified_at": "2026-11-27T00:32:02.273572+00:00"
+    },
+    "6eec03cc558969ea": {
+      "title": "Stagiaire – Communication & Marketing | F/H",
+      "company": "KPMG Maroc",
+      "url": "https://ma.linkedin.com/jobs/view/stagiaire-%E2%80%93-communication-marketing-f-h-at-kpmg-au-maroc-4495288091",
+      "source": "linkedin_guest",
+      "contact_email": null,
+      "linkedin_url": "https://ma.linkedin.com/jobs/view/stagiaire-%E2%80%93-communication-marketing-f-h-at-kpmg-au-maroc-4495288091",
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 50,
+      "matched_skills": [],
+      "first_seen": "2026-11-27T03:14:58.915519+00:00",
+      "applied": false,
+      "applied_at": null,
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-11-27T03:14:58.915519+00:00"
     }
   },
-  "last_updated": "2026-11-27T00:32:02.273572+00:00",
+  "last_updated": "2026-11-27T03:14:58.915519+00:00",
   "total_applied": 163,
   "total_simulated": 4
 }
