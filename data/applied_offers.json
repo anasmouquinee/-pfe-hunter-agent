@@ -9137,9 +9137,51 @@
       "simulated_at": null,
       "notified": true,
       "notified_at": "2026-11-27T09:14:03.571534+00:00"
+    },
+    "2121f52ec7965d1c": {
+      "title": "Stagiaire PFE – Infrastructure IT, Cloud & Transformation Digitale (H/F)",
+      "company": "CGI Technologies et Solutions Maroc",
+      "url": "https://www.rekrute.com/offre-emploi-stagiaire-pfe-infrastructure-it-cloud-transformation-digitale-hf-recrutement-cgi-technologies-et-solutions-maroc-casablanca-189016.html",
+      "source": "rekrute",
+      "contact_email": "carrieres.maroc@cgi.com",
+      "linkedin_url": null,
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 58,
+      "matched_skills": [
+        "Cloud"
+      ],
+      "first_seen": "2026-11-27T12:16:07.162751+00:00",
+      "applied": true,
+      "applied_at": "2026-11-27T12:16:07.162751+00:00",
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-11-27T12:16:07.162751+00:00"
+    },
+    "d7abcd9b423f126f": {
+      "title": "Stagiaire PFE : Finance / Contrôle de gestion (H/F)",
+      "company": "CGI Technologies et Solutions Maroc",
+      "url": "https://www.rekrute.com/offre-emploi-stagiaire-pfe-finance-controle-de-gestion-hf-recrutement-cgi-technologies-et-solutions-maroc-casablanca-189017.html",
+      "source": "rekrute",
+      "contact_email": "carrieres.maroc@cgi.com",
+      "linkedin_url": null,
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 50,
+      "matched_skills": [],
+      "first_seen": "2026-11-27T12:16:12.808303+00:00",
+      "applied": true,
+      "applied_at": "2026-11-27T12:16:12.808303+00:00",
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-11-27T12:16:12.808303+00:00"
     }
   },
-  "last_updated": "2026-11-27T09:14:03.571534+00:00",
-  "total_applied": 163,
+  "last_updated": "2026-11-27T12:16:12.808303+00:00",
+  "total_applied": 165,
   "total_simulated": 4
 }
