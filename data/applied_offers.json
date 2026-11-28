@@ -9298,9 +9298,62 @@
       "simulated_at": null,
       "notified": true,
       "notified_at": "2026-11-27T21:13:22.739788+00:00"
+    },
+    "012bf26bc432109d": {
+      "title": "Stagiaire PFE Logistique (H/F)",
+      "company": "Danone",
+      "url": "https://ma.linkedin.com/jobs/view/stagiaire-pfe-logistique-h-f-at-danone-4495847438",
+      "source": "linkedin_guest",
+      "contact_email": null,
+      "linkedin_url": "https://ma.linkedin.com/jobs/view/stagiaire-pfe-logistique-h-f-at-danone-4495847438",
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 90,
+      "matched_skills": [
+        "Intelligence Artificielle",
+        "Machine Learning",
+        "Deep Learning",
+        "Data Science",
+        "Python",
+        "SQL"
+      ],
+      "first_seen": "2026-11-28T03:13:43.777990+00:00",
+      "applied": false,
+      "applied_at": null,
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-11-28T03:13:43.777990+00:00"
+    },
+    "b0b5cd3d973ec133": {
+      "title": "Stage PFE - D2T2",
+      "company": "INTELCIA",
+      "url": "https://ma.linkedin.com/jobs/view/stage-pfe-d2t2-at-intelcia-4495317371",
+      "source": "linkedin_guest",
+      "contact_email": "recrutement.it@intelcia.com",
+      "linkedin_url": "https://ma.linkedin.com/jobs/view/stage-pfe-d2t2-at-intelcia-4495317371",
+      "hr_name": null,
+      "hr_linkedin_url": null,
+      "is_remunerated": false,
+      "score": 90,
+      "matched_skills": [
+        "IA",
+        "AI",
+        "Python",
+        "Full Stack",
+        "DevOps"
+      ],
+      "first_seen": "2026-11-28T03:13:48.091113+00:00",
+      "applied": true,
+      "applied_at": "2026-11-28T03:13:48.091113+00:00",
+      "simulated": false,
+      "simulated_at": null,
+      "notified": true,
+      "notified_at": "2026-11-28T03:13:48.091113+00:00"
     }
   },
-  "last_updated": "2026-11-27T21:13:22.739788+00:00",
-  "total_applied": 168,
+  "last_updated": "2026-11-28T03:13:48.091113+00:00",
+  "total_applied": 169,
   "total_simulated": 4
 }
